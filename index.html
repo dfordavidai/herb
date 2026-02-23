@@ -317,20 +317,20 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   </div>
 </div>
 
-<div id="ritualPanel" style="display:none;padding:16px">
+<div id="ritualPanel" style="display:none;padding:16px;position:relative">
   <div class="section-label" style="padding:4px 0 16px">
     <h3>🕯️ Quick Ritual Finder</h3>
   </div>
   <p style="font-size:0.86em;color:var(--text-mid);margin-bottom:16px;line-height:1.6">Select your intention and see the most powerful herbs for that purpose:</p>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
-    <button class="ritual-btn" onclick="setFilter('prosperity',document.querySelector(\'.ftab:nth-child(5)\'));switchTab(\'home\')">💰 Attract Money</button>
-    <button class="ritual-btn" onclick="setFilter('love',document.querySelector(\'.ftab:nth-child(4)\'));switchTab(\'home\')">❤️ Find Love</button>
-    <button class="ritual-btn" onclick="setFilter('protection',document.querySelector(\'.ftab:nth-child(3)\'));switchTab(\'home\')">🛡️ Protect Home</button>
-    <button class="ritual-btn" onclick="setFilter('cleansing',document.querySelector(\'.ftab:nth-child(7)\'));switchTab(\'home\')">✨ Cleanse Aura</button>
-    <button class="ritual-btn" onclick="setFilter('fertility',document.querySelector(\'.ftab:nth-child(8)\'));switchTab(\'home\')">🌸 Boost Fertility</button>
-    <button class="ritual-btn" onclick="setFilter('mental',document.querySelector(\'.ftab:nth-child(9)\'));switchTab(\'home\')">🧠 Clear Mind</button>
-    <button class="ritual-btn" onclick="setFilter('energy',document.querySelector(\'.ftab:nth-child(10)\'));switchTab(\'home\')">⚡ Boost Energy</button>
-    <button class="ritual-btn" onclick="setFilter('healing',document.querySelector(\'.ftab:nth-child(2)\'));switchTab(\'home\')">💊 Heal Body</button>
+    <button class="ritual-btn" onclick="openRitualPage('prosperity')">💰 Attract Money</button>
+    <button class="ritual-btn" onclick="openRitualPage('love')">❤️ Find Love</button>
+    <button class="ritual-btn" onclick="openRitualPage('protection')">🛡️ Protect Home</button>
+    <button class="ritual-btn" onclick="openRitualPage('cleansing')">✨ Cleanse Aura</button>
+    <button class="ritual-btn" onclick="openRitualPage('fertility')">🌸 Boost Fertility</button>
+    <button class="ritual-btn" onclick="openRitualPage('mental')">🧠 Clear Mind</button>
+    <button class="ritual-btn" onclick="openRitualPage('energy')">⚡ Boost Energy</button>
+    <button class="ritual-btn" onclick="openRitualPage('healing')">💊 Heal Body</button>
   </div>
   <div class="help-note">
     <strong>🌕 Best Ritual Times</strong>
@@ -343,9 +343,41 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   </div>
 </div>
 
+<!-- ══════════════ RITUAL INNER PAGE ══════════════ -->
+<div id="ritualPage">
+  <div id="rpHero" class="rp-hero"></div>
+  <div class="rp-body" id="rpBody"></div>
+</div>
+
 <style>
-.ritual-btn{padding:14px 10px;border-radius:12px;border:1.5px solid var(--border);background:var(--white);font-family:'Nunito',sans-serif;font-size:0.82em;font-weight:700;cursor:pointer;text-align:center;color:var(--text);transition:all .15s;touch-action:manipulation}
-.ritual-btn:active{background:var(--green-light);border-color:var(--green);color:var(--green)}
+.ritual-btn{padding:14px 10px;border-radius:12px;border:1.5px solid var(--border);background:var(--white);font-family:'Nunito',sans-serif;font-size:0.82em;font-weight:700;cursor:pointer;text-align:center;color:var(--text);transition:all .2s;touch-action:manipulation}
+.ritual-btn:hover,.ritual-btn:active{transform:translateY(-2px);box-shadow:0 4px 14px rgba(46,125,79,.18)}
+/* ── Ritual Inner Page ── */
+#ritualPage{display:none;position:fixed;inset:0;z-index:200;overflow-y:auto;background:var(--bg)}
+.rp-hero{padding:22px 18px 18px;color:#fff;position:relative}
+.rp-back{background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:20px;padding:7px 16px;font-size:0.82em;font-weight:700;cursor:pointer;margin-bottom:14px;display:inline-flex;align-items:center;gap:6px}
+.rp-hero h2{font-family:'Playfair Display',serif;font-size:1.8em;font-weight:800;margin:0 0 4px;line-height:1.1}
+.rp-hero p{font-size:0.85em;opacity:.85;margin:0;line-height:1.5}
+.rp-body{padding:16px}
+.rp-section{background:var(--white);border-radius:14px;border:1px solid var(--border);padding:16px;margin-bottom:14px}
+.rp-section-title{font-size:0.78em;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:10px}
+.rp-herbs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:0}
+.rp-herb-tag{background:var(--green-light);color:var(--green);border-radius:20px;padding:5px 12px;font-size:0.8em;font-weight:700;cursor:pointer;border:1px solid rgba(46,125,79,.2)}
+.rp-herb-tag:active{background:var(--green);color:#fff}
+.rp-step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.rp-step:last-child{margin-bottom:0}
+.rp-step-num{width:28px;height:28px;min-width:28px;border-radius:50%;background:var(--green);color:#fff;font-size:0.8em;font-weight:800;display:flex;align-items:center;justify-content:center}
+.rp-step-text{font-size:0.86em;line-height:1.55;color:var(--text);padding-top:4px}
+.rp-step-text strong{display:block;color:var(--text-dark);margin-bottom:2px;font-size:0.95em}
+.rp-ingredient{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:0.85em}
+.rp-ingredient:last-child{border-bottom:none}
+.rp-ingredient .qty{font-weight:800;color:var(--green);min-width:70px}
+.rp-timing-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rp-timing-card{background:var(--green-light);border-radius:10px;padding:10px 12px;border:1px solid rgba(46,125,79,.15)}
+.rp-timing-card .t-label{font-size:0.72em;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:3px}
+.rp-timing-card .t-val{font-size:0.84em;color:var(--text);font-weight:600}
+.rp-warning{background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:12px 14px;font-size:0.82em;color:#795548;line-height:1.55}
+.rp-affirmation{background:linear-gradient(135deg,#1b5e35,#2e7d4f);border-radius:12px;padding:16px;color:#fff;text-align:center;font-style:italic;font-size:0.9em;line-height:1.6}
 </style>
 
 <footer>
@@ -1175,6 +1207,284 @@ function closeModal(){
 }
 function handleOverlayClick(e){
   if(e.target===document.getElementById('overlay')) closeModal();
+}
+
+// ─── RITUAL PAGE DATA ─────────────────────────────────────────────────────────
+const ritualData = {
+  prosperity: {
+    emoji:'💰', title:'Attract Money', subtitle:'Prosperity & Abundance Rituals',
+    gradient:'linear-gradient(135deg,#1a4a00,#3a7d00)',
+    tagline:'Call in wealth. Open the gates of abundance. Let the ancestors deliver.',
+    herbs:['basil','ginger','cinnamon','cloves','turmeric','cola'],
+    timing:{best:'Thursday or Sunday',moon:'New Moon or Waxing Moon',time:'Morning before 9am',candle:'Green or Gold'},
+    ingredients:[
+      {qty:'7 leaves', name:'African Basil (Efirin) — the herb of Oshun, goddess of wealth'},
+      {qty:'1 tsp', name:'Ginger powder — to accelerate & magnetize your intention'},
+      {qty:'1 stick', name:'Cinnamon — draws financial opportunity quickly'},
+      {qty:'Handful', name:'Cloves — nails the blessing in place, prevents reversal'},
+      {qty:'Raw honey', name:'To sweeten your path and attract good fortune'},
+      {qty:'Gold or green candle', name:'To carry your prayer into the unseen realm'},
+    ],
+    steps:[
+      {title:'Prepare Your Space', body:'On a Thursday morning, cleanse your workspace. Light a gold or green candle. Sit quietly for 5 minutes and breathe deeply, releasing any doubts or fears about money.'},
+      {title:'Speak the Opening Prayer', body:'Say aloud: "Ancestors, I open my hands and my heart. I ask not for greed, but for enough — enough to give, enough to live, enough to leave behind for those who follow me."'},
+      {title:'Build the Prosperity Bowl', body:'In a bowl of warm water, place 7 basil leaves, 3 cloves, a cinnamon stick, and a teaspoon of ginger. Stir clockwise 7 times while picturing money flowing freely toward you.'},
+      {title:'Anoint Your Hands', body:'Dip both hands in the bowl and rub them together while stating your specific financial goal out loud. Be exact: "I attract [amount] for [purpose] by [timeframe]."'},
+      {title:'The Bath', body:'Add the entire bowl to your bath water. Bathe from head to toe, visualizing green light flowing over you as you wash. Feel every drop as a blessing landing.'},
+      {title:'Close & Offer', body:'Pour a small cup of the remaining water at the foot of a tree or at a crossroads as an offering. Say: "So it is given, so it is received. Thank you."'},
+    ],
+    warning:'Do not perform this ritual from a place of desperation or greed — the ancestors feel the energy behind the intention. Come with gratitude and clarity.',
+    affirmation:'"I am not chasing money. I am creating the conditions for money to find me. Abundance is my birthright."'
+  },
+  love: {
+    emoji:'❤️', title:'Find Love', subtitle:'Love & Attraction Rituals',
+    gradient:'linear-gradient(135deg,#7a0030,#c0004e)',
+    tagline:'Open your heart. Call in your person. Let love arrive on its own terms.',
+    herbs:['hibiscus','lavender','basil','rose','cinnamon'],
+    timing:{best:'Friday Evening',moon:'Full Moon or Waxing Moon',time:'Sunset',candle:'Pink or Red'},
+    ingredients:[
+      {qty:'1 cup dried', name:'Hibiscus petals (Zobo) — the flower of passion and heart opening'},
+      {qty:'2 tbsp', name:'Lavender — calming, harmonizing, gentle love attractor'},
+      {qty:'5 leaves', name:'African Basil — Oshun\'s herb, ruler of love and beauty'},
+      {qty:'1 stick', name:'Cinnamon — draws love quickly, warms the heart'},
+      {qty:'2 tbsp', name:'Raw honey — sweetens all relationships and self-love'},
+      {qty:'Pink or red candle', name:'To embody the love frequency you are calling in'},
+    ],
+    steps:[
+      {title:'Set the Love Altar', body:'On a Friday at sunset, light a pink candle. Place a mirror in front of you. Look yourself in the eyes for 1 full minute without looking away. This builds the self-love that attracts true love.'},
+      {title:'Brew the Love Tea', body:'Boil hibiscus, lavender, and basil together. As it simmers, speak: "I am worthy of love. I am open to love. Love finds me wherever I go."'},
+      {title:'Sweeten with Honey', body:'Stir in honey clockwise while picturing the qualities — not the face — of the love you desire. Focus on how you want to FEEL, not who you want.'},
+      {title:'The Bath', body:'Pour the tea into your bath. Bathe gently, treating your body with full respect and gratitude. You are preparing a sacred home for love to enter.'},
+      {title:'Write the Letter', body:'After your bath, write a letter to your future partner — or to your current partner if deepening love. Speak from the heart. Fold it toward you. Place it beneath your pillow for 7 nights.'},
+      {title:'The Offering', body:'Pour a cup of the remaining tea into flowing water (a river, stream, or drain) as an offering to Oshun or the spirit of love in your tradition.'},
+    ],
+    warning:'Do not try to force a specific person. Love rituals work by raising YOUR frequency, not by controlling others. Trust the process.',
+    affirmation:'"I do not need to chase love. I am becoming the person that love cannot resist."'
+  },
+  protection: {
+    emoji:'🛡️', title:'Protect Home', subtitle:'Protection & Spiritual Defence Rituals',
+    gradient:'linear-gradient(135deg,#0a2a4a,#1565c0)',
+    tagline:'Seal your space. Guard your energy. Let nothing unwanted enter.',
+    herbs:['neem','sage','frankincense','garlic','pepper'],
+    timing:{best:'Saturday or Tuesday',moon:'Dark Moon or New Moon',time:'Dusk or Night',candle:'Black or White'},
+    ingredients:[
+      {qty:'Handful', name:'Neem leaves (Dogonyaro) — West Africa\'s most powerful protective herb'},
+      {qty:'1 bundle', name:'African Sage — clears all negative energy instantly'},
+      {qty:'3 tears', name:'Frankincense resin — sanctifies and seals spiritual space'},
+      {qty:'1 full head', name:'Garlic — repels evil eye and negative entities'},
+      {qty:'Pinch', name:'Black pepper — breaks curses and repels malice'},
+      {qty:'Sea salt', name:'Forms an impenetrable spiritual barrier'},
+    ],
+    steps:[
+      {title:'Saturday Cleanse', body:'Begin on a Saturday. Boil Neem leaves, garlic, and black pepper in a large pot. Allow to cool. This is your spiritual protective wash.'},
+      {title:'The Perimeter Walk', body:'Starting at your front door, walk counterclockwise around every room spraying or sprinkling the Neem wash while saying: "Nothing that means me harm may enter or remain here."'},
+      {title:'Smudge with Sage', body:'Light your sage bundle and walk clockwise through every room now, letting smoke reach all four corners, windows, and doorways. "I purify this space with the breath of the ancestors."'},
+      {title:'Burn Frankincense', body:'Place 3 frankincense tears on lit charcoal at the centre of your home. Sit nearby and pray for protection for everyone who sleeps in the space.'},
+      {title:'Salt the Doorways', body:'Pour a thin line of sea salt across every doorway and window sill. This creates a physical and spiritual barrier. Replace monthly.'},
+      {title:'Seal with Prayer', body:'At your front door, place 3 Neem leaves above the frame. Say: "This home is sealed. Protected. Sacred. Let only love and blessings enter here." Knock 3 times.'},
+    ],
+    warning:'Repeat this ritual monthly, especially after conflict in the home, after receiving guests you are unsure of, or when you sense a shift in the energy of your space.',
+    affirmation:'"My home is a fortress of love and light. What means me harm cannot stand where my ancestors stand guard."'
+  },
+  cleansing: {
+    emoji:'✨', title:'Cleanse Aura', subtitle:'Aura Cleansing & Energy Reset Rituals',
+    gradient:'linear-gradient(135deg,#4a0070,#7b1fa2)',
+    tagline:'Strip away what is not yours. Reclaim your original light.',
+    herbs:['sage','frankincense','myrrh','lavender','hibiscus'],
+    timing:{best:'Sunday or Wednesday',moon:'New Moon (new start) or Full Moon (release)',time:'Morning',candle:'White or Purple'},
+    ingredients:[
+      {qty:'1 bundle', name:'African Sage — the master cleanser of energy'},
+      {qty:'3 tears', name:'Frankincense — lifts and purifies the spirit body'},
+      {qty:'2 tears', name:'Myrrh — grounds and anchors after cleansing'},
+      {qty:'1 cup', name:'Hibiscus petals — washes the aura with Oya\'s transforming power'},
+      {qty:'Handful', name:'Lavender — seals the aura with peace after cleansing'},
+      {qty:'White candle', name:'Symbolizes the purified self you are returning to'},
+    ],
+    steps:[
+      {title:'Set the Intention', body:'Light a white candle. Sit in silence for 5 minutes. Ask yourself: "Whose energy am I carrying that is not mine?" Release any names or faces that come. This is what you are clearing today.'},
+      {title:'The Smoke Bath', body:'Light the sage bundle. Starting at your feet, slowly wave the smoke up your body, paying special attention to your chest, head, and back of the neck. Rotate slowly so every side is reached.'},
+      {title:'Frankincense & Myrrh', body:'Burn frankincense and myrrh together on charcoal. Sit in the smoke for 5 minutes with eyes closed. Let it permeate your clothes and hair. These two resins together perform the deepest cleanse known.'},
+      {title:'The Aura Bath', body:'Brew hibiscus and lavender together. Pour into your bath. As you enter, imagine a grey mist leaving your body and dissolving in the water. Watch yourself become clean, clear, and luminous.'},
+      {title:'The Shake', body:'Standing outside or by a window after your bath, shake your hands and arms vigorously as if flinging water off. You are flinging off what remains. Say: "I release all that is not mine."'},
+      {title:'Seal & Protect', body:'Anoint the top of your head, forehead, chest, and soles of your feet with diluted lavender oil. This seals the newly cleansed aura against re-entry of what was removed.'},
+    ],
+    warning:'After a deep cleanse, you may feel tired, emotional, or unusually peaceful. Rest, drink water, and avoid negative people for 24 hours.',
+    affirmation:'"I am not the weight I have been carrying. I am the light that was hidden beneath it."'
+  },
+  fertility: {
+    emoji:'🌸', title:'Boost Fertility', subtitle:'Fertility & Womb Blessing Rituals',
+    gradient:'linear-gradient(135deg,#3a0030,#880e4f)',
+    tagline:'Honour the womb. Speak to the child waiting to come. Trust the ancient women who walked this path before you.',
+    herbs:['moringa','tigernut','ginger','hibiscus','shea'],
+    timing:{best:'Full Moon Night',moon:'Full Moon',time:'Evening/Night',candle:'Pink or White'},
+    ingredients:[
+      {qty:'2 tsp', name:'Moringa powder — most nutrient-dense food on earth, feeds the womb'},
+      {qty:'1 cup', name:'Tiger nuts (Ofio) — traditional West African fertility superfood'},
+      {qty:'1 tsp', name:'Ginger — warms the womb, improves circulation'},
+      {qty:'1 cup', name:'Hibiscus — balances hormones, supports reproductive health'},
+      {qty:'Shea butter', name:'For the womb massage ritual'},
+      {qty:'Raw honey', name:'The sweetener that blesses all beginnings'},
+    ],
+    steps:[
+      {title:'Full Moon Preparation', body:'On the night of a full moon, find a quiet space. Light a white or pink candle. Place your hands on your belly (or womb space) and breathe deeply into it 7 times.'},
+      {title:'Speak to the Womb', body:'With hands on your belly, speak softly: "Womb, I honour you. You are sacred. You are capable. I release any shame, trauma, or fear I have carried in you. You are a holy place."'},
+      {title:'The Fertility Tea', body:'Brew moringa, ginger, and hibiscus together. Sweeten with honey. Drink slowly, feeling the medicine enter your body as nourishment and blessing, not just food.'},
+      {title:'The Tiger Nut Milk', body:'Blend soaked tiger nuts with water and a pinch of cinnamon. This is Kunnu Aya — West Africa\'s ancient fertility drink. Drink daily for 30 days.'},
+      {title:'The Womb Massage', body:'Warm shea butter in your hands and massage your lower abdomen in gentle clockwise circles for 10 minutes. This improves blood flow to the reproductive organs. Do this 3x per week.'},
+      {title:'The Moonlight Offering', body:'Pour a cup of the tea onto the earth under the full moon as an offering. Ask your grandmothers who came before you to support and guide this journey. Trust their love for you.'},
+    ],
+    warning:'This ritual supports natural fertility alongside proper medical care. Continue working with your healthcare provider. These are complementary practices, not replacements for medical support.',
+    affirmation:'"My body knows how to create life. My womb is sacred. My ancestors are with me on this journey."'
+  },
+  mental: {
+    emoji:'🧠', title:'Clear Mind', subtitle:'Mental Clarity & Focus Rituals',
+    gradient:'linear-gradient(135deg,#002060,#0d47a1)',
+    tagline:'Quiet the noise. Sharpen the mind. Return to the clarity that is your natural state.',
+    herbs:['moringa','sage','frankincense','ginger','lemongrass'],
+    timing:{best:'Wednesday or Sunday',moon:'Waxing Moon',time:'Morning before noon',candle:'Yellow or White'},
+    ingredients:[
+      {qty:'1 tsp', name:'Moringa powder — feeds the brain with 46 antioxidants'},
+      {qty:'1 cup', name:'Lemongrass tea — sharpens focus, clears mental fog instantly'},
+      {qty:'Sage', name:'Burns to purify mental space and boost memory'},
+      {qty:'Frankincense oil', name:'2 drops — stimulates limbic system, enhances concentration'},
+      {qty:'Ginger', name:'Ignites mental fire when taken as morning shot'},
+      {qty:'Yellow candle', name:'Activates solar energy — clarity, intelligence, direction'},
+    ],
+    steps:[
+      {title:'Morning Brain Ritual', body:'Before checking your phone, sit in silence for 5 minutes. Place 2 drops of diluted frankincense oil on your temples and breathe deeply 10 times. This activates the brain\'s clarity centres.'},
+      {title:'The Clarity Shot', body:'Mix ½ tsp moringa, a squeeze of lemon, a pinch of ginger powder, and warm water. Drink this as a shot before eating. Feel it cut through the fog like morning sun.'},
+      {title:'Lemongrass Tea', body:'Steep fresh or dried lemongrass for 10 minutes. Drink slowly. Lemongrass is scientifically shown to reduce anxiety and sharpen mental focus — the brain calms and focuses simultaneously.'},
+      {title:'Sage Smudge', body:'Light sage and hold it near your head (safely). Wave the smoke around your head and neck while saying: "I release confusion. I welcome clarity. My mind is a still, clear lake."'},
+      {title:'The Concentration Anchor', body:'While working or studying, keep a small bowl of dried lemongrass or a drop of frankincense on a tissue nearby. The scent continuously anchors your focus back when the mind wanders.'},
+      {title:'Evening Reflection', body:'At the end of each day, write 3 things you understood clearly today. This trains the brain to seek and recognize clarity as its natural operating mode.'},
+    ],
+    warning:'Mental fog can be a sign of dehydration, poor sleep, or emotional overload. Alongside these rituals, ensure 7–8 hours sleep, 2L water daily, and regular time in nature.',
+    affirmation:'"My mind is not my enemy. It is my greatest tool. I choose clarity. I choose focus. I choose myself."'
+  },
+  energy: {
+    emoji:'⚡', title:'Boost Energy', subtitle:'Energy & Vitality Rituals',
+    gradient:'linear-gradient(135deg,#7a3800,#e65100)',
+    tagline:'Reignite the fire within. Move from surviving to thriving.',
+    herbs:['moringa','ginger','turmeric','cinnamon','blackseed','tigernut'],
+    timing:{best:'Sunday or Tuesday',moon:'Waxing or Full Moon',time:'Morning at Sunrise',candle:'Orange or Yellow'},
+    ingredients:[
+      {qty:'1 tsp', name:'Moringa powder — 17x the energy of spinach, without stimulants'},
+      {qty:'1 inch', name:'Fresh ginger — the fire herb, ignites every system in the body'},
+      {qty:'½ tsp', name:'Turmeric — reduces the inflammation that drains energy'},
+      {qty:'½ tsp', name:'Cinnamon — stabilizes blood sugar to prevent energy crashes'},
+      {qty:'1 tsp', name:'Black seed (Habbatus sauda) — "cures everything except death"'},
+      {qty:'1 cup', name:'Tiger nuts — sustained energy fuel without caffeine crash'},
+    ],
+    steps:[
+      {title:'Sunrise Activation', body:'Rise before 7am and step outside. Stand barefoot on earth or grass for 5 minutes. Feel the morning energy beneath your feet. Greet the sun — your most ancient source of vitality.'},
+      {title:'The Power Tonic', body:'Blend: 1 tsp moringa, ½ tsp turmeric, ½ tsp cinnamon, a thumb of fresh ginger, warm water, and honey. Drink this every morning as your body\'s most powerful natural energy booster.'},
+      {title:'Black Seed Protocol', body:'Take 1 tsp of black seed oil or ground seeds daily in the morning. The Prophet (SAW) endorsed it; science confirms it: it boosts immunity, energy, and cellular function powerfully.'},
+      {title:'Tiger Nut Milk', body:'Soak tiger nuts overnight, blend, and strain. This traditional Nigerian energy drink provides sustained fuel for the body and reproductive system without any crash.'},
+      {title:'Movement Ritual', body:'For 10 minutes each morning, move your body intentionally — stretching, shaking, dancing, walking. This signals your nervous system that you are alive, awake, and ready. Energy follows movement.'},
+      {title:'Evening Reset', body:'Avoid energy drains: long phone scrolling, negative people, unresolved arguments. Guard your energy at night as carefully as you build it in the morning. Sleep is the ritual that restores all others.'},
+    ],
+    warning:'Persistent fatigue despite rest may indicate anaemia, thyroid issues, or other medical conditions. Consult a doctor if energy has been low for more than 2 weeks without clear cause.',
+    affirmation:'"I am not tired. I have been giving too much without replenishing. Today I refuel. Today I rise."'
+  },
+  healing: {
+    emoji:'💊', title:'Heal Body', subtitle:'Physical Healing & Recovery Rituals',
+    gradient:'linear-gradient(135deg,#003030,#00695c)',
+    tagline:'Speak to the body in the language it understands: herbs, prayer, and intention.',
+    herbs:['neem','ginger','turmeric','garlic','aloe','blackseed'],
+    timing:{best:'Any day, but Monday most receptive',moon:'Waxing Moon (building health)',time:'3x Daily — Morning, Noon, Evening',candle:'Blue or White'},
+    ingredients:[
+      {qty:'Fresh', name:'Aloe vera — the universal healer, inside and outside'},
+      {qty:'1 tsp', name:'Turmeric powder — the most proven anti-inflammatory on earth'},
+      {qty:'3 cloves', name:'Garlic — natural antibiotic, antiviral, antifungal'},
+      {qty:'1 inch', name:'Fresh ginger — anti-inflammatory, digestive healer'},
+      {qty:'1 tsp', name:'Black seed oil — the cure for almost everything (scientifically reviewed)'},
+      {qty:'Neem', name:'Leaf wash or tea — treats deep infections and skin conditions'},
+    ],
+    steps:[
+      {title:'Speak to Your Body', body:'Before medicine and herbs, sit quietly with hands on the area of your body that needs healing. Speak to it: "I see you. I hear you. I am coming to help you now. Thank you for working so hard to keep me alive."'},
+      {title:'The Golden Healer Tonic', body:'Mix 1 tsp turmeric, ½ tsp ginger powder, a pinch of black pepper (activates turmeric by 2000%), and warm water with honey. Drink 2–3 times daily. This is among the most anti-inflammatory drinks known to science.'},
+      {title:'Garlic Protocol', body:'Crush 3 garlic cloves and let sit 10 minutes (activates allicin). Take with honey and warm water in the morning. Repeat for 7 days for infection clearance. Garlic outperforms many antibiotics in laboratory studies.'},
+      {title:'Black Seed Daily', body:'Take 1 tsp black seed oil twice daily. The Hadith calls it a cure for everything except death. Clinical research confirms effects on immunity, inflammation, blood sugar, blood pressure, and respiratory conditions.'},
+      {title:'Aloe Vera Healing', body:'Cut a fresh aloe leaf. Apply the gel directly to skin wounds, burns, rashes, or irritation. Drink 2 tbsp of aloe juice (inner gel only) for gut healing and systemic inflammation. Feel the coolness of healing entering.'},
+      {title:'Rest as Medicine', body:'The ancestors knew that sleep is the body\'s greatest healer. During illness, rest is not laziness — it is medicine. Create conditions for deep sleep: darkness, silence, warm herbs, gratitude.'},
+    ],
+    warning:'These herbs support healing alongside proper medical care. For serious illness, infection that worsens, high fever, or symptoms lasting more than 7 days, please see a qualified doctor or herbalist.',
+    affirmation:'"My body was made to heal. It has been healing since the moment I was born. I trust it. I support it. I give it time."'
+  }
+};
+
+function openRitualPage(cat) {
+  const d = ritualData[cat];
+  if (!d) return;
+
+  // Build herbs list from data
+  const herbTags = d.herbs.map(hid => {
+    const h = herbs.find(x => x.id === hid);
+    return h ? `<span class="rp-herb-tag" onclick="closeRitualPage();openModal('${h.id}')">${h.name}</span>` : '';
+  }).join('');
+
+  // Build ingredients
+  const ingRows = d.ingredients.map(i =>
+    `<div class="rp-ingredient"><span class="qty">${i.qty}</span><span>${i.name}</span></div>`
+  ).join('');
+
+  // Build steps
+  const stepRows = d.steps.map((s, i) =>
+    `<div class="rp-step">
+      <div class="rp-step-num">${i + 1}</div>
+      <div class="rp-step-text"><strong>${s.title}</strong>${s.body}</div>
+    </div>`
+  ).join('');
+
+  document.getElementById('rpHero').style.background = d.gradient;
+  document.getElementById('rpHero').innerHTML = `
+    <button class="rp-back" onclick="closeRitualPage()">← Back</button>
+    <div style="font-size:2.5em;margin-bottom:8px">${d.emoji}</div>
+    <h2>${d.title}</h2>
+    <p>${d.subtitle}</p>
+    <p style="margin-top:6px;font-style:italic;opacity:0.8">${d.tagline}</p>
+  `;
+
+  document.getElementById('rpBody').innerHTML = `
+    <div class="rp-section">
+      <div class="rp-section-title">🌿 Key Herbs for This Ritual</div>
+      <div class="rp-herbs">${herbTags || '<span style="color:var(--text-soft);font-size:0.85em">Tap herbs above to learn more</span>'}</div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-section-title">⏰ Sacred Timing</div>
+      <div class="rp-timing-grid">
+        <div class="rp-timing-card"><div class="t-label">Best Day</div><div class="t-val">${d.timing.best}</div></div>
+        <div class="rp-timing-card"><div class="t-label">Moon Phase</div><div class="t-val">${d.timing.moon}</div></div>
+        <div class="rp-timing-card"><div class="t-label">Best Time</div><div class="t-val">${d.timing.time}</div></div>
+        <div class="rp-timing-card"><div class="t-label">Candle</div><div class="t-val">${d.timing.candle}</div></div>
+      </div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-section-title">🧺 What You Need</div>
+      ${ingRows}
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-section-title">📿 Ritual Steps</div>
+      ${stepRows}
+    </div>
+
+    <div class="rp-warning">⚠️ ${d.warning}</div>
+
+    <div class="rp-affirmation" style="margin-top:14px">${d.affirmation}</div>
+    <div style="height:80px"></div>
+  `;
+
+  document.getElementById('ritualPage').style.display = 'block';
+  document.getElementById('ritualPage').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeRitualPage() {
+  document.getElementById('ritualPage').style.display = 'none';
+  document.body.style.overflow = '';
 }
 
 // ─── REVEAL ANIMATION ─────────────────────────────────────────────────────────
