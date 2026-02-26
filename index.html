@@ -202,6 +202,245 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   .card-name{font-size:0.88em}
   .hero h2{font-size:1.4em}
 }
+
+/* ═══════════════════════════════════════════════════════════
+   NEW SYSTEMS — DIAGNOSIS ENGINE, RITUAL BUILDER, PROTECTION,
+   CALENDAR, MARKETPLACE, RITUAL SYSTEM
+═══════════════════════════════════════════════════════════ */
+
+/* PANEL WRAPPER */
+.panel{display:none;padding-bottom:80px}
+.panel.active{display:block}
+
+/* PAGE HERO - reusable */
+.page-hero{padding:28px 18px 24px;text-align:center;position:relative;overflow:hidden}
+.page-hero h2{font-family:'Playfair Display',serif;font-size:clamp(1.3em,5vw,1.9em);font-weight:800;color:#fff;margin-bottom:6px;line-height:1.2}
+.page-hero p{color:rgba(255,255,255,0.82);font-size:0.85em;line-height:1.65;max-width:440px;margin:0 auto}
+
+/* SECTION CARD */
+.sys-section{background:var(--white);border-radius:var(--radius);margin:12px 12px 0;box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden}
+.sys-section-head{padding:16px 16px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sys-section-head h3{font-family:'Playfair Display',serif;font-size:1em;font-weight:800;flex:1}
+.sys-section-head span{font-size:1.5em}
+.sys-section-body{padding:14px 16px 18px}
+
+/* DIAGNOSIS ENGINE */
+.diag-hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+.diag-step{display:none}
+.diag-step.active{display:block}
+.diag-q{font-family:'Playfair Display',serif;font-size:1.05em;font-weight:800;color:var(--text);margin-bottom:14px;line-height:1.4}
+.diag-options{display:grid;gap:8px}
+.diag-opt{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;background:var(--white);transition:all .2s;font-family:'Nunito',sans-serif;font-size:0.88em;font-weight:600;color:var(--text);text-align:left}
+.diag-opt:hover,.diag-opt.selected{border-color:var(--green);background:var(--green-light);color:var(--green)}
+.diag-opt-icon{font-size:1.4em;flex-shrink:0;width:32px;text-align:center}
+.diag-opt-text{flex:1;line-height:1.4}
+.diag-opt-sub{font-size:0.75em;color:var(--text-soft);font-weight:400;display:block;margin-top:1px}
+.diag-opt.selected .diag-opt-sub{color:var(--green)}
+.diag-progress{display:flex;gap:4px;margin-bottom:18px}
+.diag-prog-dot{flex:1;height:4px;border-radius:4px;background:var(--border);transition:background .3s}
+.diag-prog-dot.done{background:var(--green)}
+.diag-nav{display:flex;gap:8px;margin-top:16px}
+.diag-btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'Nunito',sans-serif;font-size:0.9em;font-weight:700;cursor:pointer;transition:all .2s}
+.diag-btn-back{background:var(--bg);color:var(--text-mid);border:1.5px solid var(--border)}
+.diag-btn-next{background:var(--green);color:#fff}
+.diag-btn-next:disabled{background:#ccc;cursor:default}
+.diag-btn-start{width:100%;background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:14px;border-radius:14px;border:none;font-family:'Nunito',sans-serif;font-size:1em;font-weight:700;cursor:pointer;margin-top:8px}
+
+/* DIAGNOSIS RESULT */
+.diag-result{display:none;animation:slideUp .35s ease}
+.diag-result.show{display:block}
+.result-condition{background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:16px;padding:20px;margin-bottom:14px;color:#fff;text-align:center}
+.result-condition h3{font-family:'Playfair Display',serif;font-size:1.3em;font-weight:800;margin-bottom:6px}
+.result-condition p{font-size:0.82em;opacity:0.82;line-height:1.6}
+.result-severity{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7em;font-weight:700;margin-top:8px;letter-spacing:.05em}
+.sev-high{background:#e74c3c;color:#fff}
+.sev-med{background:#e67e22;color:#fff}
+.sev-low{background:var(--green);color:#fff}
+.result-block{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+.result-block-title{font-size:0.72em;font-weight:800;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.herb-rec-list{display:flex;flex-wrap:wrap;gap:6px}
+.herb-rec-pill{background:var(--green);color:#fff;font-size:0.75em;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;transition:opacity .2s}
+.herb-rec-pill:hover{opacity:0.85}
+.ritual-rec-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:6px}
+.ritual-rec-card h4{font-family:'Playfair Display',serif;font-size:0.95em;font-weight:800;margin-bottom:4px}
+.ritual-rec-card p{font-size:0.8em;color:var(--text-mid);line-height:1.55}
+.protection-steps-mini{list-style:none;counter-reset:step}
+.protection-steps-mini li{display:flex;gap:8px;align-items:flex-start;font-size:0.82em;color:var(--text-mid);margin-bottom:8px;line-height:1.5}
+.protection-steps-mini li::before{content:counter(step);counter-increment:step;background:var(--green);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;margin-top:1px}
+.affirmation-box{background:linear-gradient(135deg,var(--green-light),#fff);border:1px solid #c8e6d5;border-left:3px solid var(--green);border-radius:10px;padding:14px;font-family:'Playfair Display',serif;font-style:italic;font-size:0.95em;color:var(--green);line-height:1.75}
+.restart-btn{width:100%;padding:12px;background:transparent;border:1.5px solid var(--border);border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.9em;font-weight:700;color:var(--text-mid);cursor:pointer;margin-top:10px;transition:all .2s}
+.restart-btn:hover{border-color:var(--green);color:var(--green)}
+
+/* RITUAL BUILDER */
+.builder-hero{background:linear-gradient(135deg,#2c1654 0%,#4a2080 60%,#6b34b8 100%)}
+.builder-step{display:none}
+.builder-step.active{display:block}
+.builder-goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.goal-card{border:1.5px solid var(--border);border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;background:var(--white);transition:all .2s;touch-action:manipulation}
+.goal-card:hover,.goal-card.selected{border-color:#6b34b8;background:#f5eeff}
+.goal-card.selected{box-shadow:0 0 0 2px #6b34b8}
+.goal-card .gc-icon{font-size:1.8em;margin-bottom:6px}
+.goal-card .gc-name{font-size:0.78em;font-weight:800;color:var(--text)}
+.goal-card .gc-desc{font-size:0.68em;color:var(--text-soft);margin-top:2px;line-height:1.4}
+.builder-select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:0.9em;color:var(--text);background:var(--white);margin-bottom:10px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.builder-select:focus{outline:none;border-color:#6b34b8}
+.builder-label{font-size:0.8em;font-weight:700;color:var(--text);margin-bottom:6px;display:block}
+.builder-btn-next{width:100%;padding:13px;background:linear-gradient(135deg,#4a2080,#6b34b8);color:#fff;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95em;font-weight:700;cursor:pointer;margin-top:12px}
+.builder-btn-next:disabled{background:#ccc;cursor:default}
+.builder-btn-back{width:100%;padding:11px;background:transparent;border:1.5px solid var(--border);border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.9em;font-weight:700;color:var(--text-mid);cursor:pointer;margin-top:8px}
+
+/* GENERATED RITUAL */
+.gen-ritual{display:none;animation:slideUp .35s ease}
+.gen-ritual.show{display:block}
+.gen-ritual-hero{border-radius:16px;padding:20px;margin-bottom:14px;color:#fff;text-align:center}
+.gen-ritual-hero h3{font-family:'Playfair Display',serif;font-size:1.3em;font-weight:800;margin-bottom:4px}
+.gen-ritual-hero .gen-meta{font-size:0.75em;opacity:0.85;display:flex;justify-content:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.gen-meta-tag{background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:20px}
+.ritual-ingredient-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.85em}
+.ritual-ingredient-row:last-child{border-bottom:none}
+.rir-qty{font-weight:800;color:var(--green);flex-shrink:0;min-width:52px;font-size:0.85em}
+.ritual-step-row{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start}
+.rsr-num{width:30px;height:30px;background:linear-gradient(135deg,#4a2080,#6b34b8);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75em;font-weight:800;flex-shrink:0}
+.rsr-body strong{display:block;font-size:0.85em;color:var(--text);margin-bottom:2px}
+.rsr-body p{font-size:0.8em;color:var(--text-mid);line-height:1.55}
+.timing-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.timing-pill{background:var(--gold-light);border:1px solid #f0e0a0;color:#7a5c00;font-size:0.72em;font-weight:700;padding:4px 10px;border-radius:20px}
+.chant-box{background:linear-gradient(135deg,#f5eeff,#fff);border:1px solid #d4b8f0;border-left:3px solid #6b34b8;border-radius:10px;padding:14px;font-family:'Playfair Display',serif;font-style:italic;font-size:0.95em;color:#4a2080;line-height:1.75}
+.outcome-box{background:#f0faf5;border:1px solid #c8e6d5;border-radius:10px;padding:12px 14px;font-size:0.85em;color:var(--text-mid);line-height:1.6}
+.outcome-box strong{color:var(--green);display:block;margin-bottom:4px;font-size:0.9em}
+
+/* PROTECTION TOOLKIT */
+.prot-hero{background:linear-gradient(135deg,#1a0a00 0%,#8b2500 60%,#c0392b 100%)}
+.prot-category{margin-bottom:6px}
+.prot-cat-head{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;font-size:0.88em;font-weight:700;color:var(--text)}
+.prot-cat-head:hover{border-color:var(--green);background:var(--green-light)}
+.prot-cat-head.open{border-color:var(--green);background:var(--green-light);border-bottom-left-radius:0;border-bottom-right-radius:0}
+.prot-cat-arrow{margin-left:auto;font-size:0.7em;color:var(--text-soft);transition:transform .3s}
+.prot-cat-head.open .prot-cat-arrow{transform:rotate(180deg)}
+.prot-cat-body{display:none;border:1px solid var(--green);border-top:none;border-radius:0 0 12px 12px;padding:14px;background:var(--white)}
+.prot-cat-body.open{display:block}
+.recipe-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.recipe-card:last-child{margin-bottom:0}
+.recipe-title{font-family:'Playfair Display',serif;font-size:0.92em;font-weight:800;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.recipe-ingredients{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.recipe-ing-tag{background:var(--green-light);border:1px solid #c8e6d5;color:var(--green);font-size:0.68em;font-weight:700;padding:3px 8px;border-radius:12px}
+.recipe-instructions{font-size:0.8em;color:var(--text-mid);line-height:1.6}
+.recipe-instructions ol{padding-left:16px}
+.recipe-instructions li{margin-bottom:4px}
+.emergency-banner{background:linear-gradient(135deg,#e74c3c,#c0392b);border-radius:14px;padding:16px;color:#fff;margin-bottom:8px}
+.emergency-banner h4{font-family:'Playfair Display',serif;font-size:1em;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.emergency-banner ol{padding-left:18px;font-size:0.82em;line-height:1.7;opacity:0.92}
+
+/* SPIRITUAL CALENDAR */
+.cal-hero{background:linear-gradient(135deg,#0d1b2a 0%,#1b2838 50%,#243447 100%)}
+.moon-phase-indicator{display:flex;justify-content:center;gap:0;margin:0 12px 12px;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.moon-phase{flex:1;padding:12px 6px;text-align:center;border-right:1px solid var(--border);cursor:pointer;transition:all .2s}
+.moon-phase:last-child{border-right:none}
+.moon-phase.current{background:linear-gradient(135deg,#0d1b2a,#243447);color:#fff}
+.moon-phase .mp-icon{font-size:1.5em;display:block;margin-bottom:2px}
+.moon-phase .mp-name{font-size:0.6em;font-weight:700;color:inherit;opacity:0.85}
+.moon-phase.current .mp-name{color:#fff}
+.cal-day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:0 12px 12px}
+.cal-day-header{text-align:center;font-size:0.6em;font-weight:700;color:var(--text-soft);padding:4px 0;text-transform:uppercase;letter-spacing:.04em}
+.cal-day{text-align:center;padding:6px 2px;border-radius:8px;cursor:pointer;transition:all .2s;position:relative}
+.cal-day.today{background:var(--green);color:#fff}
+.cal-day.cleansing{background:#e8f5ee;color:var(--green)}
+.cal-day.manifestation{background:#fff8e7;color:#b8860b}
+.cal-day.protection{background:#fef0f0;color:#e74c3c}
+.cal-day.ancestor{background:#f0ecff;color:#6b34b8}
+.cal-day-num{font-size:0.78em;font-weight:700}
+.cal-day-dot{width:4px;height:4px;border-radius:50%;margin:1px auto 0;background:currentColor;opacity:0.6}
+.cal-event-list{padding:12px}
+.cal-event{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;margin-bottom:6px;border:1px solid transparent}
+.cal-event.cleansing{background:#e8f5ee;border-color:#c8e6d5}
+.cal-event.manifestation{background:#fff8e7;border-color:#f0e0a0}
+.cal-event.protection{background:#fef0f0;border-color:#f5c6c6}
+.cal-event.ancestor{background:#f0ecff;border-color:#d4b8f0}
+.cal-event-icon{font-size:1.3em;flex-shrink:0}
+.cal-event-body{flex:1}
+.cal-event-title{font-size:0.83em;font-weight:800;color:var(--text);margin-bottom:2px}
+.cal-event-desc{font-size:0.75em;color:var(--text-mid);line-height:1.5}
+.cal-legend{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.cal-legend-item{display:flex;align-items:center;gap:4px;font-size:0.7em;font-weight:700;color:var(--text-mid)}
+.cal-legend-dot{width:10px;height:10px;border-radius:50%}
+
+/* MARKETPLACE */
+.market-hero{background:linear-gradient(135deg,#1a2f00 0%,#2d5a00 60%,#4a8c00 100%)}
+.market-filter-bar{display:flex;gap:6px;overflow-x:auto;padding:12px 12px 0;scrollbar-width:none}
+.market-filter-bar::-webkit-scrollbar{display:none}
+.mf-tab{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-size:0.75em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.mf-tab.active{background:var(--green);border-color:var(--green);color:#fff}
+.vendor-card{background:var(--white);border:1px solid var(--border);border-radius:14px;margin:10px 12px 0;padding:14px;box-shadow:var(--shadow)}
+.vendor-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.vendor-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4em;flex-shrink:0}
+.vendor-info h4{font-family:'Playfair Display',serif;font-size:0.95em;font-weight:800}
+.vendor-info .vendor-location{font-size:0.72em;color:var(--text-soft);margin-top:1px}
+.vendor-info .vendor-rating{font-size:0.72em;color:var(--gold);font-weight:700;margin-top:2px}
+.vendor-herbs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.vendor-herb-tag{background:var(--green-light);border:1px solid #c8e6d5;color:var(--green);font-size:0.68em;font-weight:700;padding:3px 8px;border-radius:12px}
+.vendor-price-row{display:flex;justify-content:space-between;font-size:0.78em;color:var(--text-mid);padding:4px 0;border-bottom:1px solid var(--border)}
+.vendor-price-row:last-child{border-bottom:none}
+.vendor-price-row strong{color:var(--text);font-weight:700}
+.subst-section{margin:10px 12px 0}
+.subst-card{background:var(--gold-light);border:1px solid #f0e0a0;border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.subst-card h4{font-size:0.85em;font-weight:800;color:#7a5c00;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.subst-row{display:flex;align-items:center;gap:6px;font-size:0.8em;color:var(--text-mid);margin-bottom:4px;flex-wrap:wrap}
+.subst-arrow{color:var(--gold);font-weight:900}
+
+/* RITUAL SYSTEM PANEL */
+.ritual-sys-hero{background:linear-gradient(135deg,#1b3a1b 0%,#2e7d4f 60%,#4aab72 100%)}
+.ritual-cat-scroll{display:flex;gap:8px;overflow-x:auto;padding:12px 12px 0;scrollbar-width:none}
+.ritual-cat-scroll::-webkit-scrollbar{display:none}
+.ritual-cat-btn{flex-shrink:0;padding:8px 16px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.ritual-cat-btn.active,.ritual-cat-btn:hover{background:var(--green);border-color:var(--green);color:#fff}
+.ritual-full-card{background:var(--white);border:1px solid var(--border);border-radius:16px;margin:10px 12px 0;overflow:hidden;box-shadow:var(--shadow)}
+.rfc-hero{padding:18px 16px;color:#fff;position:relative}
+.rfc-hero h3{font-family:'Playfair Display',serif;font-size:1.15em;font-weight:800;margin-bottom:4px;line-height:1.3}
+.rfc-hero p{font-size:0.8em;opacity:0.85;line-height:1.55}
+.rfc-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.rfc-meta-tag{background:rgba(255,255,255,0.2);color:#fff;font-size:0.65em;font-weight:700;padding:3px 9px;border-radius:20px;border:1px solid rgba(255,255,255,0.3)}
+.rfc-body{padding:14px 16px 18px}
+.rfc-sect-title{font-size:0.72em;font-weight:800;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px;display:flex;align-items:center;gap:5px}
+.rfc-ingredient{display:flex;align-items:flex-start;gap:10px;font-size:0.84em;padding:7px 0;border-bottom:1px solid var(--border);color:var(--text-mid)}
+.rfc-ingredient:last-child{border-bottom:none}
+.rfc-ing-qty{font-weight:800;color:var(--green);min-width:56px;flex-shrink:0}
+.rfc-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.rfc-step-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72em;font-weight:800;flex-shrink:0}
+.rfc-step-text{font-size:0.83em;color:var(--text-mid);line-height:1.6;padding-top:4px}
+.rfc-chant{background:var(--green-light);border-radius:10px;padding:12px 14px;border-left:3px solid var(--green);font-family:'Playfair Display',serif;font-style:italic;font-size:0.92em;color:var(--green);line-height:1.7;margin-top:4px}
+.rfc-outcome{background:var(--gold-light);border:1px solid #f0e0a0;border-radius:10px;padding:12px 14px;font-size:0.83em;color:#7a5c00;line-height:1.6}
+.rfc-outcome strong{display:block;font-size:0.85em;margin-bottom:3px}
+.cultural-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:0.65em;font-weight:700;padding:3px 9px;border-radius:20px;margin-top:6px}
+
+/* AFRICAN KNOWLEDGE LAYER */
+.ak-hero{background:linear-gradient(135deg,#2d1600 0%,#7c3300 60%,#b35900 100%)}
+.ak-tradition-tabs{display:flex;overflow-x:auto;border-bottom:2px solid var(--border);scrollbar-width:none;background:var(--white)}
+.ak-tradition-tabs::-webkit-scrollbar{display:none}
+.ak-tab{padding:12px 18px;font-family:'Nunito',sans-serif;font-size:0.82em;font-weight:700;color:var(--text-soft);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.ak-tab.active{color:var(--green);border-bottom-color:var(--green)}
+.ak-content{display:none;padding:14px 12px}
+.ak-content.active{display:block}
+.ak-practice-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 1px 8px rgba(0,0,0,0.04)}
+.ak-practice-card h4{font-family:'Playfair Display',serif;font-size:0.95em;font-weight:800;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.ak-practice-card p{font-size:0.81em;color:var(--text-mid);line-height:1.65;margin-bottom:8px}
+.ak-tags{display:flex;flex-wrap:wrap;gap:4px}
+.ak-tag{background:var(--bg);border:1px solid var(--border);color:var(--text-mid);font-size:0.68em;font-weight:700;padding:3px 8px;border-radius:10px}
+.ak-proverb{background:linear-gradient(135deg,#fff8e7,#fff);border:1px solid #f0e0a0;border-left:3px solid var(--gold);border-radius:10px;padding:12px 14px;font-family:'Playfair Display',serif;font-style:italic;font-size:0.9em;color:#7a5c00;line-height:1.7;margin-bottom:10px}
+.ak-proverb cite{display:block;font-style:normal;font-size:0.72em;font-weight:700;color:var(--text-soft);letter-spacing:.04em;margin-top:5px}
+
+/* FLOATING GENERATE BTN */
+.fab-generate{position:fixed;bottom:72px;right:16px;z-index:90;background:linear-gradient(135deg,#4a2080,#6b34b8);color:#fff;border:none;border-radius:50px;padding:12px 20px;font-family:'Nunito',sans-serif;font-size:0.85em;font-weight:800;box-shadow:0 4px 20px rgba(106,52,184,0.45);cursor:pointer;display:none;align-items:center;gap:6px;transition:transform .2s}
+.fab-generate:hover{transform:translateY(-2px)}
+
+/* LOADING SPINNER for diagnosis */
+.thinking-animation{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:14px}
+.thinking-dots{display:flex;gap:8px}
+.thinking-dot{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse-dot 1.2s ease-in-out infinite}
+.thinking-dot:nth-child(2){animation-delay:.2s}
+.thinking-dot:nth-child(3){animation-delay:.4s}
+@keyframes pulse-dot{0%,80%,100%{transform:scale(0.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+.thinking-text{font-family:'Playfair Display',serif;font-style:italic;font-size:1em;color:var(--text-mid)}
+
 </style>
 </head>
 <body>
@@ -398,16 +637,397 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="bottom-nav">
-  <button class="bnav-btn active" id="bnav-home" onclick="switchTab('home')">
-    <span class="bnav-icon">🌿</span>Herbs
-  </button>
-  <button class="bnav-btn" id="bnav-ritual" onclick="switchTab('ritual')">
-    <span class="bnav-icon">🕯️</span>Rituals
-  </button>
-  <button class="bnav-btn" id="bnav-fav" onclick="switchTab('fav')">
-    <span class="bnav-icon">❤️</span>Favourites
-  </button>
+<div class="bottom-nav" style="overflow-x:auto;justify-content:flex-start;scrollbar-width:none">
+  <button class="bnav-btn active" id="bnav-home" onclick="switchTab('home')"><span class="bnav-icon">🌿</span>Herbs</button>
+
+<!-- ══════════════════════════════════════════════════
+     SPIRITUAL DIAGNOSIS ENGINE PANEL
+══════════════════════════════════════════════════ -->
+<div id="diagnosePanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero diag-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">AI-POWERED SPIRITUAL ANALYSIS</div>
+      <h2>🔮 Spiritual Diagnosis Engine</h2>
+      <p>Answer 5 questions. Receive your personalized spiritual condition analysis, herb recommendations, and healing ritual.</p>
+    </div>
+  </div>
+
+  <!-- DIAGNOSIS FORM -->
+  <div class="sys-section" id="diagForm">
+    <div class="sys-section-body">
+      <div class="diag-progress" id="diagProgress">
+        <div class="diag-prog-dot"></div><div class="diag-prog-dot"></div>
+        <div class="diag-prog-dot"></div><div class="diag-prog-dot"></div>
+        <div class="diag-prog-dot"></div>
+      </div>
+
+      <!-- STEP 0: INTRO -->
+      <div class="diag-step active" id="dstep-0">
+        <div class="diag-q" style="text-align:center;font-size:1.15em">Welcome to the Diagnosis Engine</div>
+        <p style="text-align:center;font-size:0.85em;color:var(--text-mid);line-height:1.7;margin-bottom:20px">Our ancestors observed patterns in suffering and built systems of healing across thousands of years. This engine channels that wisdom to identify what may be spiritually affecting you.</p>
+        <p style="text-align:center;font-size:0.8em;color:var(--text-soft);margin-bottom:16px">Be honest. The ancestors see what you cannot hide.</p>
+        <button class="diag-btn-start" onclick="startDiagnosis()">🔮 Begin Diagnosis</button>
+        <p style="text-align:center;font-size:0.72em;color:var(--text-soft);margin-top:12px">⚠️ For serious illness, always consult a qualified doctor or herbalist</p>
+      </div>
+
+      <!-- STEP 1: PRIMARY SYMPTOMS -->
+      <div class="diag-step" id="dstep-1">
+        <div class="diag-q">What are your primary experiences? <span style="font-size:0.75em;color:var(--text-soft);font-weight:400">(Select all that apply)</span></div>
+        <div class="diag-options" id="dopt-1">
+          <button class="diag-opt" data-val="badluck" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">🎲</span><span class="diag-opt-text">Persistent Bad Luck<span class="diag-opt-sub">Things keep going wrong despite effort</span></span></button>
+          <button class="diag-opt" data-val="financial" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">💸</span><span class="diag-opt-text">Financial Stagnation<span class="diag-opt-sub">Money never stays, opportunities close</span></span></button>
+          <button class="diag-opt" data-val="nightdist" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">🌙</span><span class="diag-opt-text">Night Disturbances<span class="diag-opt-sub">Bad dreams, sleep paralysis, night terrors</span></span></button>
+          <button class="diag-opt" data-val="heaviness" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">⛓️</span><span class="diag-opt-text">Emotional Heaviness<span class="diag-opt-sub">Unexplained sadness, dread, emptiness</span></span></button>
+          <button class="diag-opt" data-val="failure" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">🔄</span><span class="diag-opt-text">Repeated Failure<span class="diag-opt-sub">Same patterns of failure in relationships or work</span></span></button>
+          <button class="diag-opt" data-val="physical" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">🤒</span><span class="diag-opt-text">Unexplained Physical Symptoms<span class="diag-opt-sub">No medical cause found for persistent ailments</span></span></button>
+          <button class="diag-opt" data-val="enemies" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">👁️</span><span class="diag-opt-text">Feeling Watched / Attacked<span class="diag-opt-sub">Sense that someone is working against you</span></span></button>
+          <button class="diag-opt" data-val="disconnected" onclick="toggleDiagOpt(this,'1')"><span class="diag-opt-icon">🌫️</span><span class="diag-opt-text">Spiritual Disconnection<span class="diag-opt-sub">Lost connection to faith, ancestors, purpose</span></span></button>
+        </div>
+        <div class="diag-nav"><button class="diag-btn diag-btn-next" onclick="nextDiagStep(2)" id="dnext-1">Continue →</button></div>
+      </div>
+
+      <!-- STEP 2: DURATION & PATTERN -->
+      <div class="diag-step" id="dstep-2">
+        <div class="diag-q">How long have you been experiencing this?</div>
+        <div class="diag-options" id="dopt-2">
+          <button class="diag-opt" data-val="recent" onclick="selectDiagOpt(this,'2')"><span class="diag-opt-icon">📅</span><span class="diag-opt-text">Recently Started<span class="diag-opt-sub">Within the last few weeks</span></span></button>
+          <button class="diag-opt" data-val="months" onclick="selectDiagOpt(this,'2')"><span class="diag-opt-icon">🗓️</span><span class="diag-opt-text">Several Months<span class="diag-opt-sub">3 months to 1 year</span></span></button>
+          <button class="diag-opt" data-val="years" onclick="selectDiagOpt(this,'2')"><span class="diag-opt-icon">⏳</span><span class="diag-opt-text">Years<span class="diag-opt-sub">More than 1 year of ongoing struggles</span></span></button>
+          <button class="diag-opt" data-val="lifetime" onclick="selectDiagOpt(this,'2')"><span class="diag-opt-icon">🌳</span><span class="diag-opt-text">Most of My Life<span class="diag-opt-sub">Has always been this way — possibly generational</span></span></button>
+        </div>
+        <div class="diag-nav">
+          <button class="diag-btn diag-btn-back" onclick="prevDiagStep(1)">← Back</button>
+          <button class="diag-btn diag-btn-next" onclick="nextDiagStep(3)" id="dnext-2" disabled>Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: LIFE AREA IMPACT -->
+      <div class="diag-step" id="dstep-3">
+        <div class="diag-q">Which life area is most affected? <span style="font-size:0.75em;color:var(--text-soft);font-weight:400">(Select all)</span></div>
+        <div class="diag-options" id="dopt-3">
+          <button class="diag-opt" data-val="love" onclick="toggleDiagOpt(this,'3')"><span class="diag-opt-icon">❤️</span><span class="diag-opt-text">Love & Relationships<span class="diag-opt-sub">Marriage, romance, family bonds</span></span></button>
+          <button class="diag-opt" data-val="money" onclick="toggleDiagOpt(this,'3')"><span class="diag-opt-icon">💰</span><span class="diag-opt-text">Money & Career<span class="diag-opt-sub">Income, business, job, opportunities</span></span></button>
+          <button class="diag-opt" data-val="health" onclick="toggleDiagOpt(this,'3')"><span class="diag-opt-icon">🏥</span><span class="diag-opt-text">Health & Body<span class="diag-opt-sub">Physical symptoms, energy, vitality</span></span></button>
+          <button class="diag-opt" data-val="mind" onclick="toggleDiagOpt(this,'3')"><span class="diag-opt-icon">🧠</span><span class="diag-opt-text">Mental & Emotional<span class="diag-opt-sub">Anxiety, depression, mental fog</span></span></button>
+          <button class="diag-opt" data-val="spirit" onclick="toggleDiagOpt(this,'3')"><span class="diag-opt-icon">✨</span><span class="diag-opt-text">Spiritual Life<span class="diag-opt-sub">Faith, prayer, dreams, ancestral connection</span></span></button>
+          <button class="diag-opt" data-val="home" onclick="toggleDiagOpt(this,'3')"><span class="diag-opt-icon">🏠</span><span class="diag-opt-text">Home & Family<span class="diag-opt-sub">Peace in the home, family conflicts, safety</span></span></button>
+        </div>
+        <div class="diag-nav">
+          <button class="diag-btn diag-btn-back" onclick="prevDiagStep(2)">← Back</button>
+          <button class="diag-btn diag-btn-next" onclick="nextDiagStep(4)" id="dnext-3">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: RECENT EVENTS -->
+      <div class="diag-step" id="dstep-4">
+        <div class="diag-q">Did anything significant happen before this started?</div>
+        <div class="diag-options" id="dopt-4">
+          <button class="diag-opt" data-val="conflict" onclick="selectDiagOpt(this,'4')"><span class="diag-opt-icon">⚔️</span><span class="diag-opt-text">Major Conflict or Betrayal<span class="diag-opt-sub">Fight with someone, broken trust, enemy made</span></span></button>
+          <button class="diag-opt" data-val="loss" onclick="selectDiagOpt(this,'4')"><span class="diag-opt-icon">🕊️</span><span class="diag-opt-text">Loss or Grief<span class="diag-opt-sub">Death of someone close, major loss</span></span></button>
+          <button class="diag-opt" data-val="place" onclick="selectDiagOpt(this,'4')"><span class="diag-opt-icon">🗺️</span><span class="diag-opt-text">Moved to a New Place<span class="diag-opt-sub">New home, city, or country</span></span></button>
+          <button class="diag-opt" data-val="contact" onclick="selectDiagOpt(this,'4')"><span class="diag-opt-icon">🤝</span><span class="diag-opt-text">Contact with Suspicious Person<span class="diag-opt-sub">Someone gave you food, item, or touch</span></span></button>
+          <button class="diag-opt" data-val="nothing" onclick="selectDiagOpt(this,'4')"><span class="diag-opt-icon">❓</span><span class="diag-opt-text">Nothing Obvious<span class="diag-opt-sub">It seems to have always been this way</span></span></button>
+        </div>
+        <div class="diag-nav">
+          <button class="diag-btn diag-btn-back" onclick="prevDiagStep(3)">← Back</button>
+          <button class="diag-btn diag-btn-next" onclick="nextDiagStep(5)" id="dnext-4" disabled>Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: CULTURAL BACKGROUND -->
+      <div class="diag-step" id="dstep-5">
+        <div class="diag-q">Your cultural/spiritual background? <span style="font-size:0.75em;color:var(--text-soft);font-weight:400">(For tailored recommendations)</span></div>
+        <div class="diag-options" id="dopt-5">
+          <button class="diag-opt" data-val="yoruba" onclick="selectDiagOpt(this,'5')"><span class="diag-opt-icon">🟢</span><span class="diag-opt-text">Yoruba Tradition<span class="diag-opt-sub">Ifa, Orisha, Lagos / South-West Nigeria</span></span></button>
+          <button class="diag-opt" data-val="igbo" onclick="selectDiagOpt(this,'5')"><span class="diag-opt-icon">🔴</span><span class="diag-opt-text">Igbo Tradition<span class="diag-opt-sub">Odinani, Eze, South-East Nigeria</span></span></button>
+          <button class="diag-opt" data-val="hausa" onclick="selectDiagOpt(this,'5')"><span class="diag-opt-icon">🟡</span><span class="diag-opt-text">Hausa / Islamic<span class="diag-opt-sub">Northern Nigeria, Islamic healing practices</span></span></button>
+          <button class="diag-opt" data-val="christian" onclick="selectDiagOpt(this,'5')"><span class="diag-opt-icon">✝️</span><span class="diag-opt-text">Christian Heritage<span class="diag-opt-sub">Natural healing through faith lens</span></span></button>
+          <button class="diag-opt" data-val="general" onclick="selectDiagOpt(this,'5')"><span class="diag-opt-icon">🌍</span><span class="diag-opt-text">General African<span class="diag-opt-sub">Pan-African or mixed tradition</span></span></button>
+        </div>
+        <div class="diag-nav">
+          <button class="diag-btn diag-btn-back" onclick="prevDiagStep(4)">← Back</button>
+          <button class="diag-btn diag-btn-next" onclick="runDiagnosis()" id="dnext-5" disabled style="background:linear-gradient(135deg,#1a1a2e,#0f3460)">🔮 Reveal My Diagnosis</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THINKING ANIMATION -->
+  <div class="sys-section" id="diagThinking" style="display:none">
+    <div class="sys-section-body">
+      <div class="thinking-animation">
+        <div class="thinking-dots">
+          <div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div>
+        </div>
+        <div class="thinking-text">The ancestors are reading your energy…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIAGNOSIS RESULT -->
+  <div class="sys-section" id="diagResult" style="display:none">
+    <div class="sys-section-body">
+      <div class="diag-result show" id="diagResultContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     RITUAL BUILDER PANEL
+══════════════════════════════════════════════════ -->
+<div id="builderPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero builder-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">CUSTOM RITUAL GENERATOR</div>
+      <h2>⚗️ Ritual Builder</h2>
+      <p>Select your goal, available herbs and timing. The system generates a custom ritual built specifically for you.</p>
+    </div>
+  </div>
+
+  <div class="sys-section">
+    <div class="sys-section-body">
+      <!-- BUILDER STEP 1: GOAL -->
+      <div class="builder-step active" id="bstep-1">
+        <div class="diag-q">What is your primary goal?</div>
+        <div class="builder-goal-grid" id="goalGrid">
+          <div class="goal-card" data-goal="prosperity" onclick="selectGoal(this)"><div class="gc-icon">💰</div><div class="gc-name">Attract Wealth</div><div class="gc-desc">Money, business, abundance</div></div>
+          <div class="goal-card" data-goal="love" onclick="selectGoal(this)"><div class="gc-icon">❤️</div><div class="gc-name">Find / Keep Love</div><div class="gc-desc">Romance, partnership, attraction</div></div>
+          <div class="goal-card" data-goal="protection" onclick="selectGoal(this)"><div class="gc-icon">🛡️</div><div class="gc-name">Protection</div><div class="gc-desc">Shield self, home, family</div></div>
+          <div class="goal-card" data-goal="cleansing" onclick="selectGoal(this)"><div class="gc-icon">✨</div><div class="gc-name">Deep Cleanse</div><div class="gc-desc">Remove blockages and negativity</div></div>
+          <div class="goal-card" data-goal="healing" onclick="selectGoal(this)"><div class="gc-icon">💊</div><div class="gc-name">Physical Healing</div><div class="gc-desc">Body, immunity, recovery</div></div>
+          <div class="goal-card" data-goal="fertility" onclick="selectGoal(this)"><div class="gc-icon">🌸</div><div class="gc-name">Fertility</div><div class="gc-desc">Conception, pregnancy, birth</div></div>
+          <div class="goal-card" data-goal="mental" onclick="selectGoal(this)"><div class="gc-icon">🧠</div><div class="gc-name">Mental Clarity</div><div class="gc-desc">Focus, calm, purpose</div></div>
+          <div class="goal-card" data-goal="spiritual" onclick="selectGoal(this)"><div class="gc-icon">🔮</div><div class="gc-name">Spiritual Connection</div><div class="gc-desc">Ancestors, prayer, vision</div></div>
+        </div>
+        <button class="builder-btn-next" id="btnext-1" onclick="builderNext(2)" disabled>Choose Goal to Continue →</button>
+      </div>
+
+      <!-- BUILDER STEP 2: CONFIGURATION -->
+      <div class="builder-step" id="bstep-2">
+        <div class="diag-q">Customize Your Ritual</div>
+
+        <label class="builder-label">Difficulty Level</label>
+        <select class="builder-select" id="bDifficulty">
+          <option value="beginner">🌱 Beginner — Simple, 3–5 ingredients</option>
+          <option value="intermediate">🌿 Intermediate — 5–8 ingredients, multi-day</option>
+          <option value="advanced">🌳 Advanced — Full ceremonial ritual</option>
+        </select>
+
+        <label class="builder-label">Cultural Tradition</label>
+        <select class="builder-select" id="bCulture">
+          <option value="yoruba">🟢 Yoruba (Ifa / Orisha tradition)</option>
+          <option value="igbo">🔴 Igbo (Odinani tradition)</option>
+          <option value="hausa">🟡 Hausa-Fulani / Islamic herbs</option>
+          <option value="panafrican">🌍 Pan-African / Universal</option>
+        </select>
+
+        <label class="builder-label">Preferred Timing</label>
+        <select class="builder-select" id="bTiming">
+          <option value="any">⭐ Any Time</option>
+          <option value="morning">🌅 Morning Ritual</option>
+          <option value="evening">🌆 Evening Ritual</option>
+          <option value="midnight">🌙 Midnight Ritual</option>
+          <option value="newmoon">🌑 New Moon</option>
+          <option value="fullmoon">🌕 Full Moon</option>
+        </select>
+
+        <label class="builder-label">Duration You Can Commit</label>
+        <select class="builder-select" id="bDuration">
+          <option value="1">📅 1 Day (Single ritual)</option>
+          <option value="3">📅 3 Days (Short protocol)</option>
+          <option value="7">📅 7 Days (Weekly program)</option>
+          <option value="21">📅 21 Days (Full transformation)</option>
+          <option value="40">📅 40 Days (Deep ancestral work)</option>
+        </select>
+
+        <button class="builder-btn-next" onclick="generateRitual()">⚗️ Generate My Ritual</button>
+        <button class="builder-btn-back" onclick="builderBack(1)">← Change Goal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THINKING -->
+  <div class="sys-section" id="builderThinking" style="display:none">
+    <div class="sys-section-body">
+      <div class="thinking-animation">
+        <div class="thinking-dots">
+          <div class="thinking-dot" style="background:#6b34b8"></div>
+          <div class="thinking-dot" style="background:#6b34b8"></div>
+          <div class="thinking-dot" style="background:#6b34b8"></div>
+        </div>
+        <div class="thinking-text">Weaving your ritual from ancient knowledge…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENERATED RITUAL OUTPUT -->
+  <div class="sys-section" id="builderResult" style="display:none">
+    <div class="sys-section-body" id="builderResultContent"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     RITUAL SYSTEM PANEL (5 Full Rituals)
+══════════════════════════════════════════════════ -->
+<div id="ritualsPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero ritual-sys-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">SACRED RITUAL LIBRARY</div>
+      <h2>📿 Full Ritual System</h2>
+      <p>Complete, step-by-step ceremonial rituals from across African traditions — with ingredients, chants, and expected outcomes.</p>
+    </div>
+  </div>
+
+  <div class="ritual-cat-scroll" id="ritualCatScroll">
+    <button class="ritual-cat-btn active" onclick="filterRituals('all',this)">🌿 All Rituals</button>
+    <button class="ritual-cat-btn" onclick="filterRituals('prosperity',this)">💰 Wealth</button>
+    <button class="ritual-cat-btn" onclick="filterRituals('love',this)">❤️ Love</button>
+    <button class="ritual-cat-btn" onclick="filterRituals('protection',this)">🛡️ Protection</button>
+    <button class="ritual-cat-btn" onclick="filterRituals('cleansing',this)">✨ Cleansing</button>
+    <button class="ritual-cat-btn" onclick="filterRituals('healing',this)">💊 Healing</button>
+    <button class="ritual-cat-btn" onclick="filterRituals('spiritual',this)">🔮 Spiritual</button>
+    <button class="ritual-cat-btn" onclick="filterRituals('fertility',this)">🌸 Fertility</button>
+  </div>
+
+  <div id="ritualsGrid" style="padding-bottom:20px"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PROTECTION TOOLKIT PANEL
+══════════════════════════════════════════════════ -->
+<div id="protectPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero prot-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">ANCESTRAL PROTECTION SYSTEM</div>
+      <h2>🛡️ Protection Toolkit</h2>
+      <p>Proven African methods for protecting your home, person, family, and spirit against seen and unseen threats.</p>
+    </div>
+  </div>
+
+  <!-- EMERGENCY BANNER -->
+  <div style="padding:12px 12px 0">
+    <div class="emergency-banner">
+      <h4>🚨 Emergency Spiritual First Aid</h4>
+      <ol>
+        <li>Sprinkle sea salt across ALL doorways and windowsills of your home immediately</li>
+        <li>Burn frankincense or sage in every room, praying aloud as you go</li>
+        <li>Wash your hands and face with cold water mixed with a pinch of camphor</li>
+        <li>Eat 3 raw cloves of garlic immediately — this creates an internal spiritual shield</li>
+        <li>Sleep with a cup of water mixed with salt beside your bed — replace each morning</li>
+        <li>Call upon your ancestors by name: "I call on [ancestor's name] to stand guard over me now"</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PROTECTION CATEGORIES -->
+  <div style="padding:12px 12px 0" id="protectionCategories"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     SPIRITUAL CALENDAR PANEL
+══════════════════════════════════════════════════ -->
+<div id="calendarPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero cal-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">SACRED TIMING SYSTEM</div>
+      <h2>🌕 Spiritual Calendar</h2>
+      <p>The ancestors knew that timing is everything. Know when to cleanse, manifest, protect, and honor your lineage.</p>
+    </div>
+  </div>
+
+  <!-- MOON PHASE INDICATOR -->
+  <div class="moon-phase-indicator" id="moonPhases">
+    <div class="moon-phase" id="mp-new"><span class="mp-icon">🌑</span><span class="mp-name">New Moon</span></div>
+    <div class="moon-phase" id="mp-waxing"><span class="mp-icon">🌒</span><span class="mp-name">Waxing</span></div>
+    <div class="moon-phase" id="mp-full"><span class="mp-icon">🌕</span><span class="mp-name">Full Moon</span></div>
+    <div class="moon-phase" id="mp-waning"><span class="mp-icon">🌘</span><span class="mp-name">Waning</span></div>
+  </div>
+
+  <!-- CALENDAR GRID -->
+  <div style="padding:0 12px 6px;font-family:'Playfair Display',serif;font-size:0.95em;font-weight:800" id="calMonthTitle"></div>
+  <div class="cal-day-grid" id="calDayHeaders"></div>
+  <div class="cal-day-grid" id="calGrid"></div>
+
+  <!-- LEGEND -->
+  <div class="cal-legend">
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#4caf78"></div>Cleansing Day</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#b8860b"></div>Manifestation Day</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#e74c3c"></div>Protection Day</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#6b34b8"></div>Ancestor Day</div>
+  </div>
+
+  <!-- THIS MONTH'S EVENTS -->
+  <div style="padding:0 12px;font-family:'Playfair Display',serif;font-size:0.95em;font-weight:800;margin-bottom:8px">📅 This Month's Key Dates</div>
+  <div class="cal-event-list" id="calEvents"></div>
+
+  <!-- DAILY WISDOM -->
+  <div class="sys-section" style="margin-bottom:12px">
+    <div class="sys-section-head"><span>📖</span><h3>Today's Spiritual Guidance</h3></div>
+    <div class="sys-section-body" id="todayGuidance"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MARKETPLACE PANEL
+══════════════════════════════════════════════════ -->
+<div id="marketPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero market-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">HERB SOURCING GUIDE</div>
+      <h2>🛒 Herb Marketplace Finder</h2>
+      <p>Find vendors, get price estimates, and discover substitutions when your herbs are unavailable.</p>
+    </div>
+  </div>
+
+  <div class="market-filter-bar">
+    <button class="mf-tab active" onclick="filterMarket('all',this)">🌿 All</button>
+    <button class="mf-tab" onclick="filterMarket('lagos',this)">🏙️ Lagos</button>
+    <button class="mf-tab" onclick="filterMarket('abuja',this)">🏛️ Abuja</button>
+    <button class="mf-tab" onclick="filterMarket('north',this)">🌾 North</button>
+    <button class="mf-tab" onclick="filterMarket('southeast',this)">🌳 South-East</button>
+    <button class="mf-tab" onclick="filterMarket('online',this)">📱 Online</button>
+  </div>
+
+  <div id="vendorList" style="padding-bottom:16px"></div>
+
+  <!-- SUBSTITUTION GUIDE -->
+  <div style="padding:0 12px;font-family:'Playfair Display',serif;font-size:1em;font-weight:800;margin:8px 0">🔄 Herb Substitution Guide</div>
+  <div class="subst-section" id="substSection" style="padding-bottom:20px"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     AFRICAN KNOWLEDGE WISDOM PANEL
+══════════════════════════════════════════════════ -->
+<div id="wisdomPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero ak-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">CULTURAL KNOWLEDGE LAYER</div>
+      <h2>📚 African Wisdom</h2>
+      <p>The living traditions of Yoruba, Igbo, and Hausa healing — preserved and passed forward.</p>
+    </div>
+  </div>
+
+  <div class="ak-tradition-tabs">
+    <button class="ak-tab active" onclick="switchWisdomTab('yoruba',this)">🟢 Yoruba</button>
+    <button class="ak-tab" onclick="switchWisdomTab('igbo',this)">🔴 Igbo</button>
+    <button class="ak-tab" onclick="switchWisdomTab('hausa',this)">🟡 Hausa</button>
+    <button class="ak-tab" onclick="switchWisdomTab('diaspora',this)">🌍 Diaspora</button>
+  </div>
+
+  <div id="wisdomContent"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav" style="overflow-x:auto;justify-content:flex-start;scrollbar-width:none">
+  <button class="bnav-btn active" id="bnav-home" onclick="switchTab('home')"><span class="bnav-icon">🌿</span>Herbs</button>
+  <button class="bnav-btn" id="bnav-diagnose" onclick="switchTab('diagnose')"><span class="bnav-icon">🔮</span>Diagnose</button>
+  <button class="bnav-btn" id="bnav-builder" onclick="switchTab('builder')"><span class="bnav-icon">⚗️</span>Builder</button>
+  <button class="bnav-btn" id="bnav-rituals" onclick="switchTab('rituals')"><span class="bnav-icon">📿</span>Rituals</button>
+  <button class="bnav-btn" id="bnav-protect" onclick="switchTab('protect')"><span class="bnav-icon">🛡️</span>Protect</button>
+  <button class="bnav-btn" id="bnav-calendar" onclick="switchTab('calendar')"><span class="bnav-icon">🌕</span>Calendar</button>
+  <button class="bnav-btn" id="bnav-market" onclick="switchTab('market')"><span class="bnav-icon">🛒</span>Market</button>
+  <button class="bnav-btn" id="bnav-wisdom" onclick="switchTab('wisdom')"><span class="bnav-icon">📚</span>Wisdom</button>
+  <button class="bnav-btn" id="bnav-fav" onclick="switchTab('fav')"><span class="bnav-icon">❤️</span>Saved</button>
 </div>
 
 <script>
@@ -996,12 +1616,27 @@ function toggleHelp(){
 // ─── TAB SWITCHING ────────────────────────────────────────────────────────────
 function switchTab(tab){
   currentTab = tab;
-  document.getElementById('homePanel').style.display = tab==='home' ? 'block' : 'none';
-  document.getElementById('favPanel').style.display = tab==='fav' ? 'block' : 'none';
-  document.getElementById('ritualPanel').style.display = tab==='ritual' ? 'block' : 'none';
+  const panels = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom'];
+  panels.forEach(p=>{
+    const el = document.getElementById(p+'Panel');
+    if(el) el.style.display = (tab===p) ? 'block' : 'none';
+  });
+  // Header visibility — hide search bar for non-herb tabs
+  const headerSearch = document.querySelector('.search-wrap');
+  const filterScroll = document.querySelector('.filter-scroll');
+  if(headerSearch) headerSearch.style.display = tab==='home' ? 'flex' : 'none';
+  if(filterScroll) filterScroll.style.display = tab==='home' ? 'flex' : 'none';
+
   document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('bnav-'+tab).classList.add('active');
+  const navBtn = document.getElementById('bnav-'+tab);
+  if(navBtn) navBtn.classList.add('active');
+
   if(tab==='fav') buildFavGrid();
+  if(tab==='calendar') initCalendar();
+  if(tab==='rituals') renderRitualSystem('all');
+  if(tab==='protect') renderProtectionToolkit();
+  if(tab==='market') renderMarketplace('all');
+  if(tab==='wisdom') renderWisdom('yoruba');
 }
 
 // ─── MODAL ────────────────────────────────────────────────────────────────────
@@ -1506,6 +2141,1114 @@ document.getElementById('overlay').addEventListener('touchstart',e=>{touchStartY
 document.getElementById('overlay').addEventListener('touchmove',e=>{
   if(document.getElementById('overlay').scrollTop===0 && e.touches[0].clientY-touchStartY>60) closeModal();
 },{passive:true});
+
+// ═══════════════════════════════════════════════════════════════════════
+// ██████████████  SPIRITUAL DIAGNOSIS ENGINE  ███████████████████████████
+// ═══════════════════════════════════════════════════════════════════════
+
+const diagState = { step:0, answers:{} };
+
+function startDiagnosis(){
+  diagState.step = 1;
+  diagState.answers = {};
+  document.getElementById('dstep-0').classList.remove('active');
+  document.getElementById('dstep-1').classList.add('active');
+  updateDiagProgress(1);
+}
+
+function updateDiagProgress(step){
+  document.querySelectorAll('.diag-prog-dot').forEach((d,i)=>{
+    d.classList.toggle('done', i < step);
+  });
+}
+
+function toggleDiagOpt(btn, step){
+  btn.classList.toggle('selected');
+  const vals = Array.from(document.querySelectorAll(`#dopt-${step} .diag-opt.selected`)).map(b=>b.dataset.val);
+  diagState.answers['step'+step] = vals;
+  if(step==='1') diagState.answers.step1 = vals;
+  if(step==='3') diagState.answers.step3 = vals;
+}
+
+function selectDiagOpt(btn, step){
+  document.querySelectorAll(`#dopt-${step} .diag-opt`).forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  diagState.answers['step'+step] = [btn.dataset.val];
+  const nextBtn = document.getElementById('dnext-'+step);
+  if(nextBtn) nextBtn.disabled = false;
+}
+
+function nextDiagStep(step){
+  const prev = step-1;
+  document.getElementById('dstep-'+prev).classList.remove('active');
+  document.getElementById('dstep-'+step).classList.add('active');
+  diagState.step = step;
+  updateDiagProgress(step-1);
+  // Auto-enable next for multi-select steps
+  if(step===2||step===4) document.getElementById('dnext-'+step).disabled=true;
+}
+
+function prevDiagStep(step){
+  const cur = step+1;
+  document.getElementById('dstep-'+cur).classList.remove('active');
+  document.getElementById('dstep-'+step).classList.add('active');
+  diagState.step = step;
+  updateDiagProgress(step-1);
+}
+
+const diagnosisDB = {
+  // Spiritual Blockage
+  blockage:{
+    name:'Spiritual Blockage (Idena Emi)',
+    desc:'Your path is obstructed by accumulated negative energy, possibly from unresolved conflict, broken oaths, or entities attached to your aura. This is one of the most common conditions in African spiritual medicine.',
+    severity:'med',
+    herbs:['sage','frankincense','neem','lemongrass','cloves'],
+    ritual:{name:'The Great Uncrossing Ritual',steps:['Burn Frankincense and Sage together for 7 minutes in your home before beginning','Prepare a bath with lemongrass, sea salt, camphor, and white flowers on a Saturday','Immerse yourself and recite: "Every chain is broken. Every door is opened. Every blockage dissolves now"','Pour the bath water at a crossroads — a literal meeting of roads — as an offering','Hang a bundle of dried neem above your front door. Replace every full moon.']},
+    protection:'Salt barrier: pour a line of sea salt across every entrance to your home every Saturday. Carry a clove of garlic in your left pocket.',
+    affirmation:'"The path before me is clear. What was closed now opens. I move forward with the full strength of my ancestors behind me."'
+  },
+  // Spiritual Attack / Hex
+  attack:{
+    name:'Active Spiritual Attack (Ogun Aye)',
+    desc:'Evidence suggests someone has directed negative energy toward you intentionally. This could be through envy (evil eye), verbal curses, or deliberate ritual work against your prosperity and wellbeing.',
+    severity:'high',
+    herbs:['neem','garlic','frankincense','myrrh','cloves'],
+    ritual:{name:'The Shield of the Ancestors Ritual',steps:['Begin on a Tuesday at sunrise — the day of Mars and warrior energy','Take 7 cloves of garlic and 7 whole cloves (kanafuru). Hold them in your hands and pray','Burn Frankincense and Myrrh simultaneously while calling on your strongest ancestor by name','Prepare garlic-infused oil: crush garlic into coconut oil. Rub on feet, hands, and back of neck','For 7 consecutive days, wash your front step with neem water mixed with camphor and salt']},
+    protection:'Create an ancestral shrine with a white candle, a glass of water, and photos/names of your strongest deceased relatives. Light the candle every Tuesday and Saturday.',
+    affirmation:'"No weapon formed against me shall prosper. My ancestors are my army. I walk in divine protection every moment of every day."'
+  },
+  // Ancestral Disconnection
+  ancestor:{
+    name:'Ancestral Disconnection (Iyapa Ẹbí)',
+    desc:'Your lineage cord has been weakened or severed. This manifests as persistent unexplained failure, feeling spiritually lost, recurring nightmares, and a sense that your prayers are not reaching through. Your ancestors are trying to reach you.',
+    severity:'med',
+    herbs:['frankincense','myrrh','sage','cloves'],
+    ritual:{name:'The Lineage Reconnection Ceremony',steps:['Set up a clean white cloth on a table. Place photos or written names of deceased family members','Place a glass of water, white candle, frankincense resin, and a handful of soil from your homeland','Light the candle and frankincense. Speak aloud the names of every ancestor you know','Say: "I acknowledge you. I see you. I have been absent and I return now. Guide me."','Do this every Saturday for 4 weeks. Never let the candle burn out — extinguish it safely after prayer']},
+    protection:'Keep a glass of water on your ancestral space always — water carries prayers and creates a communication bridge to the ancestors.',
+    affirmation:'"I am not alone. Behind me stands a long line of those who survived so that I could live. I draw their strength into me now."'
+  },
+  // Poverty Consciousness / Financial Hex
+  poverty:{
+    name:'Financial Blockage (Dena Owo)',
+    desc:'Your money channels are spiritually obstructed. Money comes but does not stay. Opportunities arise but collapse. This pattern suggests both a spiritual blockage and possibly a prosperity hex placed by someone in your circle who benefits from your stagnation.',
+    severity:'med',
+    herbs:['basil','cloves','ginger','cinnamon','aloe'],
+    ritual:{name:'The River of Gold Ritual',steps:['On a Thursday at dawn, prepare cinnamon and basil tea with honey and a single gold-colored coin dropped in','Drink the tea while writing your financial goals clearly on paper — be specific with amounts','Float 7 basil leaves in a bowl of honey water. Wash your hands and face in this water','Carry 3 cloves in your wallet at all times. Replace every full moon.','Every Thursday morning, burn cinnamon incense and state your financial intentions aloud 7 times']},
+    protection:'Place a cup of rice mixed with cinnamon and basil near your front door — it draws abundance inward. Replace monthly.',
+    affirmation:'"Money flows to me easily and freely. Every channel of abundance in my life is now open. I receive with gratitude and release with generosity."'
+  },
+  // Love Blockage
+  love:{
+    name:'Love Blockage (Ìdènà Ifẹ́)',
+    desc:'Something is preventing love from entering or remaining in your life. This may be a self-placed barrier from past hurt, an external interference from jealous parties, or an unresolved relationship from your past that is holding space that new love cannot enter.',
+    severity:'low',
+    herbs:['hibiscus','lavender','basil','roses','cinnamon'],
+    ritual:{name:'The Oshun Love Opening Ritual',steps:['On a Friday evening, prepare a bath with hibiscus flowers, lavender, honey, and rose petals','Light a pink or red candle beside your bath. Place 5 coins in the water as an offering to Oshun','Enter the bath and pour the water over your head 5 times — once for each coin','Say: "My heart is open. Love recognizes me. I am worthy and ready to receive."','After bathing, keep the candle burning safely for 5 hours. Repeat for 5 consecutive Fridays']},
+    protection:'Place dried lavender under your pillow and a small mirror facing outward near your front door — to reflect away interference from those who envy your happiness.',
+    affirmation:'"I am deeply lovable. I release every past wound that told me otherwise. Love is my birthright and I claim it fully and completely now."'
+  },
+  // Night Spiritual Attack / Sleep Disturbance
+  nightattack:{
+    name:'Night Visitation / Astral Disturbance (Àjẹ́ Oru)',
+    desc:'Your sleep state is being disturbed by entities, energies, or spiritual visitors who enter when your conscious guard is down. This may manifest as sleep paralysis, night terrors, exhaustion upon waking, or the presence of a heavy energy in your bedroom.',
+    severity:'high',
+    herbs:['sage','frankincense','myrrh','garlic','lavender'],
+    ritual:{name:'The Night Guardian Ritual',steps:['Thoroughly cleanse your bedroom with burning sage, reaching every corner and under the bed','Place a bowl of water with salt and camphor beside your bed. Replace every 3 days','Put 3 cloves of garlic under your mattress at the head of the bed — renew monthly','Sprinkle a line of sea salt across your bedroom doorway — nothing negative can cross it','Before sleeping, pray aloud: "My ancestors guard me as I sleep. No unwelcome entity may approach me."']},
+    protection:'Keep iron near your sleeping space — a nail, a key, or iron bracelet. Iron repels negative entities in many African spiritual traditions.',
+    affirmation:'"My sleep is sacred and protected. My dreams are mine alone. I sleep in the arms of my ancestors and wake restored and whole."'
+  },
+  // General Spiritual Weakness
+  weakness:{
+    name:'Spiritual Depletion (Àárọ̀ Ẹmí)',
+    desc:'Your spiritual energy is severely depleted through overgiving, spiritual neglect, unprocessed grief, or sustained negative environments. This leaves you vulnerable to everything — illness, bad luck, emotional collapse. You need urgent replenishment.',
+    severity:'low',
+    herbs:['moringa','aloe','blackseed','turmeric','tigernut'],
+    ritual:{name:'The Soul Replenishment Ritual',steps:['For 7 days, drink moringa, turmeric, and black seed oil every morning — the trinity of restoration','Spend minimum 20 minutes in morning sunlight daily, skin exposed — absorb solar healing energy','Take a full moon bath with aloe gel added to warm water — aloe heals from the outside in','Reduce energy output to others — protect your aura deliberately. You cannot pour from an empty vessel','Write one thing you are grateful for each evening for 21 days — gratitude is a spiritual magnet']},
+    protection:'Create a personal protection amulet: wrap a clove of garlic, a piece of camphor, and 3 whole cloves in white cloth. Carry this near your body.',
+    affirmation:'"I am worthy of rest. I am worthy of replenishment. I receive freely now from the limitless abundance of the universe. I am filling up."'
+  }
+};
+
+function getDiagnosis(answers){
+  const syms = answers.step1 || [];
+  const areas = answers.step3 || [];
+  const trigger = (answers.step4||['nothing'])[0];
+  const duration = (answers.step2||['months'])[0];
+
+  if(syms.includes('nightdist')) return 'nightattack';
+  if(syms.includes('enemies') || trigger==='contact') return 'attack';
+  if(syms.includes('failure') && duration==='lifetime') return 'ancestor';
+  if(syms.includes('financial') || areas.includes('money')) return 'poverty';
+  if(areas.includes('love') && !syms.includes('financial')) return 'love';
+  if(syms.includes('disconnected') || trigger==='loss') return 'ancestor';
+  if(syms.includes('badluck') && duration==='years') return 'blockage';
+  if(syms.includes('heaviness') || syms.includes('physical')) return 'weakness';
+  return 'blockage';
+}
+
+function runDiagnosis(){
+  // Hide form, show thinking
+  document.getElementById('diagForm').style.display='none';
+  document.getElementById('diagThinking').style.display='block';
+
+  setTimeout(()=>{
+    const key = getDiagnosis(diagState.answers);
+    const d = diagnosisDB[key];
+    const culture = (diagState.answers.step5||['general'])[0];
+    const severityLabel = {high:'⚠️ High Priority',med:'⚡ Moderate Priority',low:'🌿 Gentle Attention'}[d.severity];
+    const sevClass = {high:'sev-high',med:'sev-med',low:'sev-low'}[d.severity];
+
+    const herbPills = d.herbs.map(hid=>{
+      const h = herbs.find(x=>x.id===hid);
+      return h ? `<span class="herb-rec-pill" onclick="closeAndOpenHerb('${h.id}')">${h.name}</span>` : `<span class="herb-rec-pill">${hid}</span>`;
+    }).join('');
+
+    const steps = d.ritual.steps.map((s,i)=>`<li>${s}</li>`).join('');
+
+    document.getElementById('diagThinking').style.display='none';
+    document.getElementById('diagResult').style.display='block';
+    document.getElementById('diagResultContent').innerHTML=`
+      <div class="result-condition">
+        <h3>${d.name}</h3>
+        <p>${d.desc}</p>
+        <span class="result-severity ${sevClass}">${severityLabel}</span>
+      </div>
+
+      <div class="result-block">
+        <div class="result-block-title">🌿 Recommended Herbs</div>
+        <div class="herb-rec-list">${herbPills}</div>
+        <p style="font-size:0.75em;color:var(--text-soft);margin-top:8px">Tap any herb to open its full guide</p>
+      </div>
+
+      <div class="result-block">
+        <div class="result-block-title">📿 Prescribed Ritual: ${d.ritual.name}</div>
+        <div class="ritual-rec-card">
+          <ol class="protection-steps-mini">${steps}</ol>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <div class="result-block-title">🛡️ Protection Method</div>
+        <p style="font-size:0.84em;color:var(--text-mid);line-height:1.6">${d.protection}</p>
+      </div>
+
+      <div class="affirmation-box">"${d.affirmation}"</div>
+
+      <div style="background:var(--gold-light);border:1px solid #f0e0a0;border-radius:10px;padding:12px 14px;margin-top:10px;font-size:0.8em;color:#7a5c00;line-height:1.6">
+        <strong style="display:block;margin-bottom:4px">⚠️ Important Reminder</strong>
+        This diagnosis is based on African traditional spiritual knowledge. For any serious illness, persistent symptoms, or mental health concerns, please consult a qualified doctor, therapist, or trained herbalist alongside these practices.
+      </div>
+
+      <button class="restart-btn" onclick="restartDiagnosis()">🔄 Start New Diagnosis</button>
+    `;
+  }, 2800);
+}
+
+function restartDiagnosis(){
+  diagState.step=0; diagState.answers={};
+  document.getElementById('diagResult').style.display='none';
+  document.getElementById('diagForm').style.display='block';
+  document.querySelectorAll('.diag-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('dstep-0').classList.add('active');
+  document.querySelectorAll('.diag-opt').forEach(b=>b.classList.remove('selected'));
+  updateDiagProgress(0);
+}
+
+function closeAndOpenHerb(id){
+  switchTab('home');
+  setTimeout(()=>openModal(id),300);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// ██████████████  RITUAL BUILDER ENGINE  ████████████████████████████████
+// ═══════════════════════════════════════════════════════════════════════
+
+let builderGoal = null;
+
+function selectGoal(card){
+  document.querySelectorAll('.goal-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  builderGoal = card.dataset.goal;
+  const btn = document.getElementById('btnext-1');
+  btn.textContent = '→ Configure ' + card.querySelector('.gc-name').textContent;
+  btn.disabled = false;
+}
+
+function builderNext(step){
+  document.getElementById('bstep-'+(step-1)).classList.remove('active');
+  document.getElementById('bstep-'+step).classList.add('active');
+}
+
+function builderBack(step){
+  document.getElementById('bstep-'+(step+1)).classList.remove('active');
+  document.getElementById('bstep-'+step).classList.add('active');
+}
+
+const ritualTemplates = {
+  prosperity:{
+    gradient:'linear-gradient(135deg,#1a2f00,#2d5a00,#4a8c00)',
+    emoji:'💰',
+    ingredients:[
+      {qty:'7 leaves',item:'Fresh African Basil (Efirin / Nchuanwu)'},
+      {qty:'1 stick',item:'Cinnamon bark'},
+      {qty:'7 whole',item:'Cloves (Kanafuru)'},
+      {qty:'1 tsp',item:'Honey (raw, unprocessed)'},
+      {qty:'1 cup',item:'Warm spring or filtered water'},
+      {qty:'1 piece',item:'Gold or yellow candle'},
+      {qty:'Handful',item:'Sea salt — natural, unrefined'}
+    ],
+    steps:[
+      {title:'Purify the Space',body:'Burn a pinch of frankincense or sage 10 minutes before beginning. Open all windows. Let stagnant energy leave.'},
+      {title:'Prepare the Abundance Blend',body:'Steep basil leaves, cinnamon, and cloves in warm water for 7 minutes. Add honey. Stir clockwise 7 times while visualizing your specific financial goal.'},
+      {title:'State Your Intention',body:'Hold the cup in both hands. Speak aloud exactly what you need — a specific amount, a specific opportunity. Be precise. The universe cannot deliver vague requests.'},
+      {title:'Drink with Conviction',body:'Drink the tea slowly. With each sip, feel your financial reality shifting. Do not doubt. Do not dilute your faith with fear.'},
+      {title:'Seal with Salt',body:'Sprinkle sea salt across your doorway and carry 3 cloves in your wallet. Your environment is now aligned with abundance.'}
+    ],
+    chant:'"Money seeks me as I seek it. Every door that was closed now swings open. Abundance is my birthright. It flows to me freely, easily, and continuously."',
+    outcome:'Most practitioners report their first new financial opening within 7–21 days. Full manifestation of stated goals: 21–40 days of consistent daily practice.'
+  },
+  love:{
+    gradient:'linear-gradient(135deg,#3d0019,#8b1538,#c0395b)',
+    emoji:'❤️',
+    ingredients:[
+      {qty:'Petals',item:'Dried hibiscus flowers (Zobo)'},
+      {qty:'5 drops',item:'Lavender essential oil or fresh sprigs'},
+      {qty:'1 tsp',item:'Raw honey'},
+      {qty:'1',item:'Rose quartz crystal (optional) or pink stone'},
+      {qty:'Fresh',item:'Rose petals (any color)'},
+      {qty:'1',item:'Pink or red candle'},
+      {qty:'5',item:'Fresh basil leaves'}
+    ],
+    steps:[
+      {title:'Open Your Heart',body:'Sit quietly. Place your hands over your heart. Feel it beating. Acknowledge that it has been hurt, and that it is still alive, still capable, still worthy of love.'},
+      {title:'Prepare the Love Bath',body:'Steep hibiscus, basil, and rose petals in warm water. Add honey and lavender. This is the bath of Oshun — goddess of rivers and love.'},
+      {title:'The Friday Immersion',body:'On a Friday, enter the bath. Pour the water over your head 5 times, once for each quality of love you wish to attract or deepen. Name each quality aloud.'},
+      {title:'Affirm Your Worthiness',body:'Say: "I am worthy of deep, faithful, passionate, growing love. I release every story that told me otherwise. I receive love now."'},
+      {title:'The Continuing Practice',body:'Place dried hibiscus petals beside a lit pink candle every Friday evening for 5 weeks. Do not miss a Friday.'}
+    ],
+    chant:'"Love recognizes me and comes toward me. I am a magnet for faithful, deep, enduring love. I give love freely and receive it without fear."',
+    outcome:'Existing relationships: shift in emotional warmth and connection within 2 weeks. New love attraction: 5 Fridays of consistent practice. Self-love expansion: immediate and ongoing.'
+  },
+  protection:{
+    gradient:'linear-gradient(135deg,#1a0a00,#5c1a00,#8b2500)',
+    emoji:'🛡️',
+    ingredients:[
+      {qty:'7 cloves',item:'Raw garlic (whole bulbs)'},
+      {qty:'Large',item:'Neem leaves — fresh or dried'},
+      {qty:'3 pieces',item:'Frankincense tears'},
+      {qty:'1 cup',item:'Sea salt — coarse, natural'},
+      {qty:'Piece',item:'Camphor block'},
+      {qty:'7',item:'Whole cloves (Kanafuru)'},
+      {qty:'1 litre',item:'Clean water for floor wash'}
+    ],
+    steps:[
+      {title:'The Warrior Invocation',body:'Face East at sunrise. Say: "I call upon every warrior ancestor in my lineage. Stand with me today. Guard every entry point of my life." Do not rush this.'},
+      {title:'Salt the Perimeter',body:'Pour a line of sea salt across every doorway and window of your home. This creates a spiritual barrier that negative energy cannot cross.'},
+      {title:'The Garlic Shield',body:'String 7 garlic cloves and hang above your main entrance. Name what you are protecting yourself against as you hang each clove.'},
+      {title:'Neem Smoke Purification',body:'Burn dry neem leaves in a fireproof container. Carry the smoke through every room, paying attention to corners where negative energy collects.'},
+      {title:'The Floor Wash',body:'Mix camphor, sea salt, and neem tea. Wash your floors from the back of the home to the front. Always wash toward the door, pushing negativity out.'}
+    ],
+    chant:'"My home is holy ground. My body is a fortress. Every ancestor who ever protected their family now protects mine. Nothing harmful may remain here."',
+    outcome:'Immediate spiritual cleansing of space. Ongoing protection strengthens over 7 days. Full household protection shield: 21 days of consistent practice. Refresh monthly on new moon.'
+  },
+  cleansing:{
+    gradient:'linear-gradient(135deg,#0d2b1f,#1a6b4a,#2ea878)',
+    emoji:'✨',
+    ingredients:[
+      {qty:'Bundle',item:'Dried African Sage (Artemisia afra) or White Sage'},
+      {qty:'2 stalks',item:'Lemongrass — fresh or dried'},
+      {qty:'1 block',item:'Camphor'},
+      {qty:'1 cup',item:'Sea salt'},
+      {qty:'Fresh',item:'Aloe vera leaf'},
+      {qty:'1',item:'White candle'},
+      {qty:'Handful',item:'Lavender (dried flowers)'}
+    ],
+    steps:[
+      {title:'Prepare the Cleansing Space',body:'Remove clutter from your space — physical clutter is spiritual clutter. Open all windows. Set your intention: "I am making space for new, clean energy."'},
+      {title:'The Smoke Cleanse',body:'Light the sage bundle at one end. Begin at the front door, move counterclockwise. Let smoke reach every corner. Speak: "I release everything that no longer serves my highest good."'},
+      {title:'The Aura Bath',body:'Boil lemongrass and lavender in 2 litres of water. Allow to cool. Add aloe gel. Pour slowly over your body from head to toe while breathing deeply.'},
+      {title:'The Salt Scrub',body:'Mix sea salt with a few drops of lemon juice and camphor water. Scrub your skin gently from feet upward. This physically removes spiritual debris from your energy field.'},
+      {title:'Seal with Light',body:'After bathing, light a white candle and sit quietly for 5 minutes. Breathe in the clean energy. Feel the weight lift. You are new.'}
+    ],
+    chant:'"I release everything heavy. I release everything that does not belong to me. I emerge clean, light, and fully myself. Only what serves my good remains."',
+    outcome:'Immediate lightening of emotional and spiritual weight. Many report feeling visibly brighter and breathing more easily afterward. Full aura reset: 3 consecutive sessions over 3 days.'
+  },
+  healing:{
+    gradient:'linear-gradient(135deg,#002244,#0044aa,#0066cc)',
+    emoji:'💊',
+    ingredients:[
+      {qty:'1 tsp',item:'Turmeric powder (with black pepper to activate)'},
+      {qty:'1 inch',item:'Fresh ginger root'},
+      {qty:'1 tsp',item:'Black seed (Nigella sativa) oil'},
+      {qty:'3 cloves',item:'Raw garlic — crushed and rested 10 minutes'},
+      {qty:'Fresh',item:'Aloe vera inner gel'},
+      {qty:'1 tsp',item:'Raw honey'},
+      {qty:'Leaves',item:'Moringa — fresh or powdered'}
+    ],
+    steps:[
+      {title:'Speak to Your Body',body:'Place your hands on the area of your body that needs healing. Speak aloud: "I see you. I hear you. I am here to help you heal now. Thank you for fighting so hard for me."'},
+      {title:'The Golden Healing Tonic',body:'Mix turmeric, ginger, and black pepper in warm water with honey. Add black seed oil. Drink slowly every morning. This tonic rivals pharmaceutical anti-inflammatories.'},
+      {title:'Garlic Protocol',body:'Crush garlic, wait 10 minutes for allicin to activate. Take with warm water and honey. Repeat for 7 days. Garlic has outperformed antibiotics in numerous studies.'},
+      {title:'Aloe Healing',body:'Apply fresh aloe gel directly to skin issues. Drink 2 tbsp of inner aloe gel (no latex) for gut and systemic inflammation. The cooling enters where the fire burns.'},
+      {title:'Rest as Sacred Practice',body:'Sleep is your greatest healer. Create conditions for deep healing sleep: darkness, silence, warm herbs, gratitude. The body repairs what your daytime cannot.'}
+    ],
+    chant:'"My body was made to heal. It has been healing since the moment I was born. I trust it. I support it. I give it exactly what it needs and the time it deserves."',
+    outcome:'Anti-inflammatory effects: visible reduction in 3–7 days. Immune support: ongoing from Day 1. Physical vitality: noticeable improvement by Day 14 of consistent protocol.'
+  },
+  fertility:{
+    gradient:'linear-gradient(135deg,#1a0030,#4a0080,#7a00c8)',
+    emoji:'🌸',
+    ingredients:[
+      {qty:'1 cup',item:'Tiger nuts (Aya) for Kunu Aya drink'},
+      {qty:'Fresh',item:'Uziza leaves (Piper guineense)'},
+      {qty:'Dates',item:'5 Medjool dates for Kunu'},
+      {qty:'Leaves',item:'Moringa — the Tree of Life'},
+      {qty:'1 tsp',item:'Black seed oil — the great healer'},
+      {qty:'Fresh',item:'Ginger — the accelerator'},
+      {qty:'1',item:'Purple or pink candle for womb energy'}
+    ],
+    steps:[
+      {title:'Honor the Womb',body:'Sit quietly with both hands placed gently on your lower abdomen. Breathe deeply. Speak: "I honor my womb. It is sacred ground. It is capable of miracles. I release every doubt."'},
+      {title:'Kunu Aya Daily Drink',body:'Soak tiger nuts overnight. Blend with dates, ginger, and coconut milk. Drink one cup every morning for 40 consecutive days — this is the ancient fertility protocol of the ancestors.'},
+      {title:'Uziza Womb Bath',body:'Boil uziza leaves and seeds with ginger in water. Allow to cool comfortably. Pour gently over lower abdomen and sit in a hip bath. Uziza opens what is blocked in the womb.'},
+      {title:'The Moon Cycle Ritual',body:'On every new moon, drink moringa tea with black seed oil and write your intention: the number of children, their qualities, your prayer for them. Store these letters.'},
+      {title:'The Full Moon Offering',body:'On every full moon, pour a small cup of your Kunu Aya to the earth as an offering. Say: "I receive what I am ready for. I am ready now."'}
+    ],
+    chant:'"My womb is sacred, open, and capable. I release every fear. I welcome new life with my whole heart. What is meant for me is already coming toward me."',
+    outcome:'Hormonal regulation begins within 4–6 weeks of daily Kunu Aya. Womb environment improvement: 3 months of consistent practice. Many report conception within 3–6 months of the full protocol.'
+  },
+  mental:{
+    gradient:'linear-gradient(135deg,#0a0a1a,#1a1a4a,#2a2a7a)',
+    emoji:'🧠',
+    ingredients:[
+      {qty:'Leaves',item:'Moringa — the brain food of Africa'},
+      {qty:'1 tsp',item:'Turmeric with black pepper (brain anti-inflammatory)'},
+      {qty:'1 drop',item:'Frankincense essential oil (diluted)'},
+      {qty:'Bundle',item:'Lavender — the great calmer'},
+      {qty:'Fresh',item:'Lemongrass stalks — joy and clarity'},
+      {qty:'1 tsp',item:'Black seed oil — cognitive protector'},
+      {qty:'1',item:'Blue or white candle for mental clarity'}
+    ],
+    steps:[
+      {title:'Morning Mind Clearing',body:'Upon waking, before any phone or screen, sit in silence for 5 minutes. Breathe slowly. Let the mind settle like water after a stone. Then drink your morning moringa and turmeric tonic.'},
+      {title:'The Clarity Blend',body:'Each morning: 1 tsp moringa powder, ½ tsp turmeric, pinch black pepper, 1 tsp black seed oil, warm water. This is brain medicine. Take for 21 days minimum.'},
+      {title:'Frankincense Focus',body:'While working or studying, diffuse one drop of frankincense oil or burn a frankincense tear on charcoal. Frankincense crosses the blood-brain barrier and reduces anxiety markedly.'},
+      {title:'Evening Lemongrass Ritual',body:'Boil lemongrass in water at sunset. Drink as tea. Then sit outside if possible and breathe fresh air for 10 minutes. Let the day leave your nervous system.'},
+      {title:'Lavender Sleep Protocol',body:'Place dried lavender under your pillow. Diffuse lavender oil while sleeping. Deep sleep is when the brain processes, repairs, and restores. This is not optional.'}
+    ],
+    chant:'"My mind is clear, sharp, and powerful. Every cloud of confusion lifts. I think with clarity, remember with ease, and focus with intention. I am mentally strong."',
+    outcome:'Anxiety reduction: noticeable within 3–5 days. Mental fog clearing: 7–10 days. Sustained cognitive improvement: 21 days of the full morning protocol.'
+  },
+  spiritual:{
+    gradient:'linear-gradient(135deg,#1a1a0a,#3a3a10,#6a6a20)',
+    emoji:'🔮',
+    ingredients:[
+      {qty:'3 tears',item:'Frankincense resin (Olibanum)'},
+      {qty:'2 tears',item:'Myrrh resin — the earth anchor'},
+      {qty:'Bundle',item:'Sage for space preparation'},
+      {qty:'1',item:'White candle — for ancestral light'},
+      {qty:'1 glass',item:'Fresh clean water — the messenger'},
+      {qty:'Pinch',item:'Camphor — the spirit purifier'},
+      {qty:'Soil',item:'From your homeland or family compound'}
+    ],
+    steps:[
+      {title:'Create Sacred Space',body:'Clean and clear a dedicated corner of your home. Lay a clean white cloth. Place a glass of fresh water, a white candle, and photos or names of ancestors you know.'},
+      {title:'The Frankincense Bridge',body:'Light frankincense and myrrh simultaneously on a charcoal disc. The combined smoke is the most powerful spiritual bridge known in African tradition. Sit before it and breathe.'},
+      {title:'Open the Communication',body:'With the smoke rising, speak aloud to your ancestors by name. Tell them your struggles. Ask for guidance. Then sit in complete silence and listen — with your feelings, not just your ears.'},
+      {title:'The Sacred Drink',body:'Prepare a cup of warm water with a pinch of camphor and a single drop of frankincense oil. Drink it slowly while remaining in a meditative state.'},
+      {title:'The Gratitude Close',body:'Before ending, express gratitude for every blessing — large and small. Gratitude is the currency of the spiritual realm. Close by saying: "Thank you for hearing me. I will listen for your answer."'}
+    ],
+    chant:'"I am connected to something ancient, powerful, and deeply loving. My ancestors walk with me. The divine speaks to me. I am never alone, I am never abandoned, I am never without guidance."',
+    outcome:'Immediate sense of spiritual connection in most practitioners. Dream guidance begins within 7 days. Ongoing spiritual clarity deepens with each weekly session. Full spiritual realignment: 40 days.'
+  }
+};
+
+function generateRitual(){
+  if(!builderGoal) return;
+  const difficulty = document.getElementById('bDifficulty').value;
+  const culture = document.getElementById('bCulture').value;
+  const timing = document.getElementById('bTiming').value;
+  const duration = document.getElementById('bDuration').value;
+
+  document.getElementById('builderResult').style.display='none';
+  document.querySelector('#builderPanel .sys-section').style.display='none';
+  document.getElementById('builderThinking').style.display='block';
+
+  setTimeout(()=>{
+    document.getElementById('builderThinking').style.display='none';
+    const t = ritualTemplates[builderGoal];
+    const difficultyText = {beginner:'🌱 Beginner',intermediate:'🌿 Intermediate',advanced:'🌳 Advanced'}[difficulty];
+    const timingText = {any:'⭐ Any Time',morning:'🌅 Morning',evening:'🌆 Evening',midnight:'🌙 Midnight',newmoon:'🌑 New Moon',fullmoon:'🌕 Full Moon'}[timing];
+
+    // Filter ingredients by difficulty
+    let ings = t.ingredients;
+    if(difficulty==='beginner') ings = ings.slice(0,4);
+
+    const ingRows = ings.map(i=>`
+      <div class="ritual-ingredient-row">
+        <span class="rir-qty">${i.qty}</span>
+        <span>${i.item}</span>
+      </div>`).join('');
+
+    const stepRows = t.steps.map((s,i)=>`
+      <div class="ritual-step-row">
+        <div class="rsr-num">${i+1}</div>
+        <div class="rsr-body"><strong>${s.title}</strong><p>${s.body}</p></div>
+      </div>`).join('');
+
+    document.getElementById('builderResult').style.display='block';
+    document.getElementById('builderResultContent').innerHTML=`
+      <div class="gen-ritual show">
+        <div class="gen-ritual-hero" style="background:${t.gradient}">
+          <div style="font-size:2em;margin-bottom:6px">${t.emoji}</div>
+          <h3>Your ${builderGoal.charAt(0).toUpperCase()+builderGoal.slice(1)} Ritual</h3>
+          <p style="font-size:0.82em;opacity:0.85;margin-top:4px">Custom generated for your path</p>
+          <div class="gen-meta">
+            <span class="gen-meta-tag">${difficultyText}</span>
+            <span class="gen-meta-tag">${timingText}</span>
+            <span class="gen-meta-tag">📅 ${duration}-Day Protocol</span>
+          </div>
+        </div>
+
+        <div class="result-block">
+          <div class="result-block-title">🧺 Ingredients</div>
+          ${ingRows}
+        </div>
+
+        <div class="result-block">
+          <div class="result-block-title">📿 Your Ritual Steps</div>
+          ${stepRows}
+        </div>
+
+        <div class="result-block">
+          <div class="result-block-title">🗣️ Your Chant / Affirmation</div>
+          <div class="chant-box">${t.chant}</div>
+        </div>
+
+        <div class="result-block">
+          <div class="result-block-title">✨ Expected Outcome</div>
+          <div class="outcome-box"><strong>Timeline & Results</strong>${t.outcome}</div>
+        </div>
+
+        <div style="background:#fff8e7;border:1px solid #f0e0a0;border-radius:10px;padding:12px 14px;font-size:0.8em;color:#7a5c00;line-height:1.6;margin-top:10px">
+          ⚠️ Always consult a trained herbalist or doctor for persistent conditions. These practices support but do not replace professional care.
+        </div>
+
+        <button class="restart-btn" style="margin-top:10px" onclick="resetBuilder()">🔄 Build Another Ritual</button>
+      </div>
+    `;
+  }, 2000);
+}
+
+function resetBuilder(){
+  builderGoal = null;
+  document.getElementById('builderResult').style.display='none';
+  document.querySelector('#builderPanel .sys-section').style.display='block';
+  document.querySelectorAll('.goal-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('bstep-2').classList.remove('active');
+  document.getElementById('bstep-1').classList.add('active');
+  const btn = document.getElementById('btnext-1');
+  btn.textContent='Choose Goal to Continue →';
+  btn.disabled=true;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// ██████████████  RITUAL SYSTEM DATA  ████████████████████████████████
+// ═══════════════════════════════════════════════════════════════════════
+
+const fullRituals = [
+  {
+    id:'r1', cat:'prosperity', gradient:'linear-gradient(135deg,#1a2f00,#2d5a00)',
+    emoji:'💰', name:'The 40-Day Money Magnet Ritual',
+    purpose:'Sustained financial attraction and abundance unlocking',
+    origin:'Yoruba (Ifa tradition)', difficulty:'Intermediate',
+    bestTiming:'Thursday dawn, Waxing Moon', duration:'40 Days',
+    culturalOrigin:'Yoruba',
+    subtitle:'Based on the sacred number 40 — the number of completion and manifestation in Yoruba cosmology.',
+    ingredients:[
+      {qty:'7 leaves', name:'Fresh African Basil (Efirin) — the herb of Oshun and prosperity'},
+      {qty:'1 stick', name:'Cinnamon bark — the accelerator of financial energy'},
+      {qty:'7 whole', name:'Cloves (Kanafuru) — the spiritual money magnet'},
+      {qty:'1 tbsp', name:'Raw honey — to sweeten all financial dealings'},
+      {qty:'1', name:'Gold or yellow candle — lit every Thursday morning'},
+      {qty:'Coins', name:'Seven copper or gold-toned coins — representing abundance'},
+      {qty:'1 cup', name:'River water or clean spring water — the flow of Oshun'}
+    ],
+    steps:[
+      {title:'Day 1 — Set the Altar', body:'Lay a clean yellow cloth. Place your coins in a circle. Add basil leaves, cinnamon, and cloves. Light your candle and state your exact financial goal with precision.'},
+      {title:'Daily Morning Practice', body:'Each morning, steep basil and cinnamon in warm water. Stir clockwise 7 times while visualizing your specific goal achieved. Drink and feel it real.'},
+      {title:'Thursday Amplification', body:'Every Thursday — day of Jupiter and abundance — add 3 fresh basil leaves to your altar and burn cinnamon incense for 30 minutes while writing financial affirmations.'},
+      {title:'The Moon Work', body:'On each full moon within the 40 days, wash your hands and face in basil-honey water while reciting: "Every channel of abundance in my life is now fully open."'},
+      {title:'Day 40 — The Release', body:'Pour the final altar water at a crossroads as a gift to the universe. Bury the coins at the base of a tree as an offering. Give something financially to someone in need within 24 hours.'}
+    ],
+    chant:'"Money seeks me as I seek it. Every door that was closed now swings wide open. Abundance is my birthright. I receive it fully, freely, and with gratitude."',
+    outcome:'Most practitioners report new financial opportunities emerging within 14 days. Full manifestation of stated goals: 40-day cycle. Sustained results with monthly maintenance ritual.',
+    warning:'This ritual requires consistency. Missing days weakens the energy thread. If you miss a day, do not skip — double the practice the next day.'
+  },
+  {
+    id:'r2', cat:'love', gradient:'linear-gradient(135deg,#3d0019,#8b1538)',
+    emoji:'❤️', name:'The Oshun Love Bath — 5 Fridays',
+    purpose:'Attracting faithful romantic love and deepening existing bonds',
+    origin:'Yoruba (Oshun devotion)', difficulty:'Beginner',
+    bestTiming:'Friday, Venus Hour (Sunset)', duration:'5 Weeks',
+    culturalOrigin:'Yoruba',
+    subtitle:'Oshun is the Yoruba orisha of rivers, love, fertility, and beauty. This ritual honors her and opens the heart to receive the love it deserves.',
+    ingredients:[
+      {qty:'Petals', name:'Hibiscus flowers — the flower of Oshun'},
+      {qty:'Fresh', name:'Rose petals — universal love amplifier'},
+      {qty:'5 drops', name:'Lavender oil or fresh sprigs — for peaceful love'},
+      {qty:'1 tbsp', name:'Raw honey — to sweeten the person you seek'},
+      {qty:'5', name:'Copper coins — Oshun\'s sacred metal'},
+      {qty:'1', name:'Orange or pink candle — Oshun\'s colors'},
+      {qty:'1', name:'Mirror — to see yourself as worthy and beautiful'}
+    ],
+    steps:[
+      {title:'The Friday Preparation', body:'Every Friday at sunset for 5 consecutive weeks. No exceptions. Begin with 5 minutes of self-appreciation before a mirror. Name 5 things you love about yourself.'},
+      {title:'Prepare the Love Water', body:'Steep hibiscus and rose petals in warm water. Add honey and lavender. Drop the 5 coins in. This water is now charged with Oshun\'s love energy.'},
+      {title:'The Immersion', body:'Enter the bath or pour the water over your body 5 times. Each time, name a quality of love you wish to experience: "I receive faithful love. I receive passionate love..."'},
+      {title:'The Candle Vigil', body:'After bathing, light the orange candle and sit before the mirror. Look into your own eyes for 3 minutes. You are meeting your own worthiness.'},
+      {title:'The Closing Offering', body:'Pour a small cup of the bath water outside as an offering to Oshun. Say: "Thank you for hearing me. I am ready. I am open. I am worthy."'}
+    ],
+    chant:'"Love recognizes me wherever I go. I am magnetic to faithful, deep, passionate love. I release every wall I built. My heart is open and I am ready to receive."',
+    outcome:'Existing partnerships: noticeable warming and deepening within 2 Fridays. New love attraction: 5 complete Fridays. Self-love expansion: begins on the very first Friday.',
+    warning:'If you are already in a relationship, this ritual will deepen the connection — only perform if you wish to remain with your current partner. Intention matters.'
+  },
+  {
+    id:'r3', cat:'protection', gradient:'linear-gradient(135deg,#1a0a00,#5c1a00)',
+    emoji:'🛡️', name:'The Iron Wall Home Protection Ritual',
+    purpose:'Comprehensive spiritual protection for home, family, and self',
+    origin:'Pan-African (Yoruba, Igbo, Hausa combined)', difficulty:'Intermediate',
+    bestTiming:'Saturday, New Moon', duration:'21 Days',
+    culturalOrigin:'Pan-African',
+    subtitle:'Drawing from three major Nigerian traditions, this ritual creates a layered protection system that guards against all forms of spiritual, energetic, and intentional harm.',
+    ingredients:[
+      {qty:'7 cloves', name:'Garlic — the primary protection anchor'},
+      {qty:'Large', name:'Neem (Dogonyaro) leaves — the spiritual guardian tree'},
+      {qty:'3 tears', name:'Frankincense — to call and anchor ancestral protection'},
+      {qty:'2 cups', name:'Sea salt — the purifier that evil cannot cross'},
+      {qty:'1 block', name:'Camphor — spiritual insect repellent for negative entities'},
+      {qty:'Dried', name:'Sage bundle — for smoke purification'},
+      {qty:'1 litre', name:'Prepared neem tea — for floor washing'}
+    ],
+    steps:[
+      {title:'Saturday Purification', body:'Begin on a Saturday — the day of Saturn, root protection, and ancestral work. Burn frankincense throughout the home. Speak: "I claim this space as holy ground. Nothing harmful may remain."'},
+      {title:'The Salt Barrier', body:'Pour a continuous line of sea salt across EVERY doorway and every windowsill. No gaps. This is non-negotiable. Salt creates a barrier nothing negative can cross.'},
+      {title:'The Garlic Guardian', body:'String 7 garlic cloves with string or a needle. Hang this above your main entrance, inside. As you hang each clove, name what you are protecting against.'},
+      {title:'The Neem Floor Wash', body:'Boil neem leaves in 2 litres of water with camphor and salt. Wash floors from the BACK of your home to the FRONT. Push negativity outward. Repeat every Saturday for 3 weeks.'},
+      {title:'The Ancestral Activation', body:'Light frankincense every evening for 21 days. Call on your strongest ancestors: "I call on [name]. Guard the four corners of this home. Let nothing harmful pass."'}
+    ],
+    chant:'"My home is holy ground. My family walks in divine protection. Every negative energy that approaches dissolves before it reaches us. We are covered, guarded, and sealed."',
+    outcome:'Immediate cleansing effect felt on Day 1. Full protection field established by Day 7. Salt barriers should be renewed every Saturday. Garlic replaced every new moon.',
+    warning:'Do not mix salt from different sources in the same ritual. Once placed, do not sweep the salt barrier away — it must be renewed, not removed mid-ritual.'
+  },
+  {
+    id:'r4', cat:'spiritual', gradient:'linear-gradient(135deg,#0a0a1a,#1a1a4a)',
+    emoji:'🔮', name:'The 40-Day Ancestral Reconnection',
+    purpose:'Rebuilding severed ancestral lines and opening divine communication',
+    origin:'Pan-African ancestral tradition', difficulty:'Advanced',
+    bestTiming:'Saturday, Waning Moon', duration:'40 Days',
+    culturalOrigin:'Pan-African',
+    subtitle:'When your ancestors cannot reach you, the signs are everywhere — persistent failure, spiritual emptiness, recurring nightmares. This ritual rebuilds the cord.',
+    ingredients:[
+      {qty:'3 tears', name:'Frankincense — the ancestral bridge smoke'},
+      {qty:'2 tears', name:'Myrrh — the earth anchor, grief processor'},
+      {qty:'1', name:'White candle — the ancestral light beacon'},
+      {qty:'1 glass', name:'Fresh water — the carrier of prayers and messages'},
+      {qty:'Soil', name:'From your family homeland or compound'},
+      {qty:'Photos', name:'Or written names of deceased relatives'},
+      {qty:'Pinch', name:'Sea salt — purification offering'}
+    ],
+    steps:[
+      {title:'Build the Ancestral Space', body:'Lay a white cloth in a permanent corner of your home. Place the glass of water. Light the white candle. Place photos or write names. Add a pinch of soil from home. This is your ancestral altar.'},
+      {title:'The Daily Opening Prayer', body:'Each morning, replace the water. Light frankincense. Speak every ancestor\'s name you know. Include those you never met — "I call all those who came before me." Trust they hear you.'},
+      {title:'The Saturday Deep Communion', body:'Every Saturday, burn frankincense AND myrrh together. Sit for minimum 20 minutes in complete silence after speaking. The answers come in feelings, images, sudden knowing.'},
+      {title:'The Dream Journal', body:'Keep a notebook by your bed. Write every dream immediately upon waking. Over 40 days, patterns emerge. Your ancestors communicate through the dream layer most clearly.'},
+      {title:'The Offering Days', body:'On each new moon within the 40 days, place a small meal on the altar — something your ancestors enjoyed. Pour a drink of water or local drink. Say: "This is for you. I remember you. Thank you."'}
+    ],
+    chant:'"I am the continuation of a long and powerful line. My ancestors walk with me, guide me, protect me. I am never alone. The cord between us is restored and strong."',
+    outcome:'Dream communication begins within 7 days for most practitioners. A sense of spiritual presence and support within 14 days. Full ancestral reconnection and ongoing guidance: by Day 40.',
+    warning:'This ritual requires emotional honesty. If there are unresolved issues with deceased family members, you may feel emotional. Do not suppress what comes up — this is part of the healing.'
+  },
+  {
+    id:'r5', cat:'cleansing', gradient:'linear-gradient(135deg,#0d2b1f,#1a6b4a)',
+    emoji:'✨', name:'The 7-Day Great Aura Cleanse',
+    purpose:'Total spiritual detox — body, mind, home, and energy field',
+    origin:'Igbo (Odinani) and Yoruba combined', difficulty:'Intermediate',
+    bestTiming:'Wednesday, Waning Moon', duration:'7 Days',
+    culturalOrigin:'Igbo / Yoruba',
+    subtitle:'Accumulated spiritual weight — from stress, conflict, environments, and others\' energies — builds up invisibly. This ritual removes it completely, leaving you spiritually new.',
+    ingredients:[
+      {qty:'Bundle', name:'African Sage or white sage — smoke cleanser'},
+      {qty:'3 stalks', name:'Fresh lemongrass — aura brightener'},
+      {qty:'Fresh', name:'Aloe vera leaf — the universal healer'},
+      {qty:'1 cup', name:'Sea salt — the great purifier'},
+      {qty:'1 block', name:'Camphor — entity repellent'},
+      {qty:'Handful', name:'Dried lavender — for peace sealing'},
+      {qty:'1', name:'White candle — to seal the clean space'}
+    ],
+    steps:[
+      {title:'Day 1 — The Home Cleanse', body:'Smoke cleanse every room counterclockwise. Open all windows. Speak: "Every energy that does not belong to my highest good — leave now. With respect. With thanks. But leave."'},
+      {title:'Days 2–4 — The Bath Protocol', body:'Each morning: boil lemongrass, add aloe gel and sea salt to cool water. Pour slowly from crown to feet. As water flows, feel spiritual weight dissolving with it.'},
+      {title:'Day 5 — The Salt Scrub', body:'Mix sea salt with coconut oil and camphor water. Scrub entire body gently from feet upward. This is a physical removal of auric debris. Rinse thoroughly. You will feel the difference immediately.'},
+      {title:'Day 6 — The Smoke Seal', body:'Burn lavender and sage together. Waft the smoke around your body from feet to crown. Then sit in meditation for 10 minutes. Feel what has lifted. Name it. Release it with gratitude.'},
+      {title:'Day 7 — The New Beginning', body:'Light the white candle at sunrise. Sit quietly for 7 minutes. Write 7 intentions for the new, clean chapter of your life. Seal with the affirmation. You are renewed.'}
+    ],
+    chant:'"I release everything heavy. I release everything that was never mine. I emerge from this process completely clean, completely light, and completely free. Only what serves my good remains."',
+    outcome:'Most practitioners feel lighter within 48 hours. Full aura refresh by Day 7. Many report that long-standing emotional heaviness lifts permanently after the complete protocol.',
+    warning:'You may feel emotional during Days 2–4 as deep layers are cleared. This is normal and healing. Do not suppress it — allow whatever needs to leave to leave.'
+  }
+];
+
+function renderRitualSystem(cat){
+  const grid = document.getElementById('ritualsGrid');
+  const filtered = cat==='all' ? fullRituals : fullRituals.filter(r=>r.cat===cat);
+  grid.innerHTML = filtered.map(r=>`
+    <div class="ritual-full-card" style="margin-bottom:0">
+      <div class="rfc-hero" style="background:${r.gradient}">
+        <div style="font-size:2em;margin-bottom:8px">${r.emoji}</div>
+        <h3>${r.name}</h3>
+        <p>${r.subtitle}</p>
+        <div class="rfc-meta">
+          <span class="rfc-meta-tag">📅 ${r.duration}</span>
+          <span class="rfc-meta-tag">🌟 ${r.difficulty}</span>
+          <span class="rfc-meta-tag">⏰ ${r.bestTiming}</span>
+        </div>
+        <div class="cultural-badge">🌍 ${r.culturalOrigin} Tradition</div>
+      </div>
+      <div class="rfc-body">
+        <div class="rfc-sect-title">🧺 Ingredients</div>
+        ${r.ingredients.map(i=>`<div class="rfc-ingredient"><span class="rfc-ing-qty">${i.qty}</span><span>${i.name}</span></div>`).join('')}
+        <div class="rfc-sect-title" style="margin-top:16px">📿 Ritual Steps</div>
+        ${r.steps.map((s,i)=>`<div class="rfc-step"><div class="rfc-step-num">${i+1}</div><div class="rfc-step-text"><strong>${s.title}</strong><br>${s.body}</div></div>`).join('')}
+        <div class="rfc-sect-title">🗣️ Chant / Affirmation</div>
+        <div class="rfc-chant">${r.chant}</div>
+        <div class="rfc-sect-title">✨ Expected Outcome</div>
+        <div class="rfc-outcome"><strong>Timeline</strong>${r.outcome}</div>
+        <div style="margin-top:10px;background:#fff8f5;border:1px solid #ffd5c0;border-left:3px solid #e87040;border-radius:8px;padding:10px 12px;font-size:0.78em;color:#8a4030;line-height:1.55">⚠️ ${r.warning}</div>
+      </div>
+    </div>
+  `).join('<div style="height:10px"></div>');
+}
+
+function filterRituals(cat, btn){
+  document.querySelectorAll('.ritual-cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRitualSystem(cat);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// ██████████████  PROTECTION TOOLKIT  ███████████████████████████████████
+// ═══════════════════════════════════════════════════════════════════════
+
+const protectionData = [
+  {
+    cat:'Home Protection', icon:'🏠',
+    recipes:[
+      {
+        title:'The Salt Barrier System',
+        ings:['Sea salt','Camphor water','Black pepper'],
+        instructions:['Pour a thick line of sea salt across every doorway and windowsill in your home','Mix camphor with water and spray along the salt lines to amplify their power','Sprinkle black pepper at all four exterior corners of your building','Renew every Saturday and after any major argument or disturbance in the home','Never sweep the salt away — sprinkle fresh on top when renewing']
+      },
+      {
+        title:'The Garlic Guardian Network',
+        ings:['7 garlic bulbs','Strong thread','Red or black ribbon'],
+        instructions:['Peel one full bulb and string the cloves together on thread','Hang above front door, above each bedroom door, and near any windows you feel vulnerable','As you hang each cluster, name what you are protecting against specifically','Replace every new moon — old garlic has absorbed all negativity it can hold','Bury old garlic at a distance from your home — do not keep it inside once depleted']
+      },
+      {
+        title:'The Neem Floor Wash',
+        ings:['Neem leaves (fresh or dried)','Sea salt','Camphor','Clean water'],
+        instructions:['Boil a large handful of neem leaves in 2 litres of water for 20 minutes','Add sea salt and a piece of camphor to the cooled liquid','Wash your floors from the back of your home toward the front entrance','Always move toward the door — you are pushing negativity outward','Repeat every Saturday morning before noon for maximum protective effect']
+      }
+    ]
+  },
+  {
+    cat:'Personal Protection', icon:'👤',
+    recipes:[
+      {
+        title:'The Garlic & Clove Protection Oil',
+        ings:['Crushed garlic','Clove essential oil','Coconut oil','Frankincense oil'],
+        instructions:['Crush 3 garlic cloves and allow to infuse in warm coconut oil for 2 days','Add 2 drops each of clove and frankincense essential oils','Strain out the garlic. The oil now carries the protection without the smell','Apply to the soles of feet, base of neck, and wrists before leaving home','Reapply whenever you enter hostile environments, crowds, or places of conflict']
+      },
+      {
+        title:'The Personal Amulet',
+        ings:['White cloth','Sea salt','3 whole cloves','1 garlic clove','Camphor piece'],
+        instructions:['Lay the white cloth flat. Place all items in the center','Fold the cloth and tie with red thread — this creates a mojo bag','Hold it in both hands. State clearly what you need protection from','Carry this in your bag, pocket, or near your body at all times','Renew the contents every new moon — replace items and repeat the intention']
+      },
+      {
+        title:'The Iron Protection Bath',
+        ings:['Sea salt','Camphor','Neem tea','Lemongrass','Cold water'],
+        instructions:['Prepare strong neem tea by boiling leaves for 15 minutes','Add sea salt, camphor piece, and bruised lemongrass to cool neem tea','Pour slowly from crown of head downward — allow to air dry partially','Recite your protective prayer while the water is on your skin','Do this every Thursday for 7 consecutive weeks to build a deep spiritual shield']
+      }
+    ]
+  },
+  {
+    cat:'Cleansing Baths', icon:'🛁',
+    recipes:[
+      {
+        title:'The Lemongrass Aura Reset Bath',
+        ings:['3 lemongrass stalks','Sea salt','Aloe vera gel','Lemon juice'],
+        instructions:['Boil lemongrass until water turns golden yellow. Cool to comfortable temperature','Add sea salt, aloe gel, and juice of one lemon to the water','Pour over your body from head to toe for 3 consecutive mornings','Breathe deeply throughout — inhale the clearing vapour with intention','Feel spiritual weight physically dissolving as the water runs off your skin']
+      },
+      {
+        title:'The Hibiscus Love & Luck Bath',
+        ings:['Dried hibiscus flowers','Rose petals','Honey','Lavender'],
+        instructions:['Steep hibiscus and rose petals until water is deep crimson','Sweeten with honey while speaking your intention aloud','Add lavender for peace and harmonious energy','Bathe on a Friday evening for love. On a Thursday evening for luck and finances','Repeat for 5 consecutive weeks on the same day for sustained results']
+      },
+      {
+        title:'The White Bath (Obatala Cleanse)',
+        ings:['White shea butter','White chalk (efun)','Coconut milk','White flowers'],
+        instructions:['Mix shea butter, chalk, and coconut milk together — this is a sacred white mixture','Add white flower petals — jasmine, white roses, or any white blooms','This bath is specifically for those carrying very heavy spiritual loads or trauma','Bathe on a Sunday morning at sunrise — the day of Obatala, the pure one','Sit in prayer for 10 minutes before entering. Do not rush this sacred cleanse']
+      }
+    ]
+  },
+  {
+    cat:'Smoke Cleansing', icon:'🌬️',
+    recipes:[
+      {
+        title:'The Frankincense & Myrrh Power Cleanse',
+        ings:['Frankincense resin (3 tears)','Myrrh resin (2 tears)','Charcoal disc','Fireproof vessel'],
+        instructions:['Place charcoal disc in fireproof vessel. Ignite completely until red','Add frankincense and myrrh simultaneously — this combination is the most powerful in African tradition','Begin in the center of your home and spiral outward room by room','Speak your prayer or intention as the smoke rises — ancestors are present in this smoke','End at the front door. Let the final smoke dissipate outward into the street']
+      },
+      {
+        title:'The African Sage (Mugwort) Space Clearing',
+        ings:['Artemisia afra bundle','Fireproof vessel','Window openings'],
+        instructions:['Light the bundle at one end. Allow it to smoulder — do not let it fully burn','Begin at the front door and move counterclockwise through every room','Pay special attention to corners, under beds, inside wardrobes where energy collects','Open all windows after completing the smoke cleanse to release what you have disturbed','You may feel emotional during this — allow it. You are releasing what is leaving']
+      }
+    ]
+  },
+  {
+    cat:'Floor Washes', icon:'🧹',
+    recipes:[
+      {
+        title:'The Money-Drawing Floor Wash',
+        ings:['Basil leaves','Cinnamon sticks','Cloves','Honey','Warm water'],
+        instructions:['Steep basil, cinnamon, and cloves in 2 litres of warm water overnight','Add one tablespoon of honey in the morning — stir clockwise 9 times','Wash your floors beginning from the front door inward (money-drawing direction — opposite to protection wash)','Pay special attention to your workspace, your home office, or where you handle money','Do this every Thursday for 4 consecutive weeks to establish a prosperity current in your home']
+      },
+      {
+        title:'The Banishing Floor Wash',
+        ings:['Neem tea','Black pepper','Camphor','Vinegar','Sea salt'],
+        instructions:['Combine neem tea, vinegar, salt, camphor, and black pepper in a bucket','This is a powerful banishing wash — not for regular use. Use when something specific must leave','Wash floors from front entrance toward the back of the home (reverse of normal — pushing out)','After washing, open all windows and doors for 30 minutes','Do not walk on the wet floors barefoot — the energy being lifted is being removed, not absorbed']
+      }
+    ]
+  }
+];
+
+function renderProtectionToolkit(){
+  const container = document.getElementById('protectionCategories');
+  if(container.innerHTML.trim()) return; // Already rendered
+  container.innerHTML = protectionData.map((cat,i)=>`
+    <div class="prot-category">
+      <div class="prot-cat-head ${i===0?'open':''}" onclick="toggleProtCat(this)">
+        <span>${cat.icon}</span> ${cat.cat}
+        <span class="prot-cat-arrow">▼</span>
+      </div>
+      <div class="prot-cat-body ${i===0?'open':''}">
+        ${cat.recipes.map(r=>`
+          <div class="recipe-card">
+            <div class="recipe-title">🌿 ${r.title}</div>
+            <div class="recipe-ingredients">${r.ings.map(ing=>`<span class="recipe-ing-tag">${ing}</span>`).join('')}</div>
+            <div class="recipe-instructions"><ol>${r.instructions.map(s=>`<li>${s}</li>`).join('')}</ol></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleProtCat(head){
+  const body = head.nextElementSibling;
+  head.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// ██████████████  SPIRITUAL CALENDAR  ████████████████████████████████████
+// ═══════════════════════════════════════════════════════════════════════
+
+function getMoonPhase(date){
+  // Simplified moon phase calculation
+  const synodic = 29.53058867;
+  const known = new Date(2001, 0, 24); // known new moon
+  const diff = (date - known) / (1000*60*60*24);
+  const phase = ((diff % synodic) + synodic) % synodic;
+  if(phase < 1.85) return 'new';
+  if(phase < 7.38) return 'waxing';
+  if(phase < 9.22) return 'full';
+  if(phase < 14.77) return 'waxing';
+  if(phase < 16.61) return 'full';
+  if(phase < 22.15) return 'waning';
+  if(phase < 23.99) return 'new';
+  return 'waning';
+}
+
+function getDayType(date){
+  const day = date.getDay(); // 0=Sun, 1=Mon...
+  const d = date.getDate();
+  const types = {
+    0:'ancestor',  // Sunday — ancestral solar work
+    1:'cleansing', // Monday — lunar cleansing day
+    2:'protection',// Tuesday — Mars, warrior protection
+    3:'cleansing', // Wednesday — communication, aura
+    4:'manifestation',// Thursday — Jupiter, abundance
+    5:'manifestation',// Friday — Venus, love, money
+    6:'ancestor'   // Saturday — ancestral, banishing
+  };
+  // Special dates
+  if(d===1||d===15) return 'ancestor'; // 1st and 15th — major spiritual dates
+  return types[day];
+}
+
+const dailyGuidance = {
+  0:['🌞 Sunday is solar day — the day of strength, healing, and ancestral honor. Light frankincense and give thanks.','Pray for healing today. The sun is your ally. Stand in morning sunlight for 10 minutes before anything else.'],
+  1:['🌙 Monday is moon day — the day of intuition, cleansing, and emotional healing. Trust your inner voice today.','Prepare a cleansing bath tonight. Write down what you wish to release before you bathe.'],
+  2:['⚔️ Tuesday is Mars day — warrior energy, protection, and courage. Strengthen your spiritual defenses.','Hang or renew your garlic guardian today. Set boundaries with difficult people.'],
+  3:['💨 Wednesday is Mercury day — communication, clarity, and spiritual messages. Listen carefully today.','Burn lemongrass. Open all windows. Allow fresh energy and fresh ideas to flow through your space.'],
+  4:['💰 Thursday is Jupiter day — expansion, abundance, and blessings. Take action on your biggest goal.','This is the most powerful day for financial rituals. Light a gold candle and state your financial intentions clearly.'],
+  5:['❤️ Friday is Venus day — love, beauty, beauty, fertility, and pleasure. Tend to your heart today.','Prepare your love or self-love ritual. Wear something that makes you feel beautiful. Honor Oshun.'],
+  6:['🏛️ Saturday is Saturn day — discipline, ancestral work, and banishing. Clean and protect.','Do your weekly floor wash today. Light your ancestral candle. Release what no longer serves you.']
+};
+
+function initCalendar(){
+  const calGrid = document.getElementById('calGrid');
+  if(calGrid.innerHTML.trim()) return;
+
+  const today = new Date();
+  const month = today.getMonth();
+  const year = today.getFullYear();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  document.getElementById('calMonthTitle').textContent = months[month] + ' ' + year + ' — Spiritual Calendar';
+
+  // Day headers
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  document.getElementById('calDayHeaders').innerHTML = dayNames.map(d=>`<div class="cal-day-header">${d}</div>`).join('');
+
+  // Get first day of month
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+
+  let calHTML = '';
+  // Empty cells before first day
+  for(let i=0;i<firstDay;i++) calHTML += '<div></div>';
+
+  for(let d=1;d<=daysInMonth;d++){
+    const date = new Date(year,month,d);
+    const type = getDayType(date);
+    const isToday = d===today.getDate();
+    calHTML += `<div class="cal-day ${isToday?'today':type}" onclick="showDayGuidance(${d},'${type}')">
+      <div class="cal-day-num">${d}</div>
+      ${!isToday?`<div class="cal-day-dot"></div>`:''}
+    </div>`;
+  }
+
+  calGrid.innerHTML = calHTML;
+
+  // Set current moon phase indicator
+  const phase = getMoonPhase(today);
+  document.querySelectorAll('.moon-phase').forEach(mp=>mp.classList.remove('current'));
+  const phaseMap = {new:'mp-new',waxing:'mp-waxing',full:'mp-full',waning:'mp-waning'};
+  const el = document.getElementById(phaseMap[phase]);
+  if(el) el.classList.add('current');
+
+  // Render events
+  const events = [
+    {day:1,type:'ancestor',icon:'👣',title:'Month Opening',desc:'Light your ancestral candle. Give thanks for the month past. State intentions for the month ahead.'},
+    {day:today.getDate(),type:getDayType(today),icon:'📍',title:'TODAY — ' + dayNames[today.getDay()],desc: dailyGuidance[today.getDay()][0]},
+    {day:7,type:'cleansing',icon:'🌊',title:'Weekly Aura Cleanse Day',desc:'First full week complete — time for your weekly cleansing bath. Remove all accumulated energy from the week.'},
+    {day:15,type:'ancestor',icon:'🕯️',title:'Mid-Month Ancestral Offering',desc:'The 15th is sacred in many traditions. Place a meal at your ancestral space today. Call their names.'},
+    {day:21,type:'manifestation',icon:'⭐',title:'21-Day Completion Point',desc:'If you began a ritual on the 1st, today marks your 21-day milestone. Assess and intensify.'},
+    {day:28,type:'ancestor',icon:'🌑',title:'Month-End Ancestral Review',desc:'Reflect on the month. What guidance came through? Write it down. Offer gratitude for what was given.'}
+  ];
+
+  document.getElementById('calEvents').innerHTML = events
+    .sort((a,b)=>a.day-b.day)
+    .map(e=>`
+    <div class="cal-event ${e.type}">
+      <span class="cal-event-icon">${e.icon}</span>
+      <div class="cal-event-body">
+        <div class="cal-event-title">Day ${e.day}: ${e.title}</div>
+        <div class="cal-event-desc">${e.desc}</div>
+      </div>
+    </div>`).join('');
+
+  // Today's guidance
+  const dow = today.getDay();
+  const g = dailyGuidance[dow];
+  document.getElementById('todayGuidance').innerHTML=`
+    <p style="font-size:0.9em;color:var(--text-mid);line-height:1.7;margin-bottom:8px">${g[0]}</p>
+    <p style="font-size:0.84em;color:var(--text-soft);line-height:1.65;font-style:italic">${g[1]}</p>
+  `;
+}
+
+function showDayGuidance(day, type){
+  const typeNames = {cleansing:'Cleansing Day',manifestation:'Manifestation Day',protection:'Protection Day',ancestor:'Ancestral Day'};
+  const guidance = {
+    cleansing:'Today is energetically supportive for releasing, bathing, cleansing your space, and shedding what no longer serves you.',
+    manifestation:'Today\'s energy supports attraction, abundance work, stating intentions, love rituals, and financial prayers.',
+    protection:'Today\'s energy is strong for protective rituals, banishing negativity, strengthening defenses, and ancestral warrior work.',
+    ancestor:'Today is sacred for ancestral communication, offering rituals, gratitude practices, and honoring those who came before.'
+  };
+  alert(`Day ${day} — ${typeNames[type]||'Special Day'}\n\n${guidance[type]||'A day of spiritual awareness and intentional action.'}`);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// ██████████████  MARKETPLACE ENGINE  ████████████████████████████████████
+// ═══════════════════════════════════════════════════════════════════════
+
+const vendors = [
+  {region:'lagos',name:'Balogun Herb Market',location:'Balogun Market, Lagos Island',rating:'⭐⭐⭐⭐⭐',icon:'🏪',bg:'#e8f5ee',
+    herbs:['Neem','African Basil','Frankincense','Myrrh','Cloves','Cinnamon','Sage'],
+    prices:[{herb:'Fresh Neem',price:'₦200–500/bundle'},{herb:'African Basil',price:'₦50–100/bunch'},{herb:'Frankincense',price:'₦500–1,500/pack'},{herb:'Cloves',price:'₦300–800/100g'}]},
+  {region:'lagos',name:'Mile 12 International Market',location:'Mile 12, Lagos',rating:'⭐⭐⭐⭐',icon:'🌿',bg:'#f0faf5',
+    herbs:['Ginger','Turmeric','Garlic','Lemongrass','Moringa','Hibiscus','Aloe'],
+    prices:[{herb:'Fresh Ginger',price:'₦500–1,200/kg'},{herb:'Turmeric root',price:'₦800–2,000/kg'},{herb:'Moringa leaves',price:'₦100–300/bunch'},{herb:'Hibiscus (dry)',price:'₦400–900/kg'}]},
+  {region:'abuja',name:'Wuse Market Herb Section',location:'Wuse Market, Abuja FCT',rating:'⭐⭐⭐⭐⭐',icon:'🏛️',bg:'#fff8e7',
+    herbs:['Frankincense','Myrrh','Black Seed','Moringa Powder','Sage','Lavender','Garlic'],
+    prices:[{herb:'Black Seed oil',price:'₦1,500–3,500/bottle'},{herb:'Moringa powder',price:'₦800–2,000/pack'},{herb:'Frankincense',price:'₦600–1,800/pack'},{herb:'Lavender oil',price:'₦1,000–3,000/bottle'}]},
+  {region:'north',name:'Kano Kurmi Market',location:'Kurmi Market, Kano State',rating:'⭐⭐⭐⭐⭐',icon:'🌾',bg:'#fef0f0',
+    herbs:['Black Seed','Frankincense','Myrrh','Tiger Nut','Cloves','Cinnamon','Camphor'],
+    prices:[{herb:'Tiger nuts (Aya)',price:'₦300–700/kg'},{herb:'Black seed (raw)',price:'₦500–1,200/kg'},{herb:'Myrrh resin',price:'₦800–2,000/pack'},{herb:'Camphor blocks',price:'₦200–500/pack'}]},
+  {region:'southeast',name:'Onitsha Main Market',location:'Onitsha, Anambra State',rating:'⭐⭐⭐⭐',icon:'🌳',bg:'#f0ecff',
+    herbs:['Utazi','Uziza','Ehuru','Uda','Bitter Kola','Aloe Vera','Lemongrass'],
+    prices:[{herb:'Utazi (fresh)',price:'₦100–300/bunch'},{herb:'Uziza leaves',price:'₦100–250/bunch'},{herb:'Ehuru seeds',price:'₦400–1,000/pack'},{herb:'Bitter kola',price:'₦500–1,500/pack'}]},
+  {region:'online',name:'Naija Herb Shop (Online)',location:'Ships Nationwide',rating:'⭐⭐⭐⭐',icon:'📱',bg:'#f5eeff',
+    herbs:['Moringa Powder','Black Seed Oil','Frankincense','Lavender Oil','Turmeric','Clove Oil','Shea Butter'],
+    prices:[{herb:'Moringa powder',price:'₦1,200–2,500 + delivery'},{herb:'Black seed oil (pure)',price:'₦2,000–4,500'},{herb:'Frankincense tears',price:'₦1,000–2,500'},{herb:'All organic, verified',price:'Premium quality'}]}
+];
+
+const substitutions = [
+  {herb:'Frankincense',reason:'Not available or expensive',subs:[{name:'Myrrh',note:'Similar ancestral connection, more grounding'},{'name':'African Sage','note':'Strong space cleansing, more accessible'}]},
+  {herb:'Lavender',reason:'Not locally available',subs:[{name:'Lemongrass',note:'Similar calming and aura-clearing properties'},{name:'African Basil',note:'Joy and peace, strong in local tradition'}]},
+  {herb:'Black Seed',reason:'Out of stock',subs:[{name:'Garlic',note:'Strong antimicrobial, protective properties'},{name:'Moringa',note:'Immune support and healing, universally available'}]},
+  {herb:'Tiger Nut',reason:'Seasonal unavailability',subs:[{name:'Moringa seeds',note:'High nutrition, fertility support'},{name:'Dates',note:'Fertility and vitality, widely available'}]},
+  {herb:'Sage (African)',reason:'Not in your region',subs:[{name:'Lemongrass',note:'Excellent cleansing, very common in Nigeria'},{name:'Neem leaves (burned)',note:'Strong protective smoke, protective power'}]}
+];
+
+function renderMarketplace(region){
+  const filtered = region==='all' ? vendors : vendors.filter(v=>v.region===region);
+  document.getElementById('vendorList').innerHTML = filtered.map(v=>`
+    <div class="vendor-card">
+      <div class="vendor-header">
+        <div class="vendor-icon" style="background:${v.bg}">${v.icon}</div>
+        <div class="vendor-info">
+          <h4>${v.name}</h4>
+          <div class="vendor-location">📍 ${v.location}</div>
+          <div class="vendor-rating">${v.rating}</div>
+        </div>
+      </div>
+      <div class="vendor-herbs">${v.herbs.map(h=>`<span class="vendor-herb-tag">${h}</span>`).join('')}</div>
+      <div>${v.prices.map(p=>`<div class="vendor-price-row"><strong>${p.herb}</strong><span>${p.price}</span></div>`).join('')}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('substSection').innerHTML = substitutions.map(s=>`
+    <div class="subst-card">
+      <h4>🌿 ${s.herb} <span style="font-weight:400;font-size:0.85em">(${s.reason})</span></h4>
+      ${s.subs.map(sub=>`<div class="subst-row"><strong>${sub.name}</strong><span class="subst-arrow">→</span><span>${sub.note}</span></div>`).join('')}
+    </div>
+  `).join('');
+}
+
+function filterMarket(region, btn){
+  document.querySelectorAll('.mf-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMarketplace(region);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// ██████████████  AFRICAN KNOWLEDGE / WISDOM ENGINE  ████████████████████
+// ═══════════════════════════════════════════════════════════════════════
+
+const wisdomData = {
+  yoruba:{
+    proverbs:[
+      {text:'Àgbàdo tí a jọ gbìn, a jọ ń jẹ.',translation:'The corn we planted together, we eat together.',meaning:'Community is the foundation of African prosperity. No healing is meant to be done alone.'},
+      {text:'Ẹni tó bá fẹ gba ìmọ̀, kò gbọdọ jẹ ki ìgbéraga dẹ ẹ lọ.',translation:'One who wishes to gain wisdom must not let pride lead them away.',meaning:'The herbalist bows to the plant before using it. Pride separates you from the medicine.'},
+      {text:'Àgbàdo tí a jọ gbìn, a jọ ń jẹ.',translation:'Epe kii ṣe ogún; o jẹ ẹni tó fi í ṣe.',translation:'A curse is not a weapon; it belongs to the one who uses it.',meaning:'No curse can stick to a clean spirit. Your purity is your greatest protection.'}
+    ],
+    practices:[
+      {name:'Ifa Divination & Herbal Medicine',icon:'🔮',desc:'In Yoruba tradition, Babalawo (Ifa diviners) combine spiritual diagnosis with precise herbal prescriptions. The Odu Ifa corpus contains over 256 volumes of medicinal knowledge encoded in sacred oral poetry. Each Odu specifies herbs, timing, and ritual for the condition it governs.',tags:['Ifa','Babalawo','Odu','Divination','Herbalism']},
+      {name:'Orisha Plant Correspondences',icon:'🌿',desc:'Every Orisha (divine principle) has sacred herbs: Oshun governs hibiscus, basil, and cinnamon; Ogun governs iron tree (Opa Ogun) and forest herbs; Obatala governs white plants and shea; Yemoja governs water plants and sea herbs. Working with an herb means invoking its Orisha.',tags:['Oshun','Ogun','Obatala','Yemoja','Sacred Plants']},
+      {name:'Ewe (Herbal Preparation)',icon:'🧪',desc:'Yoruba ewe (herb) preparation follows strict protocols: herbs must be harvested with permission (spoken prayer), at specific times, often with specific tools. The preparation prayer (àṣà) activates the spiritual potency. Without the prayer, the herb is only a plant.',tags:['Ewe','Preparation','Prayer','Sacred Harvest']},
+      {name:'Spiritual Baths (Wẹ́wẹ̀)',icon:'🛁',desc:'Wẹ́wẹ̀ (ritual bathing) is central to Yoruba healing. Baths are prescribed for specific Odus and conditions: white baths for Obatala energy, yellow-gold baths for Oshun, blue-green for Yemoja. The frequency, timing, and specific herbs are all Odu-specific.',tags:['Ritual Bath','Wẹ́wẹ̀','Odu Prescription','Healing']},
+      {name:'Offerings to the Earth (Ipè Ilẹ̀)',icon:'🌍',desc:'After any significant herbal harvest or ritual completion, something must be returned to the earth. This maintains the reciprocal relationship that makes medicine powerful. Common offerings include palm oil, honey, kola nut, and cooked food. The earth is a living elder, not a resource.',tags:['Earth Offering','Reciprocity','Sacred Contract']}
+    ]
+  },
+  igbo:{
+    proverbs:[
+      {text:'Onye wetara oji wetara ndụ.',translation:'He who brings kola nut brings life.',meaning:'Bitter kola (oji) is sacred to the Igbo. Opening a gathering with kola is opening the door between worlds and welcoming ancestral blessing.'},
+      {text:'Egbe bere, ugo bere, nke si ibe ya ebela, nku kwaa ya.',translation:'Let the eagle perch, let the hawk perch, whichever denies the other shall lose its wing.',meaning:'Diversity and mutual respect are the foundation of healing communities. No tradition holds all truth.'},
+      {text:'Onye aghana nwanne ya.',translation:'No person should abandon their kinsman.',meaning:'The healing power of community connection — isolation is itself a spiritual illness in Igbo thought.'}
+    ],
+    practices:[
+      {name:'Odinani & Herbal Healing',icon:'🌱',desc:'Odinani (the way of the land/earth) is the Igbo spiritual system that underpins all herbal practice. Dibia (healers) receive their gift through ancestral lineage and spiritual initiation. Plants are considered to be living persons with spiritual authority and must be treated as such.',tags:['Odinani','Dibia','Earth Medicine','Ancestry']},
+      {name:'Bitter Kola (Oji) — Sacred Foundation',icon:'🌰',desc:'Bitter kola is the most sacred herb in Igbo tradition. It opens spiritual portals, is offered to ancestors before any important work, and has profound medicinal properties. No significant ritual, gathering, or healing begins without kola. It is the key that unlocks the spiritual realm.',tags:['Bitter Kola','Oji','Sacred Opening','Ancestors']},
+      {name:'Eke, Orie, Afor, Nkwo (Sacred Week)',icon:'📅',desc:'The Igbo 4-day week has spiritual significance for herbal timing. Eke day is for major rituals and planting. Orie is for market and exchange. Afor is for ancestral work and remembrance. Nkwo is for community and celebratory rituals. Each day has corresponding herbs and prohibited actions.',tags:['Sacred Week','Timing','Ritual Calendar','Eke Orie Afor Nkwo']},
+      {name:'Ụzọ Ọjị (Kola Nut Path)',icon:'🛤️',desc:'The Ọjị ceremony is the Igbo healing consultation process. The healer breaks kola in a specific pattern, reading the lobes as divination. The number, arrangement, and fall of the lobes determine diagnosis, herbal prescription, and ritual requirement. It is a complete diagnostic system.',tags:['Ọjị Ceremony','Divination','Kola Reading','Diagnosis']},
+      {name:'Nzu (White Chalk) Healing',icon:'⬜',desc:'Nzu (white chalk clay) is Igbo sacred medicine for purification and spiritual marking. Applied to the body, it cleanses the aura and marks the person as under sacred protection. Used in rites of passage, healing ceremonies, and ancestral communication. The white is Anyanwu (the sun) on earth.',tags:['Nzu','White Clay','Purification','Sacred Marking']}
+    ]
+  },
+  hausa:{
+    proverbs:[
+      {text:'Lafiya lau.',translation:'Complete health.',meaning:'The Hausa greeting \"Lafiya\" (health) as a greeting reflects that in Hausa worldview, health is the foundation and goal of all human interaction.'},
+      {text:'Ba a san darajar kiwon lafiya ba sai ana cikin cuta.',translation:'One does not know the value of health until one is ill.',meaning:'Prevention is the highest form of medicine. Maintain your spiritual health before illness — not after.'},
+      {text:'Maganin daji shi ne ruwan dawa.',translation:'The medicine of the wild is the water of the wild.',meaning:'Every region produces the medicine its people need. The herbs of your homeland are the herbs that will heal you.'}
+    ],
+    practices:[
+      {name:'Islamic Herbal Medicine (Tibb Nabawi)',icon:'☪️',desc:'Hausa herbal practice is deeply integrated with Islamic medicine — Tibb Nabawi (Prophetic Medicine). Black seed (Habbatus Sauda), honey, olive oil, and Zamzam water are foundational. The Hadith "There is a cure in Black Seed for every disease except death" is taken as literal medical guidance. This tradition blends Quranic healing with local plant knowledge.',tags:['Tibb Nabawi','Islamic Medicine','Black Seed','Prophetic Herbs']},
+      {name:'Bori Spirit Healing Tradition',icon:'🥁',desc:'Bori is a pre-Islamic Hausa healing tradition involving spirit possession, drumming, and herbal medicine. Bori practitioners (Yan Bori) use specific herbs to call healing spirits and specific herbs to ground and release them. Though controversial in some Islamic contexts, Bori traditions carry deep medicinal knowledge.',tags:['Bori','Spirit Healing','Traditional Medicine','Yan Bori']},
+      {name:'Kayan Miya (Medicinal Spices)',icon:'🌶️',desc:'Hausa cuisine and herbal medicine are inseparable. Cloves (kanafuru), ginger, turmeric, fenugreek, and black pepper are daily food medicines. Soup spices like kimba (fennel), tafarnuwa (garlic), and cinnamon are prescribed dosages as much as flavoring. Every Hausa kitchen is a pharmacy.',tags:['Kitchen Medicine','Spices','Daily Healing','Kayan Miya']},
+      {name:'Rubutun Alhakin (Written Charm Medicine)',icon:'📜',desc:'Malams (Islamic scholars) write Quranic verses on a wooden board, wash the ink into water, and this water is used medicinally and spiritually. Different verses are prescribed for different conditions — protection, healing, fertility, and luck. The water carries the word of God as medicine.',tags:['Malam','Quranic Medicine','Written Charm','Spiritual Water']},
+      {name:'Fari Fari (White Medicine) for Protection',icon:'🤍',desc:'White substances — milk, white clay, camphor, silver — are used in Hausa protective medicine. Wearing white on Fridays and bathing with camphor water are common protective practices. White is the color of purity, and purity is the strongest protection against spiritual attack in Hausa tradition.',tags:['White Medicine','Camphor','Purity','Protection']}
+    ]
+  },
+  diaspora:{
+    proverbs:[
+      {text:'We have not forgotten where we came from.',translation:'We have not forgotten where we came from.',meaning:'African herbal knowledge survived the Middle Passage, slavery, and colonization because our ancestors encoded it in cooking, music, and secret practices. Every time you use these herbs, you reconnect this broken cord.'},
+      {text:'The ancestors planted what we are harvesting now.',translation:'The ancestors planted what we are harvesting now.',meaning:'The knowledge in this guide was preserved at great cost. Use it with reverence. Pass it on with intention.'}
+    ],
+    practices:[
+      {name:'Hoodoo & African Rootwork',icon:'🌿',desc:'Hoodoo (African American folk magic) is directly descended from African herbal and spiritual traditions, filtered through the American South. Many herbs used in Hoodoo — High John the Conqueror, devil\'s shoestring, van van oil — have African equivalents. The spiritual principles are identical: herbs carry spiritual intelligence and can be directed with intention.',tags:['Hoodoo','Rootwork','African Diaspora','American South']},
+      {name:'Candomblé & Umbanda Herb Medicine',icon:'🥁',desc:'In Brazil, enslaved Africans encoded Yoruba Orisha herb knowledge into Candomblé and Umbanda religions. The same herbs used by Nigerian Babalawo are used by Brazilian Pai de Santo and Mãe de Santo. Frankincense, basil, lavender, and rue are used identically across 10,000 kilometers of ocean separation.',tags:['Candomblé','Umbanda','Brazil','Orisha Herbs']},
+      {name:'Caribbean Folk Medicine',icon:'🌴',desc:'Jamaica\'s bush medicine, Trinidad\'s healing traditions, and Haitian Vodou herb practices all trace directly to West African herbal knowledge. Bitter herbs for purification, white baths for spiritual cleansing, rum as spirit carrier — these practices are recognizably Nigerian in origin, preserved across 400 years of separation.',tags:['Caribbean','Bush Medicine','Vodou','Jamaica']},
+      {name:'Reconnection Practice for the Diaspora',icon:'🌍',desc:'For Africans in diaspora who feel disconnected from these traditions: begin simply. Light a candle for your ancestors. Learn one herb deeply. Speak gratitude to your lineage once a week. The cord was never broken — it was only stretched by distance. Every intentional act of reconnection is an act of healing and resistance.',tags:['Diaspora Healing','Reconnection','Ancestral Cord','Return']}
+    ]
+  }
+};
+
+function renderWisdom(tradition){
+  const data = wisdomData[tradition];
+  if(!data) return;
+  const content = document.getElementById('wisdomContent');
+  content.innerHTML = `
+    <div class="ak-content active">
+      ${data.proverbs.map(p=>`
+        <div class="ak-proverb" style="margin:12px 12px 0">
+          "${p.text}"<br>
+          <em style="font-size:0.9em;opacity:0.85">${p.translation}</em>
+          <cite>${p.meaning}</cite>
+        </div>
+      `).join('')}
+      ${data.practices.map(p=>`
+        <div class="ak-practice-card" style="margin:10px 12px 0">
+          <h4>${p.icon} ${p.name}</h4>
+          <p>${p.desc}</p>
+          <div class="ak-tags">${p.tags.map(t=>`<span class="ak-tag">${t}</span>`).join('')}</div>
+        </div>
+      `).join('')}
+      <div style="height:20px"></div>
+    </div>
+  `;
+}
+
+function switchWisdomTab(tradition, btn){
+  document.querySelectorAll('.ak-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderWisdom(tradition);
+}
+
+// Initialize on load
+renderWisdom('yoruba');
 </script>
 </body>
 </html>
