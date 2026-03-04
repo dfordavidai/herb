@@ -107,10 +107,10 @@ header{background:var(--white);padding:12px 14px 0;position:sticky;top:0;z-index
 .pillar-icon{font-size:1.4em;margin-bottom:4px}
 .pillar-name{font-size:0.68em;font-weight:700;color:var(--text-mid)}
 
-/* FOOTER */
-footer{background:var(--white);border-top:1px solid var(--border);padding:24px 20px;text-align:center}
-footer strong{font-family:'Playfair Display',serif;display:block;font-size:1.05em;margin-bottom:5px}
-footer p{font-size:0.78em;color:var(--text-soft);line-height:1.7}
+/* PANEL FOOTER */
+.panel-footer{background:var(--white);border-top:1px solid var(--border);padding:24px 20px;text-align:center;margin-top:24px}
+.panel-footer strong{font-family:'Playfair Display',serif;display:block;font-size:1.05em;margin-bottom:5px}
+.panel-footer p{font-size:0.78em;color:var(--text-soft);line-height:1.7}
 
 /* MODAL OVERLAY */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:999;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
@@ -503,123 +503,6 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
 .cat-healing{background:#2e7d4f}
 .cat-ancestral{background:#6b34b8}
 
-/* DIFFICULTY BADGE */
-.diff-badge{display:inline-flex;align-items:center;gap:4px;font-size:0.68em;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.04em}
-.diff-beginner{background:#e8f5ee;color:#2e7d4f;border:1px solid #c8e6d5}
-.diff-intermediate{background:#fff8e7;color:#b8860b;border:1px solid #f0e0a0}
-.diff-advanced{background:#fef0f0;color:#c0392b;border:1px solid #f5c6c6}
-.diff-badge-card{position:absolute;bottom:8px;right:8px;font-size:0.58em;font-weight:800;padding:3px 8px;border-radius:12px}
-
-/* MOON PHASE BADGE */
-.moon-badge{display:inline-flex;align-items:center;gap:5px;background:#0d1b2a;color:#c8e0ff;font-size:0.78em;font-weight:700;padding:6px 12px;border-radius:20px;margin-bottom:10px}
-
-/* MODAL TABS (inside soap modal) */
-.soap-modal-tabs{display:flex;overflow-x:auto;gap:0;border-bottom:2px solid var(--border);margin-bottom:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;background:var(--white);position:sticky;top:0;z-index:10}
-.soap-modal-tabs::-webkit-scrollbar{display:none}
-.smt-btn{flex-shrink:0;padding:11px 14px;border:none;background:none;font-family:'Nunito',sans-serif;font-size:0.75em;font-weight:700;color:var(--text-soft);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;touch-action:manipulation}
-.smt-btn.active{color:#7b3a00;border-bottom-color:#c06000}
-.soap-tab-content{display:none}
-.soap-tab-content.active{display:block}
-
-/* TIMELINE */
-.timeline-bar{position:relative;padding-left:22px;margin-top:8px}
-.timeline-bar::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#c06000,#f0d8c0)}
-.tl-item{position:relative;margin-bottom:14px;padding-left:14px}
-.tl-item::before{content:'';position:absolute;left:-18px;top:5px;width:10px;height:10px;border-radius:50%;background:#c06000;border:2px solid #fff;box-shadow:0 0 0 2px #c06000}
-.tl-day{font-size:0.68em;font-weight:800;color:#c06000;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
-.tl-text{font-size:0.82em;color:var(--text-mid);line-height:1.55}
-
-/* SOURCING TABLE */
-.source-table{width:100%;border-collapse:collapse;font-size:0.8em}
-.source-table th{background:#f5e8d0;color:#7b3a00;font-weight:800;padding:8px 10px;text-align:left;font-size:0.78em;text-transform:uppercase;letter-spacing:.04em}
-.source-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text-mid);vertical-align:top;line-height:1.5}
-.source-table tr:last-child td{border-bottom:none}
-.source-table tr:nth-child(even) td{background:#fdf8f3}
-.price-badge{background:#e8f5ee;color:#2e7d4f;font-size:0.85em;font-weight:700;padding:2px 7px;border-radius:10px}
-
-/* SUBSTITUTE ROW */
-.sub-row{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);font-size:0.83em}
-.sub-row:last-child{border-bottom:none}
-.sub-orig{font-weight:800;color:var(--text);min-width:90px;flex-shrink:0}
-.sub-arrow-icon{color:#c06000;font-size:1.1em;flex-shrink:0;margin-top:1px}
-.sub-list{flex:1;color:var(--text-mid);line-height:1.55}
-.sub-list span{display:block;margin-bottom:2px}
-
-/* VIDEO EMBEDS */
-.video-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:all .2s;touch-action:manipulation;text-decoration:none}
-.video-card:hover{border-color:#c06000;background:#fff8f0}
-.video-thumb{width:56px;height:44px;border-radius:8px;background:linear-gradient(135deg,#1a0a00,#c06000);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.4em}
-.video-info{flex:1;min-width:0}
-.video-title{font-size:0.82em;font-weight:700;color:var(--text);margin-bottom:2px;line-height:1.3}
-.video-meta{font-size:0.7em;color:var(--text-soft)}
-.video-platform{font-size:0.65em;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:4px}
-.yt-badge{background:#ff0000;color:#fff}
-.tt-badge{background:#000;color:#fff}
-
-/* GLOSSARY */
-.gloss-item{border-bottom:1px solid var(--border);padding:11px 0}
-.gloss-item:last-child{border-bottom:none}
-.gloss-term{font-family:'Playfair Display',serif;font-size:0.95em;font-weight:800;color:#7b3a00;margin-bottom:3px}
-.gloss-def{font-size:0.82em;color:var(--text-mid);line-height:1.6}
-.gloss-search{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:0.9em;color:var(--text);background:var(--bg);outline:none;margin-bottom:12px}
-.gloss-search:focus{border-color:#c06000}
-
-/* FAQ */
-.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
-.faq-q{width:100%;display:flex;align-items:center;gap:10px;padding:13px 14px;border:none;background:var(--white);font-family:'Nunito',sans-serif;font-size:0.85em;font-weight:700;color:var(--text);cursor:pointer;text-align:left;touch-action:manipulation}
-.faq-q.open{background:#fff8f0;color:#7b3a00}
-.faq-arrow{margin-left:auto;font-size:0.7em;color:var(--text-soft);transition:transform .3s;flex-shrink:0}
-.faq-q.open .faq-arrow{transform:rotate(180deg)}
-.faq-a{display:none;padding:0 14px 13px;font-size:0.82em;color:var(--text-mid);line-height:1.7;background:var(--white)}
-.faq-a.open{display:block}
-
-/* INGREDIENT ENCYCLOPEDIA */
-.enc-search{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:0.9em;color:var(--text);background:var(--bg);outline:none;margin-bottom:12px}
-.enc-search:focus{border-color:#c06000}
-.enc-card{background:var(--white);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
-.enc-card-head{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;touch-action:manipulation}
-.enc-card-head.open{background:#fff8f0;border-bottom:1px solid var(--border)}
-.enc-emoji{font-size:1.6em;flex-shrink:0}
-.enc-name-wrap{flex:1;min-width:0}
-.enc-name{font-family:'Playfair Display',serif;font-size:0.92em;font-weight:800;color:var(--text)}
-.enc-local{font-size:0.68em;color:var(--text-soft);margin-top:1px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.enc-arrow{font-size:0.7em;color:var(--text-soft);transition:transform .3s;flex-shrink:0}
-.enc-card-head.open .enc-arrow{transform:rotate(180deg)}
-.enc-body{display:none;padding:12px 14px 14px}
-.enc-body.open{display:block}
-.enc-row{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin-bottom:8px;align-items:start}
-.enc-label{font-size:0.65em;font-weight:800;color:var(--text-soft);text-transform:uppercase;letter-spacing:.05em;padding-top:2px;white-space:nowrap}
-.enc-val{font-size:0.8em;color:var(--text-mid);line-height:1.55}
-.enc-spiritual{background:linear-gradient(135deg,#fff8f0,#fff);border-left:3px solid #c06000;border-radius:0 8px 8px 0;padding:9px 12px;margin-top:8px;font-size:0.8em;color:#7b3a00;line-height:1.6;font-style:italic}
-
-/* SAFETY GUIDE */
-.safety-block{background:#fff8f5;border:1px solid #ffd5c0;border-left:3px solid #e87040;border-radius:12px;padding:13px 14px;margin-bottom:10px}
-.safety-block h4{font-size:0.85em;font-weight:800;color:#8a4030;margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.safety-block p,.safety-block li{font-size:0.81em;color:#8a4030;line-height:1.65}
-.safety-block ul{padding-left:16px;margin-top:4px}
-.safety-ok{background:#f0faf5;border:1px solid #c8e6d5;border-left:3px solid #2e7d4f;border-radius:12px;padding:13px 14px;margin-bottom:10px}
-.safety-ok h4{font-size:0.85em;font-weight:800;color:#2e7d4f;margin-bottom:6px}
-.safety-ok p,.safety-ok li{font-size:0.81em;color:var(--text-mid);line-height:1.65}
-.safety-ok ul{padding-left:16px;margin-top:4px}
-
-/* HISTORY SECTION */
-.history-era{background:var(--white);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
-.history-era-head{padding:13px 14px;background:linear-gradient(135deg,#3d1a00,#7b3a00);color:#fff}
-.history-era-head h4{font-family:'Playfair Display',serif;font-size:0.95em;font-weight:800;margin-bottom:2px}
-.history-era-head span{font-size:0.7em;opacity:.8}
-.history-era-body{padding:12px 14px;font-size:0.82em;color:var(--text-mid);line-height:1.7}
-
-/* SOAPS KNOWLEDGE HUB */
-.soaps-hub-tabs{display:flex;gap:6px;overflow-x:auto;padding:12px 12px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-bottom:12px}
-.soaps-hub-tabs::-webkit-scrollbar{display:none}
-.hub-tab{flex-shrink:0;padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.75em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;touch-action:manipulation}
-.hub-tab.active,.hub-tab:hover{background:#7b3a00;border-color:#7b3a00;color:#fff}
-.hub-panel{display:none;padding:0 12px 12px}
-.hub-panel.active{display:block}
-.soaps-section-head{background:linear-gradient(135deg,#3d1a00,#7b3a00);border-radius:14px;padding:16px;color:#fff;margin-bottom:12px;text-align:center}
-.soaps-section-head h3{font-family:'Playfair Display',serif;font-size:1.1em;font-weight:800;margin-bottom:4px}
-.soaps-section-head p{font-size:0.78em;opacity:.85;line-height:1.5}
-
 </style>
 
 <body>
@@ -724,6 +607,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
       <div class="pillar"><div class="pillar-icon">👣</div><div class="pillar-name">Ancestors</div></div>
     </div>
   </div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <div id="favPanel" style="display:none">
@@ -732,6 +621,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   </div>
   <div class="grid" id="favGrid">
     <div class="fav-empty" id="favEmpty" style="grid-column:1/-1">💚 No favourites yet.<br>Tap the ❤ on any herb card to save it here.</div>
+  </div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
   </div>
 </div>
 
@@ -758,6 +653,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
     Friday: Love, attraction, self-care, feminine energy work.<br>
     Saturday: Ancestral rituals, banishing, protection, grounding work.<br>
     Sunday: Solar energy, healing, vitality, strength rituals.
+  </div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
   </div>
 </div>
 
@@ -798,12 +699,7 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
 .rp-affirmation{background:linear-gradient(135deg,#1b5e35,#2e7d4f);border-radius:12px;padding:16px;color:#fff;text-align:center;font-style:italic;font-size:0.9em;line-height:1.6}
 </style>
 
-<footer>
-  <strong>🌿 African Herbal Spiritual Guide</strong>
-  <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
-  <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
-  <div style="height:64px"></div>
-</footer>
+
 
 <!-- MODAL OVERLAY -->
 <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
@@ -946,6 +842,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
       <div class="diag-result show" id="diagResultContent"></div>
     </div>
   </div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1040,6 +942,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   <div class="sys-section" id="builderResult" style="display:none">
     <div class="sys-section-body" id="builderResultContent"></div>
   </div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1066,6 +974,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   </div>
 
   <div id="ritualsGrid" style="padding-bottom:20px"></div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1097,6 +1011,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
 
   <!-- PROTECTION CATEGORIES -->
   <div style="padding:12px 12px 0" id="protectionCategories"></div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1141,6 +1061,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
     <div class="sys-section-head"><span>📖</span><h3>Today's Spiritual Guidance</h3></div>
     <div class="sys-section-body" id="todayGuidance"></div>
   </div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1169,6 +1095,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   <!-- SUBSTITUTION GUIDE -->
   <div style="padding:0 12px;font-family:'Playfair Display',serif;font-size:1em;font-weight:800;margin:8px 0">🔄 Herb Substitution Guide</div>
   <div class="subst-section" id="substSection" style="padding-bottom:20px"></div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1191,6 +1123,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   </div>
 
   <div id="wisdomContent"></div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1214,49 +1152,12 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
     <button class="soap-ftab" onclick="filterSoaps('ancestral',this)">👁️ Ancestral</button>
   </div>
   <div class="soap-grid" id="soapGrid"></div>
-
-  <!-- KNOWLEDGE HUB -->
-  <div style="padding:16px 12px 4px">
-    <div class="soaps-section-head">
-      <h3>📚 Soap Knowledge Hub</h3>
-      <p>Glossary · Safety Guide · FAQs · History · Ingredient Encyclopedia</p>
-    </div>
-    <div class="soaps-hub-tabs">
-      <button class="hub-tab active" onclick="switchHubTab('glossary',this)">📖 Glossary</button>
-      <button class="hub-tab" onclick="switchHubTab('safety',this)">⚠️ Safety</button>
-      <button class="hub-tab" onclick="switchHubTab('faq',this)">❓ FAQ</button>
-      <button class="hub-tab" onclick="switchHubTab('history',this)">🏛️ History</button>
-      <button class="hub-tab" onclick="switchHubTab('encyclopedia',this)">🌿 Ingredients</button>
-    </div>
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
   </div>
-
-  <!-- GLOSSARY PANEL -->
-  <div class="hub-panel active" id="hub_glossary" style="padding:0 12px 12px">
-    <input class="gloss-search" placeholder="🔍 Search terms — saponification, lye, trace…" oninput="renderGlossary(this.value)">
-    <div id="glossaryList"></div>
-  </div>
-
-  <!-- SAFETY PANEL -->
-  <div class="hub-panel" id="hub_safety" style="padding:0 12px 12px">
-    <div id="safetyList"></div>
-  </div>
-
-  <!-- FAQ PANEL -->
-  <div class="hub-panel" id="hub_faq" style="padding:0 12px 12px">
-    <div id="faqList"></div>
-  </div>
-
-  <!-- HISTORY PANEL -->
-  <div class="hub-panel" id="hub_history" style="padding:0 12px 12px">
-    <div id="historyList"></div>
-  </div>
-
-  <!-- ENCYCLOPEDIA PANEL -->
-  <div class="hub-panel" id="hub_encyclopedia" style="padding:0 12px 12px">
-    <input class="enc-search" placeholder="🔍 Search ingredient — shea, camphor, turmeric…" oninput="renderEncyclopedia(this.value)">
-    <div id="encyclopediaList"></div>
-  </div>
-
 </div>
 
 <!-- SOAP DETAIL MODAL -->
@@ -1864,7 +1765,7 @@ function toggleHelp(){
 // ─── TAB SWITCHING ────────────────────────────────────────────────────────────
 function switchTab(tab){
   currentTab = tab;
-  const panels = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom','soaps'];
+  const panels = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom','soaps','bath','language'];
   panels.forEach(p=>{
     const el = document.getElementById(p+'Panel');
     if(el) el.style.display = (tab===p) ? 'block' : 'none';
@@ -1886,6 +1787,8 @@ function switchTab(tab){
   if(tab==='market') renderMarketplace('all');
   if(tab==='wisdom') renderWisdom('yoruba');
   if(tab==='soaps') initSoapsPanel();
+  if(tab==='bath') initBathPanel();
+  if(tab==='language') initLanguagePanel();
 }
 
 // ─── MODAL ────────────────────────────────────────────────────────────────────
@@ -3502,36 +3405,10 @@ function switchWisdomTab(tradition, btn){
 
 const soapsData = [
   {id:'african-black-soap',name:'African Black Soap',emoji:'🟤',origin:'Ghana & Nigeria (Yoruba: Ose Dudu)',category:'cleansing',catLabel:'Deep Cleansing',
-   difficulty:'intermediate', diffLabel:'Intermediate',
-   moon:'🌑 New Moon', moonDetail:'Begin your first batch on a New Moon for maximum cleansing power. The new moon is the moon of release and new beginnings — perfect for a deep-cleansing soap.',
    purpose:'Spiritual Cleansing & Skin Purification',
    summary:'One of Africa\'s most sacred and ancient soaps. Made from plantain ash, shea butter, cocoa pod ash, and palm oil. Ose Dudu (Yoruba for "black soap") has been used for centuries for spiritual bathing rituals, removing negative energy, and deep skin healing.',
    tags:['Ose Dudu','Ghana','Yoruba','Plantain Ash','Shea Butter','Ancestral'],
    info:{origin:'West Africa — Ghana & Nigeria',tradition:'Yoruba, Akan, Ashanti',timing:'New Moon for deep cleanse; any time for daily use',purpose:'Spiritual & physical purification'},
-   timeline:[
-     {day:'Day 1–3',text:'Make and pour the soap. Let it set undisturbed. Do not rush — the saponification (hardening) process needs time.'},
-     {day:'Days 4–7',text:'Unmold and cut into bars. The soap is technically usable but still very alkaline. First spiritual test: wash hands only.'},
-     {day:'Weeks 2–4',text:'Soap cures — water evaporates, pH drops, bar hardens. Store on a rack with airflow. Spiritual potency is building.'},
-     {day:'Week 4–6',text:'Soap is ready for full ritual use. The spiritual ingredients have fully integrated. Begin your cleansing bath programme.'},
-     {day:'After 3 baths',text:'You should notice a lighter feeling spiritually — some describe it as "air around them." This indicates the cleansing is working.'},
-     {day:'After 7–21 days of use',text:'Deep spiritual cleansing complete. Skin should be noticeably clearer, softer. Energy field is reset.'}
-   ],
-   sourcing:[
-     {ingredient:'Plantain skins',market:'Mile 12 Market Lagos / Any Iya Alata (mama put) / Your kitchen — just save plantain skins and dry them.',price:'Free / ₦0'},
-     {ingredient:'Cocoa pod ash',market:'Cocoa Belt Markets — Ondo, Osun, Ekiti states. Ask market women for "cocoa pod shells." Online herb shops.',price:'₦500–1,500'},
-     {ingredient:'Raw shea butter',market:'Balogun Market Lagos, Wuse Market Abuja, Onitsha Main Market. Any northern Nigeria market. Health food stores.',price:'₦1,500–3,500/kg'},
-     {ingredient:'Palm kernel oil',market:'All Nigerian food markets. Mile 12 and Balogun particularly well-stocked. Very affordable.',price:'₦800–1,800/litre'}
-   ],
-   substitutes:[
-     {orig:'Cocoa pod ash',sub:'Plantain ash alone (double quantity) — gives similar lye strength',note:'Most traditional recipes use plantain ash only'},
-     {orig:'Palm kernel oil',sub:'Palm oil (red) or coconut oil',note:'Slightly lighter soap but equally effective spiritually'},
-     {orig:'Spring water',sub:'Boiled rain water or filtered tap water',note:'The intention matters more than the water source'}
-   ],
-   videos:[
-     {title:'How to Make African Black Soap (Traditional Method)',platform:'youtube',url:'https://www.youtube.com/results?search_query=african+black+soap+traditional+making',thumb:'▶️'},
-     {title:'Ose Dudu Soap Making — Nigerian Tradition',platform:'youtube',url:'https://www.youtube.com/results?search_query=ose+dudu+soap+making+nigeria',thumb:'▶️'},
-     {title:'African Black Soap TikTok Tutorial',platform:'tiktok',url:'https://www.tiktok.com/search?q=african+black+soap+making',thumb:'▶️'}
-   ],
    ingredients:[
      {name:'Plantain skins (dried & burned to ash)',qty:'2 cups ash'},
      {name:'Cocoa pod ash (ogi igi cacao)',qty:'1 cup ash'},
@@ -3814,38 +3691,6 @@ function initSoapsPanel(){
   if(soapsInitialized) return;
   soapsInitialized = true;
   renderSoapGrid('all');
-  renderGlossary('');
-  renderEncyclopedia('');
-  // Safety guide
-  const safetyList = document.getElementById('safetyList');
-  if(safetyList) safetyList.innerHTML = safetyGuide.map(s=>`
-    <div class="${s.type==='ok'?'safety-ok':'safety-block'}">
-      <h4>${s.title}</h4>
-      <ul>${s.items.map(i=>`<li>${i}</li>`).join('')}</ul>
-    </div>
-  `).join('');
-  // FAQ
-  const faqList = document.getElementById('faqList');
-  if(faqList) faqList.innerHTML = soapFAQs.map((f,i)=>`
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFAQ(this)">
-        <span>❓ ${f.q}</span>
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-a">${f.a}</div>
-    </div>
-  `).join('');
-  // History
-  const historyList = document.getElementById('historyList');
-  if(historyList) historyList.innerHTML = soapHistory.map(h=>`
-    <div class="history-era">
-      <div class="history-era-head">
-        <span style="font-size:0.65em;opacity:.75;text-transform:uppercase;letter-spacing:.06em">${h.period}</span>
-        <h4>${h.era}</h4>
-      </div>
-      <div class="history-era-body">${h.text}</div>
-    </div>
-  `).join('');
 }
 
 function filterSoaps(cat, btn){
@@ -3859,16 +3704,11 @@ function renderSoapGrid(cat){
   const grid = document.getElementById('soapGrid');
   if(!grid) return;
   const filtered = cat === 'all' ? soapsData : soapsData.filter(s=>s.category===cat);
-  grid.innerHTML = filtered.map(soap=>{
-    const extra = soapExtras[soap.id]||{};
-    const diffClass = extra.difficulty==='beginner'?'diff-beginner':extra.difficulty==='advanced'?'diff-advanced':'diff-intermediate';
-    const diffText = extra.difficulty==='beginner'?'🟢 Beginner':extra.difficulty==='advanced'?'🔴 Advanced':'🟡 Intermediate';
-    return `
+  grid.innerHTML = filtered.map(soap=>`
     <div class="soap-card" onclick="openSoapModal('${soap.id}')">
       <div class="soap-card-img-wrap">
         <div class="soap-card-emoji">${soap.emoji}</div>
         <span class="soap-cat-badge cat-${soap.category}">${soap.catLabel}</span>
-        ${extra.difficulty?`<span class="diff-badge ${diffClass} diff-badge-card">${diffText}</span>`:''}
       </div>
       <div class="soap-card-body">
         <div class="soap-card-name">${soap.name}</div>
@@ -3876,7 +3716,7 @@ function renderSoapGrid(cat){
         <div class="soap-card-desc">${soap.summary.substring(0,90)}…</div>
       </div>
     </div>
-  `}).join('');
+  `).join('');
 }
 
 function openSoapModal(soapId){
@@ -3961,658 +3801,783 @@ function closeSoapModal(e){
   document.getElementById('soapOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+</script>
+<!-- ══════════════════════════════════════════════════
+     BATH RECIPE BUILDER PANEL
+══════════════════════════════════════════════════ -->
+<div id="bathPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero" style="background:linear-gradient(135deg,#0d2b3e 0%,#1a5276 60%,#2471a3 100%)">
+    <div class="hero-inner">
+      <div class="hero-badge">SACRED BATH ALCHEMY</div>
+      <h2>🛁 Bath Recipe Builder</h2>
+      <p>Choose your intention. Receive a complete, ancestral-approved bath recipe with herbs, quantities, prayers, and timing.</p>
+    </div>
+  </div>
 
-function closeSoapModal(e){
-  if(e && e.type === 'click' && e.target !== document.getElementById('soapOverlay') && !e.target.classList.contains('soap-modal-close')) return;
-  document.getElementById('soapOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
+  <!-- INTENTION SELECTOR -->
+  <div style="padding:16px 12px 0">
+    <div style="font-family:'Playfair Display',serif;font-size:1em;font-weight:800;margin-bottom:12px;color:var(--text)">✦ Choose Your Intention</div>
+    <div class="bath-intention-grid" id="bathIntentionGrid">
+      <button class="bath-int-btn active" data-intention="prosperity" onclick="selectBathIntention('prosperity',this)">
+        <span class="bath-int-icon">💰</span>
+        <span class="bath-int-label">Attract Money</span>
+      </button>
+      <button class="bath-int-btn" data-intention="love" onclick="selectBathIntention('love',this)">
+        <span class="bath-int-icon">❤️</span>
+        <span class="bath-int-label">Draw Love</span>
+      </button>
+      <button class="bath-int-btn" data-intention="protection" onclick="selectBathIntention('protection',this)">
+        <span class="bath-int-icon">🛡️</span>
+        <span class="bath-int-label">Protection</span>
+      </button>
+      <button class="bath-int-btn" data-intention="cleansing" onclick="selectBathIntention('cleansing',this)">
+        <span class="bath-int-icon">✨</span>
+        <span class="bath-int-label">Deep Cleanse</span>
+      </button>
+      <button class="bath-int-btn" data-intention="fertility" onclick="selectBathIntention('fertility',this)">
+        <span class="bath-int-icon">🌸</span>
+        <span class="bath-int-label">Fertility</span>
+      </button>
+      <button class="bath-int-btn" data-intention="healing" onclick="selectBathIntention('healing',this)">
+        <span class="bath-int-icon">💊</span>
+        <span class="bath-int-label">Healing</span>
+      </button>
+      <button class="bath-int-btn" data-intention="spiritual" onclick="selectBathIntention('spiritual',this)">
+        <span class="bath-int-icon">🔮</span>
+        <span class="bath-int-label">Spiritual Power</span>
+      </button>
+      <button class="bath-int-btn" data-intention="ancestor" onclick="selectBathIntention('ancestor',this)">
+        <span class="bath-int-icon">👁️</span>
+        <span class="bath-int-label">Ancestral Connect</span>
+      </button>
+    </div>
+  </div>
 
-const soapExtras = {
-  'african-black-soap':{
-    difficulty:'intermediate',diffLabel:'Intermediate 🟡',
-    moon:'🌑 New Moon',moonDetail:'Make on a New Moon for maximum cleansing power. The new moon is the moon of release and new beginnings — perfect for a deep spiritual cleanse.',
-    timeline:[
-      {day:'Day 1–3',text:'Make & pour. Let it set undisturbed. Saponification (hardening) takes time — do not rush.'},
-      {day:'Days 4–7',text:'Unmold and cut. Still alkaline — first spiritual test: wash hands only to connect with the soap\'s energy.'},
-      {day:'Weeks 2–4',text:'Soap cures: water evaporates, pH drops, bar hardens. Spiritual potency is building daily.'},
-      {day:'Week 4–6',text:'Ready for full ritual use. Spiritual ingredients fully integrated. Begin your cleansing bath programme.'},
-      {day:'After 3 baths',text:'You should feel lighter spiritually — some describe "air around them." Cleansing is working.'},
-      {day:'After 7–21 days',text:'Deep spiritual cleansing complete. Skin clearer, softer. Energy field is fully reset.'}
+  <!-- RECIPE OUTPUT -->
+  <div id="bathRecipeOutput" style="padding:16px 12px 0"></div>
+
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MULTI-LANGUAGE PANEL
+══════════════════════════════════════════════════ -->
+<div id="languagePanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1c6e 60%,#6b34b8 100%)">
+    <div class="hero-inner">
+      <div class="hero-badge">YORUBA • IGBO • HAUSA</div>
+      <h2>🗣️ Herb Names in Your Language</h2>
+      <p>Every herb's name and key instructions in Yoruba, Igbo, and Hausa — honouring the oral traditions of our ancestors.</p>
+    </div>
+  </div>
+
+  <!-- LANGUAGE TABS -->
+  <div class="lang-tab-bar">
+    <button class="lang-tab active" id="ltab-yoruba" onclick="switchLangTab('yoruba',this)">🟢 Yoruba</button>
+    <button class="lang-tab" id="ltab-igbo" onclick="switchLangTab('igbo',this)">🔴 Igbo</button>
+    <button class="lang-tab" id="ltab-hausa" onclick="switchLangTab('hausa',this)">🟡 Hausa</button>
+  </div>
+
+  <!-- SEARCH -->
+  <div style="padding:12px 12px 0">
+    <div class="lang-search-wrap">
+      <span>🔍</span>
+      <input type="text" id="langSearch" placeholder="Search herb name…" oninput="filterLangHerbs()" />
+    </div>
+  </div>
+
+  <!-- HERB LIST -->
+  <div id="langHerbList" style="padding:12px"></div>
+
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or medical professional before starting any protocol.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
+</div>
+
+<style>
+/* ── BATH BUILDER ── */
+.bath-intention-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
+@media(max-width:400px){.bath-intention-grid{grid-template-columns:repeat(2,1fr)}}
+.bath-int-btn{border:1.5px solid var(--border);background:var(--white);border-radius:14px;padding:12px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;touch-action:manipulation}
+.bath-int-btn.active{background:var(--green);border-color:var(--green)}
+.bath-int-icon{font-size:1.5em;line-height:1}
+.bath-int-label{font-size:0.68em;font-weight:700;color:var(--text-mid);text-align:center;line-height:1.3}
+.bath-int-btn.active .bath-int-label{color:#fff}
+
+.bath-recipe-card{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);margin-bottom:12px}
+.bath-recipe-hero{padding:18px 16px;color:#fff;position:relative}
+.bath-recipe-hero h3{font-family:'Playfair Display',serif;font-size:1.3em;font-weight:800;margin-bottom:4px}
+.bath-recipe-hero p{font-size:0.82em;opacity:.85;line-height:1.5}
+.bath-recipe-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.bath-recipe-meta-tag{background:rgba(255,255,255,.2);color:#fff;font-size:0.65em;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.3)}
+.bath-recipe-body{padding:16px}
+.bath-sec{margin-bottom:18px}
+.bath-sec-title{font-family:'Playfair Display',serif;font-size:0.88em;font-weight:800;color:var(--text);border-bottom:2px solid var(--green-light);padding-bottom:6px;margin-bottom:10px}
+.bath-ingredient-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.85em}
+.bath-ingredient-row:last-child{border-bottom:none}
+.bath-ing-name{font-weight:700;color:var(--text)}
+.bath-ing-qty{background:var(--green-light);color:var(--green);font-size:0.8em;font-weight:700;padding:3px 10px;border-radius:20px}
+.bath-step-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.bath-step-num{width:28px;height:28px;background:linear-gradient(135deg,#1a5276,#2471a3);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75em;font-weight:800;flex-shrink:0}
+.bath-step-body{font-size:0.84em;color:var(--text-mid);line-height:1.6;padding-top:4px}
+.bath-prayer-box{background:linear-gradient(135deg,#0d2b3e,#1a5276);border-radius:12px;padding:16px;color:#fff;font-family:'Playfair Display',serif;font-style:italic;font-size:0.92em;line-height:1.75;text-align:center}
+.bath-timing-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.bath-timing-pill{background:var(--gold-light);border:1px solid #f0e0a0;color:#7a5c00;font-size:0.72em;font-weight:700;padding:4px 10px;border-radius:20px}
+.bath-caution{background:#fff8f5;border:1px solid #ffd5c0;border-left:3px solid #e87040;border-radius:10px;padding:12px;font-size:0.82em;color:#8a4030;line-height:1.6}
+
+/* ── LANGUAGE PANEL ── */
+.lang-tab-bar{display:flex;gap:0;padding:12px 12px 0;border-bottom:1px solid var(--border);margin-bottom:0}
+.lang-tab{flex:1;padding:10px 6px;border:none;background:none;font-family:'Nunito',sans-serif;font-size:0.85em;font-weight:700;color:var(--text-soft);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s}
+.lang-tab.active{color:var(--green);border-bottom-color:var(--green)}
+.lang-search-wrap{display:flex;align-items:center;gap:8px;background:var(--bg);border:1.5px solid var(--border);border-radius:30px;padding:9px 16px;transition:border-color .2s}
+.lang-search-wrap:focus-within{border-color:var(--green)}
+.lang-search-wrap input{flex:1;border:none;background:transparent;font-family:'Nunito',sans-serif;font-size:0.9em;color:var(--text);outline:none}
+.lang-herb-card{background:var(--white);border-radius:14px;border:1px solid var(--border);padding:14px 16px;margin-bottom:8px;box-shadow:var(--shadow)}
+.lang-herb-en{font-family:'Playfair Display',serif;font-size:1em;font-weight:800;color:var(--text);margin-bottom:2px}
+.lang-herb-latin{font-size:0.7em;color:var(--text-soft);font-style:italic;margin-bottom:10px}
+.lang-name-block{background:var(--bg);border-radius:10px;padding:10px 12px;margin-bottom:4px;border:1px solid var(--border)}
+.lang-name-label{font-size:0.6em;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.lang-name-val{font-size:0.9em;font-weight:800;color:var(--green)}
+.lang-phrase-row{font-size:0.78em;color:var(--text-mid);line-height:1.6;padding:6px 0;border-bottom:1px solid var(--border)}
+.lang-phrase-row:last-child{border-bottom:none}
+.lang-phrase-en{font-style:italic;color:var(--text-soft);font-size:0.9em}
+.lang-no-results{text-align:center;padding:40px 20px;color:var(--text-soft);font-size:0.9em}
+</style>
+
+<script>
+// ══════════════════════════════════════
+// BATH RECIPE BUILDER
+// ══════════════════════════════════════
+const bathRecipes = {
+  prosperity:{
+    name:'Owo Bath — Money Drawing Ritual',
+    subtitle:'Open the gates of abundance and draw wealth to your hands',
+    color:'linear-gradient(135deg,#7a5c00,#b8860b)',
+    duration:'7 consecutive mornings',
+    timing:['Thursday at dawn','Full Moon night','New Moon morning'],
+    ingredients:[
+      {name:'Cinnamon sticks',qty:'3 sticks'},
+      {name:'Cloves',qty:'9 whole cloves'},
+      {name:'Ginger root (fresh)',qty:'2 thumbs'},
+      {name:'Basil leaves',qty:'2 handfuls'},
+      {name:'Sea salt',qty:'1 tablespoon'},
+      {name:'Raw honey',qty:'1 tablespoon'},
+      {name:'Yellow candle',qty:'1 candle'},
+      {name:'Water',qty:'3 litres'},
     ],
-    sourcing:[
-      {ingredient:'Plantain skins',market:'Mile 12 Lagos / Any Iya Alata / Your kitchen — save & sun-dry plantain skins',price:'Free / ₦0'},
-      {ingredient:'Cocoa pod ash',market:'Ondo, Osun, Ekiti markets. Ask for "cocoa pod shells." Online herb shops.',price:'₦500–1,500'},
-      {ingredient:'Raw shea butter',market:'Balogun Lagos, Wuse Abuja, Onitsha, any northern market, health stores.',price:'₦1,500–3,500/kg'},
-      {ingredient:'Palm kernel oil',market:'All Nigerian food markets. Mile 12 & Balogun particularly well-stocked.',price:'₦800–1,800/L'}
+    steps:[
+      'On a Thursday morning before sunrise, gather all ingredients. Place them on a clean white cloth and pray over them, stating your financial intentions clearly.',
+      'Boil 3 litres of water in a clay or metal pot. Add cinnamon, cloves, and ginger first — these are the core money-attractors.',
+      'Once boiling, add basil leaves and sea salt. Reduce heat and simmer for exactly 13 minutes while focusing on your desired outcome.',
+      'Remove from heat. Add raw honey — never boil the honey, as heat destroys its spiritual sweetness.',
+      'Allow to cool to a comfortable temperature. Light your yellow candle beside the bath water.',
+      'Strain the herbs. Carry the water and candle to your bathroom. Pour into your bath or bucket.',
+      'Before entering, say your prayer over the water three times. Submerge completely if possible.',
+      'Bathe from head to toe, letting the water run downward. Visualize money flowing to you like water.',
+      'Do not towel-dry aggressively — pat gently and let the blessing settle on your skin.',
+      'Pour any remaining water at a crossroads or at the base of a tree as an offering.'
     ],
-    substitutes:[
-      {orig:'Cocoa pod ash',sub:'Double plantain ash alone',note:'Most traditional recipes use plantain ash only'},
-      {orig:'Palm kernel oil',sub:'Red palm oil or coconut oil',note:'Slightly lighter soap but equally effective spiritually'},
-      {orig:'Spring water',sub:'Boiled rain water or filtered tap water',note:'Intention matters more than the water source'}
-    ],
-    videos:[
-      {title:'Traditional African Black Soap Making',platform:'youtube',url:'https://www.youtube.com/results?search_query=african+black+soap+traditional+making+nigeria',thumb:'▶️'},
-      {title:'Ose Dudu Yoruba Soap Recipe',platform:'youtube',url:'https://www.youtube.com/results?search_query=ose+dudu+soap+making',thumb:'▶️'},
-      {title:'African Black Soap Tutorial',platform:'tiktok',url:'https://www.tiktok.com/search?q=african+black+soap+making',thumb:'▶️'}
-    ]
+    prayer:'Owo wa bo mi. Orisha mi, ki owo to wa si owo mi. I call abundance into my life. Every door that was closed — open now. Every blessing delayed — arrive now. I am worthy. I am ready. Let it flow.',
+    caution:'Do not perform this bath while in a state of anger or desperation. The water amplifies your energy — bring gratitude and calm.',
+    outcome:'After 7 days: unexpected financial opportunities, resolution of blocked funds, improved business flow, and a sense of spiritual alignment with prosperity.'
   },
-  'camwood-soap':{
-    difficulty:'intermediate',diffLabel:'Intermediate 🟡',
-    moon:'🌕 Full Moon',moonDetail:'Make on a Full Moon for maximum ancestral connection. The full moon opens the veil between living and departed most fully. Oshun\'s power peaks on full moons.',
-    timeline:[
-      {day:'Days 1–2',text:'Make and pour. Camwood deepens to rich amber-red as it sets — the colour of ancestral memory crystallising.'},
-      {day:'Days 3–7',text:'Unmold and cut. Begin using very gently — a wrist wash to connect.'},
-      {day:'Weeks 2–4',text:'Full cure. Begin using for anointing the head during morning ancestral prayers.'},
-      {day:'First Friday use',text:'Begin 7-day ancestral bath programme. Light candle, speak names of ancestors before each bath.'},
-      {day:'After 7 days',text:'Ancestral pathways feel more open. Dreams increase — keep a journal. Messages come through sleep.'},
-      {day:'After 21 days',text:'Long-standing ancestral blockages begin to clear. Generational healing in progress.'}
+  love:{
+    name:'Ifẹ Bath — Heart Opening Ritual',
+    subtitle:'Soften your heart, attract true love, radiate magnetic beauty',
+    color:'linear-gradient(135deg,#7b0a3a,#c0347b)',
+    duration:'3 or 7 Friday evenings',
+    timing:['Friday at sunset','Full Moon night','Venus hours (dawn/dusk)'],
+    ingredients:[
+      {name:'Rose petals (red or pink)',qty:'2 handfuls'},
+      {name:'Hibiscus flowers (dried)',qty:'1 handful'},
+      {name:'Lavender sprigs',qty:'5 sprigs'},
+      {name:'Cinnamon (ground)',qty:'1 teaspoon'},
+      {name:'Rose water',qty:'100ml'},
+      {name:'Honey',qty:'2 tablespoons'},
+      {name:'Pink/red candle',qty:'1 candle'},
+      {name:'Water',qty:'3 litres'},
     ],
-    sourcing:[
-      {ingredient:'Camwood powder (Osun)',market:'Oje Market Ibadan, Balogun spiritual section Lagos, Ogun herb markets. Online: Jiji, Konga herbal sellers.',price:'₦1,500–4,000'},
-      {ingredient:'Palm kernel oil (dark)',market:'Mile 12 Lagos, Onitsha Main Market, any Yoruba/Igbo local market.',price:'₦800–1,800/L'},
-      {ingredient:'Dried hibiscus',market:'All markets nationwide. Zobo sellers everywhere.',price:'₦200–500/bag'}
+    steps:[
+      'Begin on a Friday evening, the day ruled by Oshun and Venus — the queens of love.',
+      'Boil your water. Add hibiscus flowers first, allowing them to release their deep red colour — this is the colour of love made visible.',
+      'Add rose petals and lavender. Simmer for 7 minutes while speaking softly about the qualities of love you wish to attract.',
+      'Remove from heat. Stir in honey in a clockwise direction — clockwise draws love toward you.',
+      'Add rose water and cinnamon. Stir again, visualizing your heart opening like a flower.',
+      'Cool to a comfortable temperature. Light your candle and dim other lights.',
+      'Strain and pour into bath. Enter the water slowly, breathing deeply.',
+      'Massage the petals gently over your skin, especially your heart, wrists, and neckline.',
+      'Speak aloud three things you love about yourself. Love draws love — you must give it first.',
+      'Soak for at least 20 minutes. Do not rush this ritual — love is patient.'
     ],
-    substitutes:[
-      {orig:'Camwood powder',sub:'Red sandalwood powder (Pterocarpus santalinus)',note:'Similar vibration; available in Indian/herbal stores'},
-      {orig:'Palm kernel oil',sub:'Red palm oil',note:'More orange colour, equally ancestral'},
-      {orig:'Castor oil',sub:'Avocado oil or extra shea',note:'Castor gives lather; avocado gives skin benefits'}
-    ],
-    videos:[
-      {title:'Camwood Soap Making Tutorial',platform:'youtube',url:'https://www.youtube.com/results?search_query=camwood+soap+making+spiritual',thumb:'▶️'},
-      {title:'Oshun Ritual Soap — Camwood Recipe',platform:'youtube',url:'https://www.youtube.com/results?search_query=oshun+ritual+soap',thumb:'▶️'},
-      {title:'Camwood Spiritual Soap',platform:'tiktok',url:'https://www.tiktok.com/search?q=camwood+soap+spiritual',thumb:'▶️'}
-    ]
+    prayer:'Oshun, goddess of rivers and sweet things, open the waters of my heart. Let me attract the love I deserve. Let me be seen, truly seen, by those meant for me. I am beautiful. I am whole. Love finds me now.',
+    caution:'Do not use this bath to target a specific person — doing so creates spiritual imbalance. Call in love itself, not a person.',
+    outcome:'Increased personal magnetism, emotional openness, attraction of genuine romantic interest, and a deep feeling of self-love and worthiness.'
   },
-  'alligator-pepper-soap':{
-    difficulty:'beginner',diffLabel:'Beginner 🟢',
-    moon:'🌘 Waning Moon',moonDetail:'The waning moon banishes and repels — perfect timing for a protection soap. Make on a Saturday (warrior day) during the waning phase for maximum protective force.',
-    timeline:[
-      {day:'Day 1',text:'Make the soap. The alligator pepper scent is intense and activating — this is correct. Your hands may tingle.'},
-      {day:'Days 1–2',text:'Set and firm. No cure needed for this no-lye method — can be used within 24 hours.'},
-      {day:'First use',text:'Use before travel, important meetings, or entering a space you feel unsafe. The protection activates immediately.'},
-      {day:'Daily for 7 days',text:'Use as a daily morning bath soap. A shield forms around your energy field layer by layer.'},
-      {day:'After 7 days',text:'Full protection established. Maintain with 2–3 baths per week. Add fresh soap when your current bar runs out.'}
+  protection:{
+    name:'Aabo Bath — Iron Shield Ritual',
+    subtitle:'Coat your spirit in armour. No weapon formed against you shall prosper.',
+    color:'linear-gradient(135deg,#1a0a00,#8b2500)',
+    duration:'3 consecutive days (emergency) or weekly maintenance',
+    timing:['Saturday at dawn','Dark moon','Tuesday for warrior energy'],
+    ingredients:[
+      {name:'Neem leaves (fresh)',qty:'3 handfuls'},
+      {name:'Garlic cloves',qty:'7 crushed cloves'},
+      {name:'Black pepper (whole)',qty:'1 tablespoon'},
+      {name:'Sea salt (coarse)',qty:'3 tablespoons'},
+      {name:'Camphor tablets',qty:'3 tablets'},
+      {name:'Frankincense resin',qty:'1 teaspoon'},
+      {name:'White candle',qty:'1 candle'},
+      {name:'Water',qty:'3 litres'},
     ],
-    sourcing:[
-      {ingredient:'Alligator pepper (Atare)',market:'All Yoruba markets — Balogun, Tejuosho, Oje Ibadan. Spiritual herb sections. Very common.',price:'₦300–800/pack'},
-      {ingredient:'Camphor tablets',market:'Pharmacies and provision stores nationwide. Very common and cheap.',price:'₦100–300/pack'},
-      {ingredient:'Neem powder',market:'Health stores, online, some herb markets. Grind dried neem leaves yourself.',price:'₦500–1,500'},
-      {ingredient:'Frankincense oil',market:'Spiritual supply shops, Islamic incense vendors Kano & Lagos, health stores.',price:'₦1,500–3,500'}
+    steps:[
+      'Begin on a Saturday morning before the household wakes. Protection work requires quiet and focus.',
+      'Boil water vigorously. Add neem leaves first — they are your frontline spiritual soldiers.',
+      'Add crushed garlic and black pepper. These create a spiritual "barrier" nothing negative can cross.',
+      'Add sea salt and camphor. Salt seals. Camphor purifies the spiritual atmosphere around you.',
+      'Simmer for 15 minutes. The water should turn dark green — this is the colour of protection.',
+      'Remove from heat. Place frankincense on a charcoal disc nearby and let the smoke bless the water.',
+      'Cool the water. Light your white candle and pray specifically about what you need protection from.',
+      'Strain and pour into bath. Stand in it and begin washing from the head downward.',
+      'As the water runs off your body, visualize every negative attachment falling away like mud.',
+      'End by standing still in the water for 2 minutes, feeling completely shielded and untouchable.',
+      'Pour remaining water at your front door threshold — this extends protection to your home.'
     ],
-    substitutes:[
-      {orig:'Frankincense essential oil',sub:'Myrrh essential oil or dried frankincense resin powder',note:'Same protective frequency'},
-      {orig:'Neem leaf powder',sub:'Dried bitter leaf powder',note:'Slightly less potent but widely available'},
-      {orig:'Camphor',sub:'Eucalyptus essential oil (doubled)',note:'Eucalyptus shares the clearing, purifying vibration'}
-    ],
-    videos:[
-      {title:'Alligator Pepper Spiritual Soap Recipe',platform:'youtube',url:'https://www.youtube.com/results?search_query=alligator+pepper+spiritual+soap',thumb:'▶️'},
-      {title:'Atare Protection Soap Nigeria',platform:'youtube',url:'https://www.youtube.com/results?search_query=atare+soap+yoruba+protection',thumb:'▶️'},
-      {title:'Nigerian Protection Soap',platform:'tiktok',url:'https://www.tiktok.com/search?q=nigerian+spiritual+protection+soap',thumb:'▶️'}
-    ]
+    prayer:'Nothing formed against me shall find a door in me. My ancestors stand at my front. My guardian spirits stand at my back. I walk in complete divine protection. I am covered. I am sealed. I am safe.',
+    caution:'Do not perform protection baths when emotionally volatile — fear amplifies what you are protecting against. Come in calm certainty.',
+    outcome:'Immediate feeling of spiritual protection, clearing of attachments, neutralisation of negative energies sent your way, and strengthening of your spiritual "shield."'
   },
-  'turmeric-honey-soap':{
-    difficulty:'beginner',diffLabel:'Beginner 🟢',
-    moon:'🌒 Waxing Crescent',moonDetail:'The waxing moon attracts and draws in — perfect for prosperity work. Make on a Thursday or Sunday during waxing moon for maximum money-drawing power.',
-    timeline:[
-      {day:'Day 1–3',text:'Make and pour. The soap turns deep golden yellow — vibrating with solar energy and abundance.'},
-      {day:'Days 4–7',text:'Unmold and cut. Begin using immediately for small prosperity prayers — wash hands before financial decisions.'},
-      {day:'First Sunday use',text:'Begin 7-day prosperity bath programme. Recite your specific financial intention 3 times before each bath.'},
-      {day:'After 3 baths',text:'Notice shifts: unexpected opportunities, calls, money from forgotten sources. Document everything.'},
-      {day:'After 7–14 days',text:'Prosperity pathways are actively open. Major shifts in financial landscape often occur within this window.'},
-      {day:'Full cure (4–6 weeks)',text:'The fully cured bar has deeper, longer-lasting prosperity resonance. Use before major financial events.'}
+  cleansing:{
+    name:'Iwẹ Mimọ — Deep Spiritual Cleanse',
+    subtitle:'Strip away every energetic residue. Begin again, clean and radiant.',
+    color:'linear-gradient(135deg,#0d3040,#1a7fc0)',
+    duration:'3 or 9 consecutive days',
+    timing:['New Moon (most powerful)','Any Thursday','First day of month'],
+    ingredients:[
+      {name:'Hyssop herb (dried)',qty:'2 tablespoons'},
+      {name:'Basil leaves (fresh)',qty:'2 handfuls'},
+      {name:'Lemon (whole)',qty:'3 lemons, sliced'},
+      {name:'Sea salt',qty:'2 tablespoons'},
+      {name:'Baking soda',qty:'1 tablespoon'},
+      {name:'Eucalyptus leaves or oil',qty:'10 drops oil or 1 handful leaves'},
+      {name:'White candle',qty:'1 candle'},
+      {name:'Water',qty:'3 litres'},
     ],
-    sourcing:[
-      {ingredient:'Turmeric powder',market:'All Nigerian markets, supermarkets, health stores. One of the most available spices.',price:'₦300–800/pack'},
-      {ingredient:'Raw honey',market:'Bees honey vendors in all markets. Fulani honey in northern markets is exceptional.',price:'₦1,500–4,000/bottle'},
-      {ingredient:'Lemon/lemon essential oil',market:'Supermarkets, herbal shops, Spar, ShopRite.',price:'₦300–800'},
-      {ingredient:'Cinnamon powder',market:'All spice markets — Balogun, Wuse, Mile 12. Very common.',price:'₦200–500'}
+    steps:[
+      'This bath is best performed during a New Moon when the slate of the cosmos is clean.',
+      'Boil water. Add hyssop first — it is the biblical and African herb of purification, older than time.',
+      'Add basil leaves. Basil cleanses the aura and lifts spiritual heaviness from the shoulders.',
+      'Add lemon slices, sea salt, and baking soda. This combination cuts through stagnant energy like acid dissolves rust.',
+      'Add eucalyptus. Its sharp, clear scent breaks through spiritual fog and mental confusion.',
+      'Simmer 11 minutes. While waiting, write on paper everything you wish to release — a person, a habit, a memory.',
+      'Cool the water. Light your white candle. Burn the paper you wrote on.',
+      'Pour the strained water into your bath. Before entering, state aloud: "I release everything that no longer serves my highest good."',
+      'Scrub gently from head to toe, focusing on the back of your neck, shoulders, and the bottoms of your feet.',
+      'Rinse with clean water afterward. Dress in something white or light-coloured if possible.',
+      'Bury the used herbs in earth, or flush downward — never keep them inside the house after a cleansing.'
     ],
-    substitutes:[
-      {orig:'Lemon essential oil',sub:'Fresh lemon zest or orange zest',note:'Fresh zest adds natural citrus prosperity energy'},
-      {orig:'Castor oil',sub:'Jojoba oil or extra coconut oil',note:'Castor provides lather; jojoba provides skin luxury'},
-      {orig:'Honey',sub:'Agave nectar or date syrup',note:'Any golden, sweet substance carries the prosperity vibration'}
-    ],
-    videos:[
-      {title:'Turmeric Honey Soap Recipe',platform:'youtube',url:'https://www.youtube.com/results?search_query=turmeric+honey+soap+making+spiritual',thumb:'▶️'},
-      {title:'Prosperity Soap Making Tutorial',platform:'youtube',url:'https://www.youtube.com/results?search_query=prosperity+money+drawing+soap+recipe',thumb:'▶️'},
-      {title:'Turmeric Soap TikTok',platform:'tiktok',url:'https://www.tiktok.com/search?q=turmeric+spiritual+soap',thumb:'▶️'}
-    ]
+    prayer:'Everything old — leave me now. Every cord that binds me — cut. Every cloud over my destiny — dissolve. I emerge from this water new. Clean. Free. Open to what God and my ancestors have prepared for me.',
+    caution:'You may feel emotional during or after this bath — old energy leaving can feel like grief. This is normal. Allow it.',
+    outcome:'Profound lightness, clarity of mind, emotional release, removal of spiritual blockages, and a fresh sense of possibility and direction.'
   },
-  'rose-hibiscus-love-soap':{
-    difficulty:'beginner',diffLabel:'Beginner 🟢',
-    moon:'🌕 Full Moon',moonDetail:'Full Moon is the peak of love energy. Make on a Friday full moon for the most powerful love-drawing soap. The full moon amplifies all heart-opening work.',
-    timeline:[
-      {day:'Hours 1–6',text:'Make and pour into molds. This melt-and-pour method is fast — soap sets within hours.'},
-      {day:'Day 1',text:'Unmold and use! Melt-and-pour soaps need no curing time. Begin your love programme immediately.'},
-      {day:'First Friday bath',text:'Begin 7-day self-love bath programme before starting any love-drawing work. You must fill your own cup first.'},
-      {day:'Days 2–7',text:'Use daily. Notice how you feel about yourself — the hibiscus opens the heart chakra gently.'},
-      {day:'After 7 days of self-love work',text:'Now you are ready to attract. The internal work draws the external match.'},
-      {day:'Ongoing',text:'Use 3x weekly for maintaining an open, loving energy field. Relationships improve around you.'}
+  fertility:{
+    name:'Ọmọ Bath — Womb Awakening Ritual',
+    subtitle:'Honour the sacred vessel. Invite new life, creativity, and generative power.',
+    color:'linear-gradient(135deg,#3d0a5e,#8e24aa)',
+    duration:'7 days around ovulation cycle',
+    timing:['Full Moon night','Friday morning','Around ovulation'],
+    ingredients:[
+      {name:'Tiger nuts (Aya)',qty:'1 cup soaked overnight'},
+      {name:'Moringa leaves',qty:'2 handfuls'},
+      {name:'Cinnamon sticks',qty:'2 sticks'},
+      {name:'Dates (pitted)',qty:'7 dates'},
+      {name:'Rose petals',qty:'1 handful'},
+      {name:'Warm coconut milk',qty:'200ml'},
+      {name:'Honey',qty:'2 tablespoons'},
+      {name:'Water',qty:'2 litres'},
     ],
-    sourcing:[
-      {ingredient:'Hibiscus petals (dried)',market:'All markets nationwide — zobo is ubiquitous. Any Iya Alata, Mile 12, Balogun.',price:'₦200–600'},
-      {ingredient:'Rose petals (dried)',market:'Flower shops, Valentine\'s Day vendors, online herbal suppliers. Lagos Island flower market.',price:'₦800–2,500'},
-      {ingredient:'Melt-and-pour soap base',market:'Crafts stores, Jumia, Konga, Amazon.ng. Some Pharmacies stock cosmetic bases.',price:'₦2,000–5,000/kg'},
-      {ingredient:'Rosehip oil',market:'Pharmacies, health stores, Spar. Online very available.',price:'₦1,500–4,000'}
+    steps:[
+      'Begin this ritual on a Full Moon night, when the moon\'s fertile energy is at its peak.',
+      'Soak tiger nuts overnight in clean water. They are the seed of fertility in Igbo and Yoruba tradition.',
+      'Boil 2 litres of water. Add moringa leaves — they nourish the womb deeply from a spiritual and physical level.',
+      'Add cinnamon and dates. Dates have been used in fertility rituals across Africa and the Middle East for millennia.',
+      'Simmer gently for 10 minutes. Add rose petals just before removing from heat.',
+      'Blend soaked tiger nuts with the coconut milk and strain out the liquid. Add this to the cooled herbal water.',
+      'Stir in honey slowly, clockwise, while praying over the water for the specific blessing you seek.',
+      'Pour the bath. Light a candle — pink for a girl, blue for a boy, or white for divine choice.',
+      'Soak for 20 minutes, placing your hands over your womb or creative centre. Visualize clearly.',
+      'Drink one cup of warm tiger nut milk separately, as a complementary internal ritual.'
     ],
-    substitutes:[
-      {orig:'Rose essential oil',sub:'Rose water (3–4x the amount)',note:'Rose water is much more affordable; same spiritual resonance'},
-      {orig:'Melt-and-pour base',sub:'Make cold-process soap base from coconut oil and shea (see Black Soap method)',note:'More work but more authentic'},
-      {orig:'Rosehip oil',sub:'Jojoba oil or almond oil',note:'Both are skin-loving carrier oils'}
-    ],
-    videos:[
-      {title:'Rose Hibiscus Soap Making',platform:'youtube',url:'https://www.youtube.com/results?search_query=rose+hibiscus+soap+making+spiritual',thumb:'▶️'},
-      {title:'Love Drawing Soap Recipe',platform:'youtube',url:'https://www.youtube.com/results?search_query=love+drawing+soap+recipe+spiritual',thumb:'▶️'},
-      {title:'Oshun Love Soap Tutorial',platform:'tiktok',url:'https://www.tiktok.com/search?q=oshun+love+soap',thumb:'▶️'}
-    ]
+    prayer:'Creator, You who knit life together — I come before You in reverence. My womb/my creative power is Yours. I am ready to receive the gift of new life. Let what has been blocked be opened. Let what has been waiting arrive now. In the names of my ancestors who birthed me — let it be so.',
+    caution:'This bath is for fertility in its broadest sense — including creative projects, business births, and new beginnings, not just physical pregnancy.',
+    outcome:'Spiritual alignment of the reproductive system, emotional healing of womb trauma, increased creative and generative power, and the opening of the fertility pathway.'
   },
-  'camphor-efun-soap':{
-    difficulty:'beginner',diffLabel:'Beginner 🟢',
-    moon:'🌘 Dark Moon',moonDetail:'The Dark Moon (night before New Moon) is the most powerful time for emergency cleansing and banishing. This is a soap for urgent situations — make and use immediately regardless of moon phase.',
-    timeline:[
-      {day:'Day 1',text:'Make and use within 24 hours if needed urgently. This is an emergency soap — no waiting required.'},
-      {day:'First bath',text:'Immediate spiritual effect. The camphor opens the aura and the efun seals it with white light.'},
-      {day:'3 consecutive baths',text:'Complete emergency cleansing cycle. Use on 3 consecutive days for a full reset.'},
-      {day:'After 3 days',text:'Energy field is reset and sealed. Physical body feels lighter. Some feel tingling at crown of head — this is normal.'},
-      {day:'Maintenance',text:'Keep a bar of this soap in your bathroom always. Use once weekly for ongoing protection maintenance.'}
+  healing:{
+    name:'Iwòsàn Bath — Full Body Healing',
+    subtitle:'Bring your body, mind, and spirit back into sacred alignment.',
+    color:'linear-gradient(135deg,#0a3d1a,#1e7e34)',
+    duration:'3, 7, or 21 days depending on condition',
+    timing:['Sunday (solar healing energy)','Wednesday for mental healing','Full Moon for peak potency'],
+    ingredients:[
+      {name:'Turmeric root or powder',qty:'2 tablespoons'},
+      {name:'Ginger root (fresh)',qty:'2 thumbs grated'},
+      {name:'Aloe vera gel (fresh)',qty:'4 tablespoons'},
+      {name:'Moringa leaves',qty:'1 handful'},
+      {name:'Honey',qty:'2 tablespoons'},
+      {name:'Epsom salt',qty:'2 tablespoons'},
+      {name:'Eucalyptus essential oil',qty:'10 drops'},
+      {name:'Water',qty:'3 litres'},
     ],
-    sourcing:[
-      {ingredient:'Efun (white chalk)',market:'All Yoruba spiritual markets, religious supply shops, some provision stores.',price:'₦100–400'},
-      {ingredient:'Camphor tablets',market:'Pharmacies nationwide, provision stores. Very widely available.',price:'₦100–300'},
-      {ingredient:'White kaolin clay',market:'Craft stores, online (Jumia, Konga), some pharmacies. Ask for "cosmetic clay."',price:'₦800–2,000'},
-      {ingredient:'Eucalyptus essential oil',market:'Pharmacies, health stores, herbal shops. Widely available.',price:'₦800–2,500'}
+    steps:[
+      'Begin on a Sunday, when solar healing energy is strongest. Morning baths are more energising; evening baths are more restorative.',
+      'Boil water. Add turmeric — it is the golden medicine of healing traditions from Africa to India.',
+      'Add grated ginger. Together with turmeric, they form the most powerful anti-inflammatory combination in plant medicine.',
+      'Add moringa leaves and simmer 10 minutes. The water will turn golden-green — the colour of healing.',
+      'Remove from heat. Stir in aloe vera gel, which cools inflammation both physically and spiritually.',
+      'Add epsom salt — it pulls toxins and stagnant energy from the body through the skin.',
+      'Add eucalyptus oil. Breathe deeply as you stir — the inhalation begins healing before the bath even starts.',
+      'Stir in honey last, always clockwise, while naming what you wish to heal.',
+      'Cool to a warm, comfortable temperature. Enter slowly, breathing consciously.',
+      'While soaking, place your hands on the area of your body that needs healing. Speak to it with compassion.',
+      'Soak for at least 25 minutes. Let the medicine work. Rest afterward — do not rush back into activity.'
     ],
-    substitutes:[
-      {orig:'White kaolin clay',sub:'Efun (white chalk) doubled',note:'Efun is the traditional equivalent — actually more spiritually potent'},
-      {orig:'Eucalyptus oil',sub:'Peppermint oil (same amount)',note:'Same clearing energy; peppermint is slightly more intense'},
-      {orig:'Peppermint oil',sub:'Spearmint oil or extra eucalyptus',note:'Any cooling, clearing mint-family oil works'}
-    ],
-    videos:[
-      {title:'Efun Camphor Soap Purification',platform:'youtube',url:'https://www.youtube.com/results?search_query=efun+camphor+soap+yoruba+purification',thumb:'▶️'},
-      {title:'White Purification Soap Nigeria',platform:'youtube',url:'https://www.youtube.com/results?search_query=spiritual+purification+soap+nigeria+white',thumb:'▶️'},
-      {title:'Camphor Spiritual Soap',platform:'tiktok',url:'https://www.tiktok.com/search?q=camphor+spiritual+purification+soap',thumb:'▶️'}
-    ]
+    prayer:'My body is not my enemy. It is the sacred vessel my ancestors gave me. I speak healing into every cell, every organ, every system. What is damaged — restore. What is blocked — clear. What is broken — mend. I am whole. I choose wholeness.',
+    caution:'Turmeric will stain skin and fabric yellow temporarily — this is normal and is considered auspicious in many traditions.',
+    outcome:'Reduction of physical tension and inflammation, acceleration of healing processes, clearing of illness energy from the aura, deep rest, and restored vitality.'
   },
-  'ogiri-dawadawa-soap':{
-    difficulty:'advanced',diffLabel:'Advanced 🔴',
-    moon:'🌑 New Moon',moonDetail:'New Moon on a Thursday (Jupiter\'s day of expansion and ancestral work). This is deep earth medicine — the new moon\'s darkness mirrors the ancestral realm.',
-    timeline:[
-      {day:'Day 1',text:'Make the soap. The ogiri will be pungent — this is sacred smell. The ancestors recognise it.'},
-      {day:'Days 1–2',text:'Set and firm. Do not add scent to mask the ogiri — the scent is the medicine.'},
-      {day:'Week 1–2',text:'Cure. The ogiri scent mellows significantly during curing. The soap becomes earthier, deeper.'},
-      {day:'First use (Thursday)',text:'Pour libation for ancestors first. Then bathe. Sit on earth or grass for 10 minutes after bathing.'},
-      {day:'After 3 uses',text:'Ancestral connection deepens noticeably. Increased dreaming. Feeling of being "accompanied" through the day.'},
-      {day:'Monthly use',text:'Use once monthly during new moon as a deep ancestral maintenance ritual. Consistency builds the cord.'}
+  spiritual:{
+    name:'Agbara Bath — Spiritual Power Activation',
+    subtitle:'Awaken your gifts. Open your third eye. Amplify your divine connection.',
+    color:'linear-gradient(135deg,#1a0a2e,#4a1a8e)',
+    duration:'9 days on new or full moon cycle',
+    timing:['Full Moon midnight','New Moon at 3am','Any night of complete silence'],
+    ingredients:[
+      {name:'Frankincense resin',qty:'1 teaspoon (burn separately)'},
+      {name:'Myrrh resin',qty:'1 teaspoon (burn separately)'},
+      {name:'Lavender dried',qty:'2 handfuls'},
+      {name:'Sage (African or white)',qty:'1 handful'},
+      {name:'Black seed oil',qty:'1 tablespoon'},
+      {name:'Sea salt',qty:'1 tablespoon'},
+      {name:'Purple or white candle',qty:'1 candle'},
+      {name:'Water',qty:'3 litres'},
     ],
-    sourcing:[
-      {ingredient:'Ogiri okpei',market:'Eastern Nigeria markets (Enugu, Onitsha, Aba), Igbo food vendors in Lagos (Isale Eko, Alaba). Ask for "ogiri" or "dawadawa."',price:'₦200–800'},
-      {ingredient:'Vetiver essential oil',market:'Online herbal shops (Jumia, Konga), aromatherapy stores, sometimes health food stores.',price:'₦2,000–5,000'},
-      {ingredient:'Bitter leaf (dried)',market:'All Nigerian markets. Very common. Sun-dry fresh leaves yourself.',price:'₦100–300'},
-      {ingredient:'Bitter kola powder',market:'All markets nationwide. Grind yourself — buy bitter kola, dry, grind.',price:'₦300–800'}
+    steps:[
+      'Perform this bath during complete silence — turn off phones, music, television. The ancestors speak in stillness.',
+      'Light charcoal and burn frankincense and myrrh together. Allow the smoke to fill your bathroom before beginning.',
+      'Boil water. Add lavender and sage — together they open the spiritual senses and calm the nervous system.',
+      'Simmer for 7 minutes. The number 7 is the number of spiritual completeness across African traditions.',
+      'Remove from heat. Add black seed oil — Habbatus Sauda, called the cure for everything except death.',
+      'Add sea salt for grounding — spiritual work without grounding can be disorienting.',
+      'Light your purple or white candle. In the candlelight and incense smoke, sit quietly for 5 minutes before bathing.',
+      'Enter the bath slowly, closing your eyes. Feel yourself sinking into a deeper layer of reality.',
+      'Breathe the lavender and sage deeply. With each exhale, release mental noise. With each inhale, invite clarity.',
+      'While soaking, place your hands on your forehead (third eye). Ask your ancestors a question — then listen with your feelings.',
+      'After bathing, sit quietly for at least 10 minutes. You may receive insights, feelings, or images — record them.'
     ],
-    substitutes:[
-      {orig:'Ogiri okpei',sub:'Locust bean (iru/dawadawa) — a different but related fermented legume',note:'Same ancestral frequency; easier to source in some areas'},
-      {orig:'Vetiver essential oil',sub:'Patchouli essential oil',note:'Both are deep earth, grounding oils with ancestral resonance'},
-      {orig:'Frankincense oil',sub:'Myrrh or copal resin powder',note:'All three are ancestral communication resins'}
-    ],
-    videos:[
-      {title:'Ogiri Ancestral Soap Making',platform:'youtube',url:'https://www.youtube.com/results?search_query=ogiri+soap+ancestral+igbo',thumb:'▶️'},
-      {title:'Earth Grounding Soap Recipe',platform:'youtube',url:'https://www.youtube.com/results?search_query=grounding+ancestral+soap+recipe+african',thumb:'▶️'},
-      {title:'Ancestral Soap Ritual Nigeria',platform:'tiktok',url:'https://www.tiktok.com/search?q=ancestral+soap+nigeria+ritual',thumb:'▶️'}
-    ]
+    prayer:'I open my spiritual eyes. I open my spiritual ears. What has been hidden from me — reveal itself. My ancestors, speak to me clearly. My gifts — awaken now. Divine intelligence — flow through me. I am ready to see. I am ready to know. I am ready to serve.',
+    caution:'Do not perform this bath if you are in a state of mental fragility or extreme emotional distress. Ground yourself first with the Healing or Cleansing bath.',
+    outcome:'Heightened intuition and spiritual sensitivity, clearer dreams and visions, stronger connection to ancestral guidance, and awakening of latent spiritual gifts.'
   },
-  'bitter-leaf-detox-soap':{
-    difficulty:'beginner',diffLabel:'Beginner 🟢',
-    moon:'🌘 Waning Moon',moonDetail:'Waning moon is perfect for releasing and detoxing. Make during the last quarter for a soap that pulls toxins — physical and spiritual — out of the body.',
-    timeline:[
-      {day:'Day 1',text:'Make the soap. The green colour from bitter leaf and moringa is vibrant — this is the colour of healing and life force.'},
-      {day:'Days 1–2',text:'Set and firm. Can be used within 24–48 hours for no-lye version.'},
-      {day:'First waning moon bath',text:'Begin 7-day releasing programme. As you bathe, consciously name what you are releasing — toxins, fear, stuck energy.'},
-      {day:'After 3 baths',text:'Skin noticeably clearer. Spiritual heaviness begins to lift. Energy feels lighter and more mobile.'},
-      {day:'After 7 days',text:'Complete spiritual detox cycle. Physical skin benefits are also visible — pores clearer, skin tone more even.'},
-      {day:'Monthly',text:'Use during every waning moon phase for a monthly spiritual and physical detox.'}
+  ancestor:{
+    name:'Ẹbọ Bath — Ancestral Reconnection',
+    subtitle:'Rebuild the severed cord. Let your lineage speak through you once more.',
+    color:'linear-gradient(135deg,#1a0a00,#4a2000)',
+    duration:'3 days on or around a Saturday',
+    timing:['Saturday (day of ancestors)','Dark moon','9pm or 9am — the ancestor hours'],
+    ingredients:[
+      {name:'Bitter kola (Oji)',qty:'3 lobes'},
+      {name:'Kola nut',qty:'1 broken in prayer'},
+      {name:'Frankincense resin',qty:'1 teaspoon'},
+      {name:'Myrrh resin',qty:'1 teaspoon'},
+      {name:'Efirin / African basil',qty:'2 handfuls'},
+      {name:'Dry gin or local palm wine',qty:'small offering aside — not in bath'},
+      {name:'White candle',qty:'1 candle'},
+      {name:'Water',qty:'3 litres — stored overnight under moonlight first'],
     ],
-    sourcing:[
-      {ingredient:'Fresh bitter leaf',market:'All Nigerian markets — extremely common. Every market vegetable section. Many compounds have the plant.',price:'₦100–300/bunch'},
-      {ingredient:'Moringa powder',market:'Health stores, pharmacies, Shoprite, online. Increasingly available everywhere.',price:'₦800–2,500'},
-      {ingredient:'Neem powder',market:'Grind dried neem leaves (free if you have a neem tree nearby). Health stores.',price:'₦500–1,500'},
-      {ingredient:'Tea tree oil',market:'Pharmacies, supermarkets, health stores. Common in Nigeria now.',price:'₦800–2,500'}
+    steps:[
+      'The night before, store your 3 litres of water outside under the moonlight. This charges it with cosmic energy and opens it to ancestral communication.',
+      'On the morning of your bath, break the kola nut. This is non-negotiable — kola nut must be broken before ancestral work.',
+      'Pray aloud over the kola nut, calling the names of ancestors you know: "I call [name]. I call [name]. Come and witness my cleansing."',
+      'Offer a portion of the gin or palm wine to the earth outside your home, or in a corner of your bathroom.',
+      'Boil your moonlit water. Add Efirin (African basil) and bitter kola — together they create the ancestral communication frequency.',
+      'Light charcoal and burn frankincense and myrrh. Allow the smoke to hover over the cooking water.',
+      'Simmer for 9 minutes. Nine is the number of completion and the number of the ancestors in Yoruba tradition.',
+      'Cool and strain. Light your white candle. Sit in silence for a few minutes, feeling the presence of your lineage.',
+      'Pour the water and enter slowly. Speak to your ancestors by name as you bathe. Tell them your struggles.',
+      'Wash your head last — the head is where ancestral wisdom enters. Speak blessings over your crown.',
+      'After bathing, sit quietly. Place the kola nut lobes near a window or a photo of your ancestors as an offering.'
     ],
-    substitutes:[
-      {orig:'Fresh bitter leaf',sub:'Bitter leaf powder or moringa powder (doubled)',note:'Fresh gives a more vibrant green colour'},
-      {orig:'Tea tree oil',sub:'Eucalyptus essential oil',note:'Same antimicrobial, cleansing properties'},
-      {orig:'Activated charcoal',sub:'Kaolin clay or more neem powder',note:'Charcoal draws; clay absorbs — both detoxify'}
-    ],
-    videos:[
-      {title:'Bitter Leaf Detox Soap Recipe',platform:'youtube',url:'https://www.youtube.com/results?search_query=bitter+leaf+soap+recipe+nigeria',thumb:'▶️'},
-      {title:'Moringa Neem Healing Soap',platform:'youtube',url:'https://www.youtube.com/results?search_query=moringa+neem+soap+making',thumb:'▶️'},
-      {title:'Nigerian Detox Soap Tutorial',platform:'tiktok',url:'https://www.tiktok.com/search?q=bitter+leaf+neem+detox+soap',thumb:'▶️'}
-    ]
-  },
-  'shea-butter-babies-soap':{
-    difficulty:'advanced',diffLabel:'Advanced 🔴',
-    moon:'🌕 Full Moon Sunday',moonDetail:'The Full Moon on a Sunday (the Sun\'s day) is the peak of blessing energy. Ori (the divine self) is solar. Make this soap when the moon reflects the full glory of the sun.',
-    timeline:[
-      {day:'Days 1–3',text:'Make and pour. Shea butter soaps trace quickly — work fast once you combine lye and oils.'},
-      {day:'Days 4–7',text:'Unmold. This soap may have soda ash on top (white film) — scrape it off. It is cosmetic only.'},
-      {day:'Weeks 2–8',text:'LONG cure needed. High shea butter means the soap needs 6–8 weeks to fully harden and mellow.'},
-      {day:'Birthday / Special Day',text:'Ideal for first use on your birthday, a new year, or before a major life transition.'},
-      {day:'After 3 uses',text:'A feeling of divine alignment — things start flowing more naturally. Doors open where they were closed.'},
-      {day:'Ongoing',text:'Use as a weekly Sunday morning blessing bath. Maintains alignment with your highest path.'}
-    ],
-    sourcing:[
-      {ingredient:'Raw unrefined shea butter (Ori)',market:'All northern markets — Kano, Kaduna, Sokoto. Also Balogun Lagos, Wuse Abuja. This is Nigeria\'s own product.',price:'₦1,500–3,500/kg'},
-      {ingredient:'Calendula petals',market:'Online herbal shops, Lagos Island flower market, craft stores. Not common in regular markets.',price:'₦1,500–4,000'},
-      {ingredient:'Vanilla essential oil',market:'Baking supply stores, online, some supermarkets. Vanilla extract also works.',price:'₦1,000–3,000'},
-      {ingredient:'Gold cosmetic mica',market:'Craft stores, online (Jumia), soap making supply shops.',price:'₦1,000–2,500'}
-    ],
-    substitutes:[
-      {orig:'Calendula petals',sub:'Dried hibiscus or dried rose petals',note:'Both carry blessing and love energy'},
-      {orig:'Gold mica',sub:'A pinch of turmeric for natural gold colour',note:'Turmeric adds its own prosperity vibration'},
-      {orig:'Vanilla oil',sub:'Benzoin resin essential oil',note:'Benzoin has a sweet, warming, blessing aura similar to vanilla'}
-    ],
-    videos:[
-      {title:'Shea Butter Soap Making from Scratch',platform:'youtube',url:'https://www.youtube.com/results?search_query=shea+butter+soap+making+from+scratch+nigeria',thumb:'▶️'},
-      {title:'Ori Blessing Soap Yoruba Tradition',platform:'youtube',url:'https://www.youtube.com/results?search_query=ori+shea+butter+soap+yoruba+blessing',thumb:'▶️'},
-      {title:'Luxury Shea Butter Soap',platform:'tiktok',url:'https://www.tiktok.com/search?q=shea+butter+soap+spiritual+blessing',thumb:'▶️'}
-    ]
+    prayer:'I am the continuation of a long and powerful line. [Say your family names aloud.] I remember you. I honor you. I need you. Please come close. Break any silence between us. Restore the cord. Speak to me in my dreams. Walk with me in my days. I am yours, and you are mine.',
+    caution:'If you know of specific trauma in your ancestral line (e.g., sudden deaths, unresolved conflicts), prepare yourself for emotions during this ritual. Have support available.',
+    outcome:'Restoration of the spiritual ancestral cord, resolution of persistent unexplained difficulties, clearer dreams with ancestral messages, felt sense of being accompanied and guided.'
   }
 };
 
-// ── GLOSSARY DATA ──
-const glossaryTerms = [
-  {term:'Saponification',def:'The chemical reaction between oils/fats and an alkali (lye/ash water) that creates soap. This is the magic at the heart of soap making — it cannot be reversed. The oils and lye cease to exist and become an entirely new substance: soap.'},
-  {term:'Lye (Sodium Hydroxide / NaOH)',def:'The alkali used in cold-process soap making. When made from wood or plantain ash steeped in water, it is called "lye water" or "potash." It is caustic in its raw form but fully neutralised after saponification. There is NO lye in fully cured soap.'},
-  {term:'Trace',def:'The moment in soap making when the oils and lye water have combined enough that the mixture holds a "trace" when drizzled from a spoon. It looks like pudding or cream. Light trace = thin pudding; full trace = thick pudding. This is when you add colours, scents, and herbs.'},
-  {term:'Cure',def:'The 4–8 week resting period after soap is made. During cure, water evaporates, the pH drops, the bar hardens, and harsh lye molecules fully saponify. Soap used before full cure can be skin-irritating. Spiritually, curing is when the ingredients integrate and the soap\'s spiritual identity fully forms.'},
-  {term:'Cold Process (CP)',def:'The traditional soap-making method where oils and lye are combined at room temperature and the soap cures slowly. This is the method used in most traditional African soaps. Preserves more of the spiritual properties of the ingredients.'},
-  {term:'Hot Process (HP)',def:'Soap making where external heat is applied (oven, slow cooker) to accelerate saponification. Soap is ready to use almost immediately but is often more rustic in appearance.'},
-  {term:'Melt and Pour (M&P)',def:'A beginner-friendly method using pre-made soap base that you melt, add ingredients to, and pour into molds. No lye handling required. Excellent for love soaps and flower soaps where delicate ingredients would be destroyed by raw lye.'},
-  {term:'Superfatting',def:'Adding more oils than the lye can saponify, leaving free (unprocessed) oils in the soap. These free oils are skin-conditioning and moisturising. A 5–8% superfat is standard. Higher superfat = more conditioning but shorter shelf life.'},
-  {term:'Soda Ash',def:'A white, powdery film that sometimes forms on the surface of cold-process soap during curing. It is purely cosmetic and does not affect the soap\'s quality or spiritual potency. It can be scraped, planed, or sprayed with isopropyl alcohol to prevent it.'},
-  {term:'Ash Water (Lye Water)',def:'The traditional African lye made by filtering water through hardwood or plantain ash. This is the original lye used in Ose Dudu and all traditional African soaps before sodium hydroxide was commercially available. It is milder, more variable in strength, and carries the spiritual energy of the ash source.'},
-  {term:'Potash',def:'Potassium-based lye, historically derived from wood ash. Potash produces soft or liquid soaps. Sodium lye produces hard bar soaps. Traditional African black soaps often used potash (ash water) which is why they are softer and more malleable.'},
-  {term:'pH',def:'The measure of acidity/alkalinity on a scale of 0–14. Freshly made soap has a high pH (alkaline, ~11–12). Cured soap has a lower, skin-safe pH (~8–10). You can test with pH strips. Skin\'s natural pH is 5–6. Mild, fully cured soaps are gentler on the skin barrier.'},
-  {term:'Oleic Acid',def:'A fatty acid found in high quantities in shea butter, olive oil, and castor oil. Creates conditioning, moisturising bars. Most West African traditional oils are high in oleic acid, which is why traditional African soaps are so skin-nourishing.'},
-  {term:'Linoleic Acid',def:'A skin-healing fatty acid found in hemp, rosehip, and sunflower oils. Used in healing soaps for eczema and acne. African bitter leaf and moringa are rich in linoleic compounds — this is part of why they heal skin conditions.'},
-  {term:'Ase (Àṣẹ)',def:'The Yoruba concept of divine spiritual authority and power — the force that makes things happen. In soap making, Ase is activated through spoken intention, prayer, and correct ritual timing. Without Ase, a soap is just soap. With Ase, it is medicine.'},
-  {term:'Ewe',def:'The Yoruba word for herb or leaf, also referring to the spiritual knowledge system of working with plants. Every ewe has its own Ase (spiritual authority) and must be worked with knowledge and respect.'},
-  {term:'Sapo',def:'From the Latin root meaning soap — the origin of the word saponification. Historically derived from "Sapo Hill" in ancient Rome where animal fat mixed with ash from sacrifice fires was found to produce a cleansing substance. Africa, however, has documented soap traditions predating this.'}
-];
+let currentBathIntention = 'prosperity';
+let bathInitialized = false;
 
-// ── FAQ DATA ──
-const soapFAQs = [
-  {q:'Why did my soap turn brown/dark?',a:'This is called "ricing" or discolouration and is very common with African Black Soap and turmeric soaps. With black soap, the dark colour IS the soap — the plantain ash causes it. With turmeric soaps, oxidation during cure causes browning. It does not affect quality or spiritual potency. Embrace the earth tones.'},
-  {q:'My soap is very soft after 48 hours — is it ready to cut?',a:'If it feels like soft cheese, it is ready to cut but NOT to use. High shea butter and castor oil soaps stay softer longer. Use a sharp knife or cheese wire, cut into bars, and continue curing on a rack with airflow. If it is still sticky like jelly, leave it another 24–48 hours.'},
-  {q:'Is there still lye in my soap?',a:'No — if you used the correct lye-to-oil ratio and allowed full saponification (48–72 hours minimum), there is zero lye in your soap. The lye and oils undergo a complete chemical transformation. The resulting soap is skin-safe. This is why traditional healers have used ash-water soaps on babies for centuries.'},
-  {q:'Why did my soap separate into layers of oil and white gunk?',a:'This is called "separation" and usually means the oils and lye were added at too different temperatures, or were not stirred long enough. You can attempt a "rebatch" by melting the whole thing back down over a double boiler, stirring thoroughly, and repouring. Spiritually, start fresh — recite your intention prayer again.'},
-  {q:'Can I use my soap after 1 week?',a:'For no-lye methods (melt-and-pour, cold-process with ash water only), yes. For sodium hydroxide cold-process soaps, wait at least 4 weeks minimum for safety. The spiritual cure is also important — a 6-week cured soap carries more integrated spiritual energy than a 1-week old soap.'},
-  {q:'My soap smells strange / chemical — is it bad?',a:'A slight chemical or "sweaty" smell during the first 1–2 weeks of cure is normal — it is unreacted lye finishing its saponification. This smell should disappear by week 3–4. If it persists strongly after 4 weeks, the lye ratio may have been off. A soap that still smells harshly chemical after 4 weeks should not be used on skin.'},
-  {q:'Why is my camwood soap losing its red colour?',a:'Camwood (and all natural plant pigments) are sensitive to UV light and time. Store your soap in a cool, dark place during curing. The red colour will fade somewhat — this is natural. The spiritual potency does NOT fade with the colour. The Ase (spiritual power) is in the ingredient, not the colour.'},
-  {q:'Can I add fresh herbs directly to cold-process soap?',a:'Fresh (wet) herbs rot in cold-process soap because of the water content. Always use dried herbs, dried powders, or herb-infused oils. You can infuse coconut oil with dried herbs for 2–4 weeks and use that oil in your soap — this transfers both medicinal and spiritual properties without introducing moisture.'},
-  {q:'What is the white powder on top of my soap?',a:'This is soda ash — a cosmetic issue only. It forms when unreacted soap molecules on the surface react with CO2 in the air. It is harmless and does not affect quality. Spray the top of freshly poured soap with isopropyl alcohol (70%) to prevent it. Or simply plane it off the bar after curing.'},
-  {q:'Is my soap ready? How do I know?',a:'Three tests: (1) Zap test — touch the soap to the tip of your tongue briefly. If it "zaps" (like a weak battery shock), it still has active lye and needs more curing. No zap = safe. (2) pH test — strips should read 8–10 for cured soap. (3) Time test — 4 weeks minimum, 6–8 weeks for shea-heavy soaps. Trust the process.'}
-];
+function initBathPanel(){
+  if(!bathInitialized){
+    bathInitialized = true;
+  }
+  renderBathRecipe(currentBathIntention);
+}
 
-// ── SAFETY GUIDE DATA ──
-const safetyGuide = [
-  {type:'danger',title:'⚠️ Working with Lye (Ash Water or NaOH)',items:['Always add lye/ash water TO oils — never oils to lye. Adding water to lye causes violent spattering.','The lye-water mixing reaction generates intense heat (up to 80°C/175°F). Do this outdoors or in very well-ventilated space.','Wear long rubber gloves, goggles, and long sleeves when handling raw lye water.','If lye contacts skin: flush immediately with large amounts of cold running water for 15–20 minutes. Do not use soap — it is also alkaline. Seek medical advice.','Never use aluminum bowls, pots, or utensils with lye — it reacts violently with aluminum. Use stainless steel, glass, or heavy plastic only.','Keep children and pets completely away from the work area during lye handling.']},
-  {type:'danger',title:'⚠️ Working with Camphor',items:['Camphor is toxic when ingested — keep away from children and curious adults.','Do not use camphor near open flames — it is flammable.','Pregnant women should avoid using camphor-containing soaps. Camphor can cross the placental barrier.','Start with half the recommended amount if you have sensitive skin. The tingling sensation should be mild, not burning.','If eyes are exposed to camphor soap lather: flush immediately with clean water for 10 minutes.']},
-  {type:'danger',title:'⚠️ Hot Oils & Double Boiler Safety',items:['Never melt oils over direct high heat — use a double boiler (a bowl over a pot of simmering water).','Do not leave melting oils unattended. Coconut oil in particular can overheat quickly.','Allow melted oils to cool to room temperature before combining with lye water. Both should be roughly the same temperature.','Use a thermometer if possible — ideal working temperature is 35–45°C (95–113°F) for both lye water and oils.']},
-  {type:'ok',title:'✅ Safe Equipment Checklist',items:['Stainless steel pots and bowls (no aluminum)','Heavy-duty rubber or nitrile gloves','Safety goggles or glasses','Long-sleeved clothing','Wooden spoons or stainless steel spoon/stick blender','Soap molds: silicone, wood lined with parchment, or heavy-duty plastic','pH test strips (very cheap at pharmacies)','A clean workspace with good ventilation']},
-  {type:'ok',title:'✅ Child-Safe & Gentle Alternatives',items:['For children\'s soaps: always use melt-and-pour base (no raw lye required)','For pregnant women: avoid camphor, neem in high concentrations, and alligator pepper soaps','For sensitive skin: always do a 24-hour patch test on the inside of your wrist before full use','For elderly skin: use high-shea, low-fragrance formulas. The Ori Blessing Soap is ideal.','For babies: pure shea butter melt-and-pour with calendula only. No essential oils for under-6 months.']}
-];
+function selectBathIntention(intention, btn){
+  currentBathIntention = intention;
+  document.querySelectorAll('.bath-int-btn').forEach(b=>{
+    b.classList.remove('active');
+    b.querySelector('.bath-int-label').style.color = '';
+  });
+  btn.classList.add('active');
+  renderBathRecipe(intention);
+}
 
-// ── HISTORY DATA ──
-const soapHistory = [
-  {era:'Ancient Africa (3000 BCE+)',period:'Pre-colonial',text:'Archaeological evidence suggests soap-like substances were produced in ancient Egypt and Mesopotamia using animal fats and alkaline plant ashes. West African oral traditions describe "ose" (Yoruba) and "ude" (Igbo) preparations of ash water and plant oils used for ritual bathing long before recorded history. The process is called saponification — but African ancestors simply called it "preparing the bath medicine."'},
-  {era:'The Ash-Water Era (pre-1800s)',period:'Traditional',text:'Traditional African soaps were made exclusively with ash lye water — water filtered through burnt plantain, cocoa pod, shea bark, or hardwood ash. Each type of ash carried its own spiritual signature: plantain ash for cleansing and purification; shea bark ash for blessing and prosperity; cocoa pod ash for grounding and protection. The specific ash chose the soap\'s spiritual purpose.'},
-  {era:'Ose Dudu & the Yoruba Tradition',period:'Living Tradition',text:'The Yoruba people of western Nigeria developed one of Africa\'s most sophisticated soap traditions, centred on Ose Dudu (black soap). Ose Dudu was not merely cosmetic — it was prescribed by Babalawo (Ifa diviners) as part of spiritual treatment, given to newborns in naming ceremony baths, used in initiation rites, and prepared by elder women who held the knowledge as sacred inheritance.'},
-  {era:'Camwood & Red Soap Traditions',period:'Ancestral',text:'Across Nigeria — from Yoruba to Efik, Edo to Igbo — red camwood (Osun/Ptercarpus osun) was used to make sacred red preparations applied to the body. These were not always bar soaps but liquid or paste preparations used in rites of passage, post-partum care, and ancestral rituals. The deep red of camwood represented the blood of the earth and the cord between the living and ancestors.'},
-  {era:'Colonial Disruption (1800s–1960s)',period:'Loss & Preservation',text:'British colonisation brought commercial soaps (Lifebuoy, Imperial Leather) which were marketed as "civilised" alternatives to traditional preparations. Many communities abandoned their soap traditions, associating them with "backwardness." However, elder women in rural communities continued the practice in secret. It is to these women — unknown by name but known by act — that the survival of this knowledge is owed.'},
-  {era:'The Renaissance (1990s–Present)',period:'Revival',text:'A global renaissance of African traditional knowledge, combined with the natural cosmetics movement, has brought African spiritual soaps back into prominence. Nigerian soap makers, herbalists, and spiritual practitioners are reclaiming, documenting, and innovating on these traditions. YouTube, TikTok, and the diaspora community have accelerated this revival. What was almost lost is now being taught to millions worldwide.'}
-];
-
-// ── INGREDIENT ENCYCLOPEDIA ──
-const ingredientEncyclopedia = [
-  {id:'plantain-ash',name:'Plantain Ash',emoji:'🌿',
-   yoruba:'Eeru Ogede (Eeru = ash; Ogede = plantain)',igbo:'Ntu Ogede / Ntu Ojoko',hausa:'Toka ta Ayaba',
-   type:'Lye / Alkali Agent',
-   preparation:'Dry plantain skins for 3–5 days in direct sun until brittle. Burn in clay pot at high heat until only grey-white ash remains. Cool completely. Filter through cloth to remove charcoal pieces. Steep in water, strain — this is lye water.',
-   spiritual:'Plantain is a tree of abundance and protection in West African tradition. Its ash carries the purified essence of that protection energy. The burning transforms its physical power into pure spiritual force — making the ash more potent than the raw plant.',
-   medicinal:'Plantain ash is alkaline (pH ~11–12), making it a natural antiseptic and cleansing agent. Rich in potassium carbonate — a natural fertiliser and skin-clearing agent. Historically used in wound care and skin disease treatment across West Africa.',
-   dosage:'2 cups ash per litre of water for lye water. Stronger concentration for scouring; weaker for gentle soaps.',
-   soaps:['African Black Soap','Camwood Soap','All traditional cold-process soaps']},
-  {id:'shea-butter',name:'Shea Butter (Ori)',emoji:'✨',
-   yoruba:'Orí (also Oríi Ilẹ̀ — butter of the earth)',igbo:'Ude Aki Nzu / Ude Mmiri Ọcha',hausa:'Man Shanu na Gishiri',
-   type:'Base Oil / Sacred Fat',
-   preparation:'Raw shea is harvested from shea tree nuts. Kernels are boiled, dried, roasted, ground to paste, kneaded with water — the fat floats and is collected, boiled again, skimmed, and cooled. This labour-intensive process is traditionally women\'s work and carries ceremony.',
-   spiritual:'In Yoruba theology, Ori (personal divine spirit / the soul\'s guardian) shares its name with shea butter. Washing the head with Ori is an act of honouring your highest self. The Ori sits on the head — the crown — and shea nourishes both the physical scalp and the spiritual crown simultaneously.',
-   medicinal:'One of the richest natural sources of vitamins A, E, and F. Contains cinnamic acid esters (natural SPF). Anti-inflammatory, wound-healing, anti-aging. Used for eczema, psoriasis, stretch marks, and joint pain across West Africa.',
-   dosage:'Use raw and unrefined for maximum spiritual and medicinal benefit. In soaps: 30–50% of total oils. On skin: a small amount goes a long way.',
-   soaps:['Ori Blessing Soap','African Black Soap','Rose Hibiscus Love Soap','Camphor Efun Soap']},
-  {id:'camwood',name:'Camwood (Osun / Pterocarpus)',emoji:'🔴',
-   yoruba:'Osun Pupa (Osun = camwood; Pupa = red)',igbo:'Ufie / Nzu Oji',hausa:'Takulmi / Liilimi',
-   type:'Sacred Dye Plant / Ancestral Medicine',
-   preparation:'Camwood bark is dried and ground to fine powder. The wood of Pterocarpus osun (West African camwood) or Baphia nitida produces the deepest red. Fresh camwood can be grated directly into water to make "osun paste" — traditionally ground on a flat stone with water.',
-   spiritual:'Osun is one of the most sacred spiritual substances in Yoruba tradition — more ancient than most Orishas. Red camwood paste is applied to babies at naming ceremonies, initiates during consecration, and corpses at burial — it accompanies humans at every major threshold. It represents the blood-cord between ancestors and living descendants.',
-   medicinal:'Strong antibacterial and antifungal properties. Rich in tannins and flavonoids. Traditionally used for skin diseases, fever, and respiratory conditions. The red compound pterostilbene is related to resveratrol and shows anti-inflammatory, anti-cancer activity in research.',
-   dosage:'In soap: 2–4 tbsp powder per 200g soap base. As paste: mix powder with water or shea butter. In baths: dissolve 1 tbsp in warm bath water.',
-   soaps:['Camwood Ritual Soap']},
-  {id:'alligator-pepper',name:'Alligator Pepper (Atare)',emoji:'🌶️',
-   yoruba:'Atare (Aframomum melegueta) — also Eeru Alamo',igbo:'Ose Oji / Ose Orji — Sacred Pepper',hausa:'Cimba / Citta',
-   type:'Sacred Spice / Spiritual Activator',
-   preparation:'Seeds are extracted from the pod-like fruit. They can be used whole, coarsely crushed, or finely ground. For soaps: crush lightly to release aromatic compounds. For spiritual baths: crush and soak in warm water overnight. For oral use in ritual: chew 2–3 seeds while praying.',
-   spiritual:'Atare is the most invoked plant in Yoruba prayer — it appears in every Ifa prayer and every Orisha invocation. It is placed first on altars because it "opens the way" — its fire burns through spiritual blockages. In Igbo tradition, it accompanies bitter kola at every sacred opening. No serious spiritual work in West Africa happens without Atare.',
-   medicinal:'Contains gingerol, shogaol, and paradol — the same compounds that make ginger medicinal. Powerful anti-inflammatory, aphrodisiac, antimicrobial. Stimulates circulation and digestion. Used for malaria prevention, sexual dysfunction, and pain relief across West Africa.',
-   dosage:'In soap: 1–2 tbsp crushed seeds per 200g base. As spice: 3–7 seeds. Spiritually: 7, 14, or 21 seeds are used (multiples of 7 for Yoruba work).',
-   soaps:['Alligator Pepper Protection Soap']},
-  {id:'camphor',name:'Camphor (Kafura / Kabufu)',emoji:'🤍',
-   yoruba:'Kafura',igbo:'Kabufu / Nkpurie',hausa:'Kafu',
-   type:'Aromatic Purifier / Spiritual Shield',
-   preparation:'Camphor comes as white crystalline blocks. For soaps: grind to fine powder using mortar and pestle or wrap in cloth and crush. For spiritual baths: dissolve 1–2 tablets in warm water. For space clearing: burn camphor on hot charcoal (ventilate well).',
-   spiritual:'White is the colour of purity, protection, and Obatala energy in Yoruba tradition. Camphor\'s white colour and intensely cooling, clearing scent is understood as the embodiment of spiritual purity. It drives away negative entities and environmental spiritual pollution. Hospitals, courts, and funeral spaces are cleared with camphor in West African tradition.',
-   medicinal:'Antimicrobial, antifungal, analgesic. Natural insect repellent. Used topically for muscle pain, coughs, and skin infections. The cooling sensation on skin is due to its activation of cold-sensitive TRPM8 receptors. Caution: toxic if ingested; avoid in pregnancy.',
-   dosage:'In soap: ½–1 tsp ground per 200g base. In bath: 1–2 tablets dissolved in warm water. Never consume internally.',
-   soaps:['Camphor Efun Purification Soap','Alligator Pepper Protection Soap']},
-  {id:'efun',name:'Efun (White Chalk / Calcium Carbonate)',emoji:'⬜',
-   yoruba:'Efun (also Efun Alata — white chalk from the earth)',igbo:'Nzu (sacred white clay)',hausa:'Lalle Fari / Fararen Kasa',
-   type:'Sacred White Earth / Purifier',
-   preparation:'Efun comes as white chalk blocks from specific earth deposits. Grind to powder. In Igbo tradition, Nzu is the same substance held differently — applied with the finger to the forehead and body. For soaps: grind fine and incorporate into base. For body marking: moisten slightly and draw lines on skin.',
-   spiritual:'White is the colour of Obatala (Yoruba), the Orisha of wisdom, purity, and creation. Efun applied to the body marks the person as under Obatala\'s protection and as spiritually clean. In Igbo tradition, Nzu marks a person as in communion with the earth and ancestors. Both traditions agree: white chalk marks you as sacred, protected, and pure.',
-   medicinal:'Calcium carbonate (the main compound) is used medically as an antacid and calcium supplement. Applied to skin, it absorbs excess oil and moisture, soothes irritation, and has mild antibacterial properties. Used for baby rash, skin fungus, and wound care in traditional medicine.',
-   dosage:'In soap: 1–2 tbsp per 200g base. For body marking: small amount moistened on finger. In ritual bath: 1 tsp dissolved in water.',
-   soaps:['Camphor Efun Purification Soap']},
-  {id:'turmeric',name:'Turmeric (Ata Ile Pupa)',emoji:'💛',
-   yoruba:'Ata Ile Pupa (Yellow Pepper-Ginger)',igbo:'Oji Odo / Aziza',hausa:'Gangamau / Ata Ile',
-   type:'Solar Medicine / Gold Plant',
-   preparation:'Use dried ground turmeric powder for soaps. Fresh turmeric root can be grated and the juice extracted, but the powder is more potent and concentrated. Mix with a small amount of warm oil or water before adding to soap to prevent clumping.',
-   spiritual:'Turmeric\'s gold colour identifies it with solar energy, divine light, and abundance in both African and Ayurvedic traditions. In Nigerian herbal tradition, it is associated with Ogun (clear paths) and Oshun (golden abundance). Its ability to turn everything it touches gold is understood as a visible demonstration of the prosperity it brings.',
-   medicinal:'Curcumin — the active compound in turmeric — is one of the most studied natural anti-inflammatories. Antioxidant, anti-cancer, anti-bacterial. In topical use, it treats acne, hyperpigmentation, eczema, and psoriasis. Nigeria uses it in traditional wound care and fever treatment.',
-   dosage:'In soap: 1–2 tbsp powder per 200g base. Topically: mix with coconut oil 1:3. Internally (for reference): 1 tsp daily with black pepper and fat for bioavailability.',
-   soaps:['Turmeric Honey Prosperity Soap']},
-  {id:'hibiscus',name:'Hibiscus / Zobo (Hibiscus sabdariffa)',emoji:'🌺',
-   yoruba:'Zobo / Ọpẹ̀ìkàn (Zobo is the drink; Isapa is the plant)',igbo:'Ịcheku / Nna Ndị Mmiri',hausa:'Yakuwa / Zoborodo',
-   type:'Heart Opener / Love Plant',
-   preparation:'Use dried hibiscus calyces (the red parts — not the green leaves). Grind to powder for soaps; steep in hot water for tea and ritual baths; or use whole dried pieces for texture in decorative soaps.',
-   spiritual:'Hibiscus is Oshun\'s flower. Its deep red-pink colour and sweet-tart taste embody the qualities of Oshun — beauty, sweetness, love, sensuality, and the power of feminine water energy. Hibiscus baths are used to open the heart chakra, attract love, and honour the divine feminine within. In Hausa tradition, it is associated with joy and celebration.',
-   medicinal:'One of the highest natural sources of Vitamin C of any African plant. Powerful antioxidant. Clinically proven to lower blood pressure. Anti-inflammatory, antifungal. Hibiscus tea is used across Nigeria for hypertension, UTIs, and weight management. Topically, hibiscus acids gently exfoliate and brighten skin.',
-   dosage:'In soap: 1–2 tbsp dried powder or 3 tbsp whole petals per 200g base. Ritual bath: handful of dried petals steeped in hot water, strained, added to bathwater. Tea: 5–7 calyces per cup.',
-   soaps:['Rose Hibiscus Love Soap']},
-  {id:'moringa',name:'Moringa (Ewe Ile / Zogale)',emoji:'🌳',
-   yoruba:'Ewe Ile (also Iyanu Oluwà — God\'s miracle)',igbo:'Odudu Oyibo / Okwe Oyibo',hausa:'Zogale / Bagaruwar Maka',
-   type:'Tree of Life / Universal Healer',
-   preparation:'Use dried moringa leaf powder for soaps and herbal preparations. Fresh leaves can be blended to juice for immediate use. To dry: harvest leaves, spread on clean surface out of direct sun (sun bleaches nutrients), allow to air dry for 3–5 days. Grind in blender or mortar.',
-   spiritual:'Moringa is understood as a complete spiritual and physical healer in Nigerian tradition. The Yoruba name "Iyanu Oluwà" (God\'s miracle) expresses its spiritual status. It is planted at homesteads to bring protection and abundance, and its healing power is considered so profound that it must be a gift from the divine — no single plant, by natural means, should be able to do what moringa does.',
-   medicinal:'Gram for gram: 7x more Vitamin C than oranges; 4x more calcium than milk; 4x more Vitamin A than carrots; 2x more protein than yogurt. Anti-inflammatory, antimicrobial, antioxidant. Clinically shown to reduce blood sugar, blood pressure, and inflammation. The "most nutrient-dense plant per square metre" on earth.',
-   dosage:'In soap: 1–2 tbsp powder per 200g base. Internal: 1 tsp powder in water or food daily. Topical: mix with honey or oil as face mask.',
-   soaps:['Bitter Leaf Detox Healing Soap']},
-  {id:'bitter-leaf',name:'Bitter Leaf (Ewuro / Vernonia amygdalina)',emoji:'🌿',
-   yoruba:'Ewuro (Ewe = leaf; Oro = bitter)',igbo:'Onugbu (Ona = bitter; ugbu = leaf/plant)',hausa:'Ciwaken Shinkafa / Shiwaka',
-   type:'Bitter Healer / Purifier',
-   preparation:'Use fresh or dried. Fresh: blend whole leaves with a little water, strain, use the green juice. Dried: sun-dry fresh leaves for 3–5 days, grind to fine green powder. Bitter leaf loses some potency when dried but gains concentration. For soaps: dried powder is preferred.',
-   spiritual:'Bitterness in West African tradition is not negative — it is purifying, truth-telling, and strengthening. "Sweet medicine lies; bitter medicine heals" is a West African proverb. Ewuro is given when things need to be confronted directly. It forces what is hidden to surface, removes what is false, and strengthens what is real. It is the medicine of radical honesty.',
-   medicinal:'Vernonioside and vernolide are the bitter compounds responsible for most of its medicinal properties. Lowers blood sugar (used for diabetes management), kills malaria parasites, anti-cancer properties under research, anti-inflammatory, anti-parasitic, liver protective. One of West Africa\'s most clinically studied medicinal plants.',
-   dosage:'Internal: 1 tbsp fresh juice or ½ tsp powder in water daily. In soap: 2 tbsp powder or 3 tbsp fresh juice per 200g base. Topical: fresh leaf juice applied directly to skin.',
-   soaps:['Bitter Leaf Detox Healing Soap','Ogiri Dawadawa Earth Soap']}
-];
-
-// ── RENDER SOAP MODAL INNER TABS ──
-function openSoapModal(soapId){
-  const soap = soapsData.find(s=>s.id===soapId);
-  if(!soap) return;
-  const extra = soapExtras[soapId] || {};
-  const overlay = document.getElementById('soapOverlay');
-  const content = document.getElementById('soapModalContent');
-  const color = soapCatColors[soap.category] || '#7b3a00';
-  const diffClass = extra.difficulty==='beginner'?'diff-beginner':extra.difficulty==='advanced'?'diff-advanced':'diff-intermediate';
-
-  content.innerHTML = `
-    <div class="soap-m-hero" style="background:linear-gradient(135deg,${color}dd,${color})">
-      <span class="soap-m-emoji">${soap.emoji}</span>
-      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
-        ${extra.diffLabel?`<span class="diff-badge ${diffClass}">${extra.diffLabel}</span>`:''}
-        ${extra.moon?`<span class="moon-badge">${extra.moon}</span>`:''}
+function renderBathRecipe(intention){
+  const r = bathRecipes[intention];
+  if(!r) return;
+  const out = document.getElementById('bathRecipeOutput');
+  out.innerHTML = `
+    <div class="bath-recipe-card">
+      <div class="bath-recipe-hero" style="background:${r.color}">
+        <h3>${r.name}</h3>
+        <p>${r.subtitle}</p>
+        <div class="bath-recipe-meta">
+          <span class="bath-recipe-meta-tag">⏱ ${r.duration}</span>
+        </div>
       </div>
-      <h2>${soap.name}</h2>
-      <p>${soap.origin}</p>
-    </div>
-
-    <!-- MODAL INNER TABS -->
-    <div class="soap-modal-tabs" id="smt_${soapId}">
-      <button class="smt-btn active" onclick="switchSoapTab('${soapId}','overview',this)">Overview</button>
-      <button class="smt-btn" onclick="switchSoapTab('${soapId}','recipe',this)">📖 Recipe</button>
-      <button class="smt-btn" onclick="switchSoapTab('${soapId}','timeline',this)">🕐 Timeline</button>
-      <button class="smt-btn" onclick="switchSoapTab('${soapId}','sourcing',this)">📍 Sourcing</button>
-      <button class="smt-btn" onclick="switchSoapTab('${soapId}','subs',this)">🔄 Substitutes</button>
-      <button class="smt-btn" onclick="switchSoapTab('${soapId}','videos',this)">▶️ Videos</button>
-    </div>
-
-    <div class="soap-m-body">
-
-      <!-- OVERVIEW TAB -->
-      <div class="soap-tab-content active" id="stab_${soapId}_overview">
-        <div style="margin-bottom:14px">
-          <span class="soap-ai-label">✦ Full Recipe & Ritual Guide</span>
-          ${extra.moonDetail?`<div style="background:#0d1b2a;color:#c8e0ff;border-radius:10px;padding:10px 12px;font-size:0.8em;line-height:1.6;margin-top:8px">${extra.moon} — ${extra.moonDetail}</div>`:''}
-          <div class="soap-tags" style="margin-top:10px">${soap.tags.map(t=>`<span class="soap-tag">${t}</span>`).join('')}</div>
-        </div>
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">✦ About This Soap</div>
-          <p style="font-size:0.88em;color:var(--text-mid);line-height:1.75">${soap.summary}</p>
-        </div>
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">📋 Details</div>
-          <div class="soap-info-grid">
-            <div class="soap-info-block"><div class="soap-info-label">Origin</div><div class="soap-info-val">${soap.info.origin}</div></div>
-            <div class="soap-info-block"><div class="soap-info-label">Tradition</div><div class="soap-info-val">${soap.info.tradition}</div></div>
-            <div class="soap-info-block"><div class="soap-info-label">Best Timing</div><div class="soap-info-val">${soap.info.timing}</div></div>
-            <div class="soap-info-block"><div class="soap-info-label">Moon Phase</div><div class="soap-info-val">${extra.moon||'Any Moon'}</div></div>
-            <div class="soap-info-block"><div class="soap-info-label">Difficulty</div><div class="soap-info-val">${extra.diffLabel||'—'}</div></div>
-            <div class="soap-info-block"><div class="soap-info-label">Purpose</div><div class="soap-info-val">${soap.purpose}</div></div>
-          </div>
-        </div>
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">✨ Spiritual Uses</div>
-          <div style="display:flex;flex-wrap:wrap;gap:7px">
-            ${soap.uses.map(u=>`<div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:7px 11px;font-size:0.78em;color:var(--text-mid);line-height:1.4">${u}</div>`).join('')}
-          </div>
-        </div>
-        <div class="soap-m-sec">
-          <div class="soap-wisdom-box">"${soap.wisdom}"</div>
-        </div>
-        ${soap.caution?`<div class="soap-m-sec"><div class="caution">⚠️ <strong>Caution:</strong> ${soap.caution}</div></div>`:''}
-      </div>
-
-      <!-- RECIPE TAB -->
-      <div class="soap-tab-content" id="stab_${soapId}_recipe">
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">🌿 Ingredients</div>
-          ${soap.ingredients.map(ing=>`
-            <div class="soap-ingredient-row">
-              <span class="soap-ing-name">${ing.name}</span>
-              <span class="soap-ing-qty">${ing.qty}</span>
+      <div class="bath-recipe-body">
+        <div class="bath-sec">
+          <div class="bath-sec-title">🌿 Ingredients</div>
+          ${r.ingredients.map(i=>`
+            <div class="bath-ingredient-row">
+              <span class="bath-ing-name">${i.name}</span>
+              <span class="bath-ing-qty">${i.qty}</span>
             </div>
           `).join('')}
         </div>
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">📖 Step by Step Method</div>
-          ${soap.steps.map((step,i)=>`
-            <div class="soap-step-row">
-              <div class="soap-step-num">${i+1}</div>
-              <div class="soap-step-body">${step}</div>
+        <div class="bath-sec">
+          <div class="bath-sec-title">📖 Step-by-Step Instructions</div>
+          ${r.steps.map((s,i)=>`
+            <div class="bath-step-row">
+              <div class="bath-step-num">${i+1}</div>
+              <div class="bath-step-body">${s}</div>
             </div>
           `).join('')}
         </div>
-        ${soap.caution?`<div class="caution" style="margin-top:8px">⚠️ <strong>Safety:</strong> ${soap.caution}</div>`:''}
-      </div>
-
-      <!-- TIMELINE TAB -->
-      <div class="soap-tab-content" id="stab_${soapId}_timeline">
-        ${extra.timeline?`
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">🕐 Before/After Spiritual Use Timeline</div>
-          <p style="font-size:0.8em;color:var(--text-soft);margin-bottom:14px;line-height:1.6">Track your journey from soap making to full spiritual results. Each soap works on its own timeline — trust the process.</p>
-          <div class="timeline-bar">
-            ${extra.timeline.map(t=>`
-              <div class="tl-item">
-                <div class="tl-day">${t.day}</div>
-                <div class="tl-text">${t.text}</div>
-              </div>
-            `).join('')}
+        <div class="bath-sec">
+          <div class="bath-sec-title">🙏 Prayer / Affirmation</div>
+          <div class="bath-prayer-box">"${r.prayer}"</div>
+        </div>
+        <div class="bath-sec">
+          <div class="bath-sec-title">🌕 Best Timing</div>
+          <div class="bath-timing-row">
+            ${r.timing.map(t=>`<span class="bath-timing-pill">${t}</span>`).join('')}
           </div>
-        </div>`:'<p style="padding:20px;text-align:center;color:var(--text-soft);font-size:0.9em">Timeline coming soon for this soap.</p>'}
-      </div>
-
-      <!-- SOURCING TAB -->
-      <div class="soap-tab-content" id="stab_${soapId}_sourcing">
-        ${extra.sourcing?`
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">📍 Nigerian Market Sourcing Guide</div>
-          <p style="font-size:0.8em;color:var(--text-soft);margin-bottom:12px;line-height:1.6">Where to buy every ingredient in Nigeria — with typical prices.</p>
-          <table class="source-table">
-            <thead><tr><th>Ingredient</th><th>Where to Buy</th><th>Price</th></tr></thead>
-            <tbody>
-              ${extra.sourcing.map(s=>`
-                <tr>
-                  <td style="font-weight:700;color:var(--text)">${s.ingredient}</td>
-                  <td>${s.market}</td>
-                  <td><span class="price-badge">${s.price}</span></td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>`:'<p style="padding:20px;text-align:center;color:var(--text-soft);font-size:0.9em">Sourcing guide coming soon.</p>'}
-      </div>
-
-      <!-- SUBSTITUTES TAB -->
-      <div class="soap-tab-content" id="stab_${soapId}_subs">
-        ${extra.substitutes?`
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">🔄 Ingredient Substitutions</div>
-          <p style="font-size:0.8em;color:var(--text-soft);margin-bottom:12px;line-height:1.6">When an ingredient is unavailable, these substitutes carry similar spiritual and medicinal energy.</p>
-          ${extra.substitutes.map(s=>`
-            <div class="sub-row">
-              <span class="sub-orig">🌿 ${s.orig}</span>
-              <span class="sub-arrow-icon">→</span>
-              <span class="sub-list"><span style="font-weight:700;color:var(--text)">${s.sub}</span><span style="font-size:0.9em">${s.note}</span></span>
-            </div>
-          `).join('')}
-        </div>`:'<p style="padding:20px;text-align:center;color:var(--text-soft);font-size:0.9em">Substitutes guide coming soon.</p>'}
-      </div>
-
-      <!-- VIDEOS TAB -->
-      <div class="soap-tab-content" id="stab_${soapId}_videos">
-        ${extra.videos?`
-        <div class="soap-m-sec">
-          <div class="soap-m-sec-title">▶️ Video Tutorials</div>
-          <p style="font-size:0.8em;color:var(--text-soft);margin-bottom:12px;line-height:1.6">Watch how to make this soap — from YouTube & TikTok creators. Tap to search for the latest tutorials.</p>
-          ${extra.videos.map(v=>`
-            <a class="video-card" href="${v.url}" target="_blank" rel="noopener noreferrer">
-              <div class="video-thumb">${v.thumb}</div>
-              <div class="video-info">
-                <div class="video-title">${v.title}</div>
-                <div class="video-meta">Tap to search <span class="video-platform ${v.platform==='youtube'?'yt-badge':'tt-badge'}">${v.platform==='youtube'?'YouTube':'TikTok'}</span></div>
-              </div>
-            </a>
-          `).join('')}
-          <div style="background:var(--bg);border-radius:10px;padding:11px 13px;margin-top:10px;font-size:0.78em;color:var(--text-soft);line-height:1.6">
-            💡 <strong>Tip:</strong> Search "spiritual soap making Nigeria" on YouTube and TikTok for hundreds of video guides from Nigerian and West African creators.
+        </div>
+        <div class="bath-sec">
+          <div class="bath-sec-title">✨ Expected Outcome</div>
+          <div style="background:var(--green-light);border:1px solid #c8e6d5;border-radius:10px;padding:12px 14px;font-size:0.85em;color:var(--text-mid);line-height:1.65">
+            <strong style="color:var(--green);display:block;margin-bottom:4px">After completing this bath:</strong>
+            ${r.outcome}
           </div>
-        </div>`:'<p style="padding:20px;text-align:center;color:var(--text-soft);font-size:0.9em">Videos coming soon.</p>'}
+        </div>
+        <div class="bath-sec">
+          <div class="bath-caution">⚠️ <strong>Important:</strong> ${r.caution}</div>
+        </div>
       </div>
-
     </div>
   `;
-
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  // Scroll modal to top
-  const modal = document.getElementById('soapModal');
-  if(modal) modal.scrollTop = 0;
 }
 
-function switchSoapTab(soapId, tab, btn){
-  const modal = document.getElementById('soapModal');
-  if(!modal) return;
-  modal.querySelectorAll('.smt-btn').forEach(b=>b.classList.remove('active'));
-  modal.querySelectorAll('.soap-tab-content').forEach(c=>c.classList.remove('active'));
+// ══════════════════════════════════════
+// MULTI-LANGUAGE SUPPORT
+// ══════════════════════════════════════
+const langData = {
+  neem:{
+    en:'Neem',latin:'Azadirachta indica',
+    yoruba:{name:'Afọrọjẹ / Dongoyaro',phrases:[
+      {en:'Boil the leaves for cleansing',lang:'Sè ewé náà fún ìmọ̀tótó'},
+      {en:'Use for spiritual protection',lang:'Lo fún ìdáàbòbò ẹ̀mí'},
+      {en:'Gather at sunrise for full power',lang:'Kó ni àárọ̀ kí agbára rẹ̀ tó pé'},
+      {en:'Do not use during pregnancy',lang:'Má lo nígbà aboyún'},
+    ]},
+    igbo:{name:'Ogwu Awo',phrases:[
+      {en:'Boil the leaves for cleansing',lang:'Ṅụ otu ahịhịa maka ịcha ọcha'},
+      {en:'Use for spiritual protection',lang:'Jiri maka nchekwa mmụọ'},
+      {en:'Gather at sunrise for full power',lang:'Nweta n\'ụtụtụ ka ike ya jụụ'},
+      {en:'Do not use during pregnancy',lang:'Ejighị iji n\'oge ime'},
+    ]},
+    hausa:{name:'Dogonyaro',phrases:[
+      {en:'Boil the leaves for cleansing',lang:'Dafà ganyayen don tsaftace'},
+      {en:'Use for spiritual protection',lang:'Yi amfani don kariya ta ruhaniya'},
+      {en:'Gather at sunrise for full power',lang:'Tattara da fitowar rana don cikakken ƙarfi'},
+      {en:'Do not use during pregnancy',lang:'Kada a yi amfani a lokacin ciki'},
+    ]},
+  },
+  moringa:{
+    en:'Moringa',latin:'Moringa oleifera',
+    yoruba:{name:'Ewe Ile / Ewé Ìgbàlẹ',phrases:[
+      {en:'Dry in the shade, not direct sun',lang:'Gbẹ ní ojiji, kò gbọdọ̀ jẹ oorun tàárọ̀'},
+      {en:'Take every morning before sunrise',lang:'Mu ni kọọkan owurọ ṣaaju ìmọ́lẹ̀ ọjọ́'},
+      {en:'Grind with a stone mortar',lang:'Lọ pẹlu orísà okuta'},
+      {en:'Offer to the earth in gratitude',lang:'Fi fun ilẹ̀ gẹ́gẹ́ bí ẹ̀bùn ọpẹ'},
+    ]},
+    igbo:{name:'Okwe Oyibo / Zogele',phrases:[
+      {en:'Dry in the shade, not direct sun',lang:'Kpọ ọkụ n\'ọchịchọ, ọ bụghị anyanwụ ọtọ'},
+      {en:'Take every morning before sunrise',lang:'Were ya n\'oge ọ bụla ụtụtụ tupu anyanwụ ọ biacha'},
+      {en:'Grind with a stone mortar',lang:'Lọ ya n\'ite nkume'},
+      {en:'Offer to the earth in gratitude',lang:'nye ụwa ihe ọnọdụ ngozi'},
+    ]},
+    hausa:{name:'Zogale',phrases:[
+      {en:'Dry in the shade, not direct sun',lang:'Bushe a cikin inuwa, ba rana kai tsaye ba'},
+      {en:'Take every morning before sunrise',lang:'Sha da safe kafin fitowar rana'},
+      {en:'Grind with a stone mortar',lang:'Niƙa da turmi na dutse'},
+      {en:'Offer to the earth in gratitude',lang:'Ba ƙasa a matsayin godiya'},
+    ]},
+  },
+  ginger:{
+    en:'Ginger',latin:'Zingiber officinale',
+    yoruba:{name:'Jinja / Atale',phrases:[
+      {en:'Grate fresh ginger with honey',lang:'Gégùn jinja tuntun pẹlu oyin'},
+      {en:'Leave overnight under moonlight',lang:'Fi silẹ̀ lálẹ̀ lábẹ́ ìmọ́lẹ̀ òṣùpá'},
+      {en:'Boil for warming energy',lang:'Sè fún agbára ìgbóná'},
+      {en:'Add to bath for prosperity',lang:'Fi kún iwẹ fún ọrọ̀ àjọrọ̀'},
+    ]},
+    igbo:{name:'Jinja / Ose Oji',phrases:[
+      {en:'Grate fresh ginger with honey',lang:'Kọ jinja ọhụrụ ya na mmanụ aṅụ'},
+      {en:'Leave overnight under moonlight',lang:'Hapụ ya n\'abalị n\'ihe ọcha ọnwa'},
+      {en:'Boil for warming energy',lang:'Ṅụ maka ike ọkụ'},
+      {en:'Add to bath for prosperity',lang:'Tinye n\'ihe mmiri ọ Bath maka ọ ọla'},
+    ]},
+    hausa:{name:'Citta / Gyada Ɗanɗano',phrases:[
+      {en:'Grate fresh ginger with honey',lang:'Goga citta sabo da zuma'},
+      {en:'Leave overnight under moonlight',lang:'Bar dare ɗaya a ƙarƙashin watan dare'},
+      {en:'Boil for warming energy',lang:'Dafà don ƙarfin ɗumama'},
+      {en:'Add to bath for prosperity',lang:'Ƙara a wanka don arziƙi'},
+    ]},
+  },
+  cloves:{
+    en:'Cloves',latin:'Syzygium aromaticum',
+    yoruba:{name:'Kanafuru',phrases:[
+      {en:'Breathe intention on each clove',lang:'Mí ète lórí kọọkan kanafuru'},
+      {en:'Carry 3 in your pocket for meetings',lang:'Gbé mẹ́ta sínú àpo rẹ fún àpéjọ'},
+      {en:'Burn one on Thursday morning',lang:'Sun ọkan ní owurọ Ọjọbọ'},
+      {en:'Write goal on paper and fold around cloves',lang:'Kọ ète sí ìwé kí o sì pa mọ́ kanafuru'},
+    ]},
+    igbo:{name:'Kanafuru / Ọjị ọhụrụ',phrases:[
+      {en:'Breathe intention on each clove',lang:'Hú ebumnobi n\'elu kanafuru ọ bụla'},
+      {en:'Carry 3 in your pocket for meetings',lang:'Buru atọ n\'akpa gi maka nzukọ'},
+      {en:'Burn one on Thursday morning',lang:'Ọcha otu n\'ụtụtụ Ọjọbọ'},
+      {en:'Write goal on paper and fold around cloves',lang:'Dee ebumnobi n\'akwụkwọ meghee kanafuru'},
+    ]},
+    hausa:{name:'Kanafuru / Kananfari',phrases:[
+      {en:'Breathe intention on each clove',lang:'Sha iska niyyar da kowane kanafuru'},
+      {en:'Carry 3 in your pocket for meetings',lang:'ɗauki 3 a aljihu don tarurruka'},
+      {en:'Burn one on Thursday morning',lang:'Ƙone ɗaya da safe Alhamis'},
+      {en:'Write goal on paper and fold around cloves',lang:'Rubuta manufa a takarda ka naɗe kanafuru'},
+    ]},
+  },
+  cinnamon:{
+    en:'Cinnamon',latin:'Cinnamomum verum',
+    yoruba:{name:'Igi Ológi / Oloorun',phrases:[
+      {en:'Blow cinnamon from your palm on the first of the month',lang:'Fẹ igi oloorun láti ọwọ́ rẹ ní ọjọ́ àkọ́kọ́'},
+      {en:'Burn as incense for prosperity',lang:'Sun gẹ́gẹ́ bí turari fún ọrọ̀ àjọrọ̀'},
+      {en:'Add to tea for spiritual warmth',lang:'Fi kún tì fún ìgbóná ẹ̀mí'},
+      {en:'Mix with honey to attract love',lang:'Dàpọ̀ pẹlu oyin láti fà ìfẹ́ wá'},
+    ]},
+    igbo:{name:'Oji Eze / Osisi Nna',phrases:[
+      {en:'Blow cinnamon from your palm on the first of the month',lang:'Fụọ cinnamon n\'aka gi n\'ụbọchị mbụ ọnwa'},
+      {en:'Burn as incense for prosperity',lang:'Ọcha dị ka ọ ọka maka ọ ọla'},
+      {en:'Add to tea for spiritual warmth',lang:'Tinye n\'tii maka ọdịmma mmụọ'},
+      {en:'Mix with honey to attract love',lang:'Tinyekọ ya na mmanụ aṅụ iji dọta ịhụnanya'},
+    ]},
+    hausa:{name:'Ɗanɗano / Kirfa',phrases:[
+      {en:'Blow cinnamon from your palm on the first of the month',lang:'Busa kirfa daga tafin hannu rana ta farko na wata'},
+      {en:'Burn as incense for prosperity',lang:'Ƙone a matsayin turare don arziƙi'},
+      {en:'Add to tea for spiritual warmth',lang:'Ƙara a cikin shayi don zafi na ruhaniya'},
+      {en:'Mix with honey to attract love',lang:'Gauraya da zuma don jan ƙauna'},
+    ]},
+  },
+  frankincense:{
+    en:'Frankincense',latin:'Boswellia sacra',
+    yoruba:{name:'Ìṣán / Oṣan Mimọ',phrases:[
+      {en:'Place on charcoal and let smoke rise slowly',lang:'Fi sí eedu kí èéfín náà jáde lọ rẹ̀rẹ̀rẹ̀'},
+      {en:'Walk smoke through every room',lang:'Gbé èéfín náà kọjá gbogbo yàrá'},
+      {en:'Speak prayers as smoke rises',lang:'Sọ àdúrà bí èéfín náà ti ń jáde'},
+      {en:'Combine with myrrh for full power',lang:'Dàpọ̀ pẹlu myrrh fún agbára kíkún'},
+    ]},
+    igbo:{name:'Ọjị Oji / Ọ ọka Ime',phrases:[
+      {en:'Place on charcoal and let smoke rise slowly',lang:'Tọọ n\'iko ma ka anwụ ọ site n\'ụzọ'},
+      {en:'Walk smoke through every room',lang:'Gawa ya n\'ime ụlọ ọ bụla'},
+      {en:'Speak prayers as smoke rises',lang:'Kwuo arịrịọ ka anwụ ọ na-apụ'},
+      {en:'Combine with myrrh for full power',lang:'Jikọọ ya na myrrh maka ike zuru oke'},
+    ]},
+    hausa:{name:'Luban / Turaren Fari',phrases:[
+      {en:'Place on charcoal and let smoke rise slowly',lang:'Sa a kan gawayi a bar hayaƙi ya fito a hankali'},
+      {en:'Walk smoke through every room',lang:'Je da hayaƙi ta kowace ɗaki'},
+      {en:'Speak prayers as smoke rises',lang:'Yi addu\'a yayin da hayaƙi ke tasowa'},
+      {en:'Combine with myrrh for full power',lang:'Haɗa da murra don cikakken ƙarfi'},
+    ]},
+  },
+  garlic:{
+    en:'Garlic',latin:'Allium sativum',
+    yoruba:{name:'Àjọ / Ayu',phrases:[
+      {en:'Crush and place at doorway for protection',lang:'Fọ kí o sì fi sí ẹnù ọnà fún ìdáàbòbò'},
+      {en:'Eat 3 raw cloves in the morning',lang:'Je mẹ́ta tútù ní owurọ'},
+      {en:'Hang braided garlic in kitchen',lang:'So àjọ asọ-inú-àgò sínú iléèẹ̀yẹ bẹ̀},
+      {en:'Add to bath for removal of evil eye',lang:'Fi kún iwẹ fún ìmú ojú ibi kúrò'},
+    ]},
+    igbo:{name:'Ọ Jị Ọ cha / Nyanya',phrases:[
+      {en:'Crush and place at doorway for protection',lang:'Tụpụ tinye ya n\'ọnụ ụzọ maka nchekwa'},
+      {en:'Eat 3 raw cloves in the morning',lang:'Rịa atọ ọhụrụ n\'ụtụtụ'},
+      {en:'Hang braided garlic in kitchen',lang:'Kọọ ọjị ọcha n\'ụlọ esi'},
+      {en:'Add to bath for removal of evil eye',lang:'Tinye n\'ihe mmiri ọ bath maka iwepụ anya ọjọọ'},
+    ]},
+    hausa:{name:'Tafarnuwa',phrases:[
+      {en:'Crush and place at doorway for protection',lang:'Niƙa sa a ƙofar gida don kariya'},
+      {en:'Eat 3 raw cloves in the morning',lang:'Ci 3 danye da safe'},
+      {en:'Hang braided garlic in kitchen',lang:'Rataye tafarnuwa a cikin dakin girki'},
+      {en:'Add to bath for removal of evil eye',lang:'Ƙara a wanka don kawar da ido'},
+    ]},
+  },
+  turmeric:{
+    en:'Turmeric',latin:'Curcuma longa',
+    yoruba:{name:'Atale Pupa / Isapa',phrases:[
+      {en:'Mix with coconut oil for skin healing',lang:'Dàpọ̀ pẹlu epo agbon fún ìwòsàn awọ'},
+      {en:'Drink with warm milk before bed',lang:'Mu pẹlu wàrà gbígbóná ṣaaju sùn'},
+      {en:'Apply paste to forehead for clarity',lang:'Fi àwọ̀ sí iwájú orí fún ìmọ̀ dídára'},
+      {en:'Boil for internal healing',lang:'Sè fún ìwòsàn inú'},
+    ]},
+    igbo:{name:'Ose Oji Ọcha / Orhie',phrases:[
+      {en:'Mix with coconut oil for skin healing',lang:'Tinyekọ na mmanụ coconut maka ọgwụ ọ'],
+      {en:'Drink with warm milk before bed',lang:'Ṅụ na mmiri ara nke dị ọkụ tupu ire ụra'},
+      {en:'Apply paste to forehead for clarity',lang:'Tinye n\'ihu maka ìmọ̀'},
+      {en:'Boil for internal healing',lang:'Ṅụ ya maka ọgwụ n\'ime'},
+    ]},
+    hausa:{name:'Gangamau / Kurkum',phrases:[
+      {en:'Mix with coconut oil for skin healing',lang:'Gauraya da man kwakwa don warkar da fata'},
+      {en:'Drink with warm milk before bed',lang:'Sha da madara mai ɗumi kafin barci'},
+      {en:'Apply paste to forehead for clarity',lang:'Sa alawa a goshi don sarrafa hankali'},
+      {en:'Boil for internal healing',lang:'Dafà don waraka ta ciki'},
+    ]},
+  },
+  bitter_kola:{
+    en:'Bitter Kola',latin:'Garcinia kola',
+    yoruba:{name:'Orogbo',phrases:[
+      {en:'Break kola before any ritual',lang:'Fọ́ orogbo ṣaaju ìṣe àṣà èdì'},
+      {en:'The eldest must break and pray',lang:'Àgbàlagbà ní gbọdọ̀ fọ kí o sì gbàdúrà'},
+      {en:'Press first lobe to the ground for ancestors',lang:'Tẹ ìwọ́nba àkọ́kọ́ sí ilẹ̀ fún àwọn baba'},
+      {en:'Chew for spiritual strength',lang:'Jẹ fún agbára ẹ̀mí'},
+    ]},
+    igbo:{name:'Oji',phrases:[
+      {en:'Break kola before any ritual',lang:'Gbaa oji tupu ọ bụ ihe ọ bụla'},
+      {en:'The eldest must break and pray',lang:'Onye okenye ga-ebu gbaa oji wee rịọ'},
+      {en:'Press first lobe to the ground for ancestors',lang:'Mee mkpọ nke mbụ n\'ala maka ndị ọ la'},
+      {en:'Chew for spiritual strength',lang:'Rie maka ike mmụọ'},
+    ]},
+    hausa:{name:'Goro Mai Ɗaci',phrases:[
+      {en:'Break kola before any ritual',lang:'Karya goro kafin kowane biki'},
+      {en:'The eldest must break and pray',lang:'Dattijon dole ya karya ya yi addu\'a'},
+      {en:'Press first lobe to the ground for ancestors',lang:'Danna farkon sashi a ƙasa don kakanninmu'},
+      {en:'Chew for spiritual strength',lang:'Tauna don ƙarfin ruhaniya'},
+    ]},
+  },
+  baobab:{
+    en:'Baobab',latin:'Adansonia digitata',
+    yoruba:{name:'Ìgbà / Oshin Oshin',phrases:[
+      {en:'Never cut a baobab without offering',lang:'Má ge ìgbà láì fi ẹbọ kan síwájú'},
+      {en:'Sit beneath it at dusk to speak to ancestors',lang:'Jókòó lábẹ́ rẹ̀ ní àsálẹ̀ láti bá baba sọ̀rọ̀'},
+      {en:'Make juice with powder for vitality',lang:'Ṣe omi pẹlu ègún rẹ̀ fún agbára ara'},
+      {en:'Drink for 30 days for ancestral wisdom',lang:'Mu fún ọjọ́ 30 fún ọgbọ́n baba'},
+    ]},
+    igbo:{name:'Ose Oji Nnukwu / Ogede Ala',phrases:[
+      {en:'Never cut a baobab without offering',lang:'Asọghị ita ise oji nnukwu na-enweghị ọ Ụlọ'},
+      {en:'Sit beneath it at dusk to speak to ancestors',lang:'Nọdụ n\'okpuru ya na mgbede ịkọrọ ndị ọ la'},
+      {en:'Make juice with powder for vitality',lang:'Mee mmiri ọṅụṅụ ya na uropi maka ike'},
+      {en:'Drink for 30 days for ancestral wisdom',lang:'Ṅụ maka ụbọchị 30 maka amamihe ndị ọ la'},
+    ]},
+    hausa:{name:'Kuka',phrases:[
+      {en:'Never cut a baobab without offering',lang:'Kada a yanka kuka ba tare da miƙa hadaya ba'},
+      {en:'Sit beneath it at dusk to speak to ancestors',lang:'Zauna ƙarƙashinsa da magariba don magana da kakanninmu'},
+      {en:'Make juice with powder for vitality',lang:'Yi ruwan sha da foda don ƙarfi'},
+      {en:'Drink for 30 days for ancestral wisdom',lang:'Sha na kwanaki 30 don hikimar kakannin'},
+    ]},
+  },
+};
+
+let currentLang = 'yoruba';
+let langInitialized = false;
+
+function initLanguagePanel(){
+  if(!langInitialized){
+    langInitialized = true;
+  }
+  renderLangHerbs(currentLang, '');
+}
+
+function switchLangTab(lang, btn){
+  currentLang = lang;
+  document.querySelectorAll('.lang-tab').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  const tabEl = document.getElementById(`stab_${soapId}_${tab}`);
-  if(tabEl) tabEl.classList.add('active');
+  const q = document.getElementById('langSearch') ? document.getElementById('langSearch').value : '';
+  renderLangHerbs(lang, q);
 }
 
-// ── SOAPS HUB TABS (Glossary, Safety, FAQ, History, Encyclopedia) ──
-function switchHubTab(tab, btn){
-  document.querySelectorAll('.hub-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.hub-panel').forEach(p=>p.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  const panel = document.getElementById('hub_'+tab);
-  if(panel) panel.classList.add('active');
-  if(tab==='glossary') renderGlossary('');
-  if(tab==='encyclopedia') renderEncyclopedia('');
+function filterLangHerbs(){
+  const q = document.getElementById('langSearch').value.toLowerCase();
+  renderLangHerbs(currentLang, q);
 }
 
-function renderGlossary(query){
-  const list = document.getElementById('glossaryList');
-  if(!list) return;
-  const q = query.toLowerCase();
-  const filtered = q ? glossaryTerms.filter(t=>t.term.toLowerCase().includes(q)||t.def.toLowerCase().includes(q)) : glossaryTerms;
-  list.innerHTML = filtered.map(t=>`
-    <div class="gloss-item">
-      <div class="gloss-term">${t.term}</div>
-      <div class="gloss-def">${t.def}</div>
-    </div>
-  `).join('') || '<p style="color:var(--text-soft);font-size:0.9em;padding:20px 0;text-align:center">No matching terms found.</p>';
-}
+function renderLangHerbs(lang, query){
+  const container = document.getElementById('langHerbList');
+  if(!container) return;
 
-function renderEncyclopedia(query){
-  const list = document.getElementById('encyclopediaList');
-  if(!list) return;
-  const q = query.toLowerCase();
-  const filtered = q ? ingredientEncyclopedia.filter(i=>i.name.toLowerCase().includes(q)||i.yoruba.toLowerCase().includes(q)||i.type.toLowerCase().includes(q)) : ingredientEncyclopedia;
-  list.innerHTML = filtered.map(ing=>`
-    <div class="enc-card">
-      <div class="enc-card-head" onclick="toggleEnc('${ing.id}',this)">
-        <span class="enc-emoji">${ing.emoji}</span>
-        <div class="enc-name-wrap">
-          <div class="enc-name">${ing.name}</div>
-          <div class="enc-local">Yoruba: ${ing.yoruba.split('(')[0].trim()} · Igbo: ${ing.igbo.split('/')[0].trim()} · Hausa: ${ing.hausa.split('/')[0].trim()}</div>
+  const entries = Object.values(langData).filter(h=>{
+    if(!query) return true;
+    const lName = h[lang] ? h[lang].name.toLowerCase() : '';
+    return h.en.toLowerCase().includes(query) || lName.includes(query);
+  });
+
+  if(!entries.length){
+    container.innerHTML = '<div class="lang-no-results">🔍 No herbs found. Try a different search.</div>';
+    return;
+  }
+
+  const langColors = {yoruba:'#2e7d4f',igbo:'#c0392b',hausa:'#b8860b'};
+  const color = langColors[lang] || '#2e7d4f';
+
+  container.innerHTML = entries.map(h=>{
+    const ld = h[lang];
+    if(!ld) return '';
+    return `
+      <div class="lang-herb-card">
+        <div class="lang-herb-en">${h.en}</div>
+        <div class="lang-herb-latin">${h.latin}</div>
+        <div class="lang-name-block">
+          <div class="lang-name-label">Name in ${lang.charAt(0).toUpperCase()+lang.slice(1)}</div>
+          <div class="lang-name-val" style="color:${color}">${ld.name}</div>
         </div>
-        <span class="enc-arrow">▾</span>
-      </div>
-      <div class="enc-body" id="enc_${ing.id}">
-        <div class="enc-row"><span class="enc-label">Type</span><span class="enc-val">${ing.type}</span></div>
-        <div class="enc-row"><span class="enc-label">Yoruba Name</span><span class="enc-val">${ing.yoruba}</span></div>
-        <div class="enc-row"><span class="enc-label">Igbo Name</span><span class="enc-val">${ing.igbo}</span></div>
-        <div class="enc-row"><span class="enc-label">Hausa Name</span><span class="enc-val">${ing.hausa}</span></div>
-        <div class="enc-row"><span class="enc-label">How to Prepare</span><span class="enc-val">${ing.preparation}</span></div>
-        <div class="enc-row"><span class="enc-label">Medicinal Properties</span><span class="enc-val">${ing.medicinal}</span></div>
-        <div class="enc-row"><span class="enc-label">Dosage Guide</span><span class="enc-val">${ing.dosage}</span></div>
-        <div class="enc-spiritual">"${ing.spiritual}"</div>
-        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px">
-          ${ing.soaps.map(s=>`<span style="background:#f5e8d0;border:1px solid #e0c090;color:#7b3a00;font-size:0.68em;font-weight:700;padding:3px 8px;border-radius:12px">🧼 ${s}</span>`).join('')}
+        <div style="margin-top:10px">
+          <div style="font-size:0.72em;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Key Phrases & Instructions</div>
+          ${ld.phrases.map(p=>`
+            <div class="lang-phrase-row">
+              <div style="font-weight:700;color:var(--text);margin-bottom:2px">${p.lang}</div>
+              <div class="lang-phrase-en">${p.en}</div>
+            </div>
+          `).join('')}
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
-
-function toggleEnc(id, headEl){
-  const body = document.getElementById('enc_'+id);
-  if(!body) return;
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open');
-  headEl.classList.toggle('open');
-}
-
-function toggleFAQ(el){
-  const answer = el.nextElementSibling;
-  el.classList.toggle('open');
-  answer.classList.toggle('open');
-}
-
 </script>
 </body>
 </html>
