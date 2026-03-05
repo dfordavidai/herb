@@ -1177,6 +1177,7 @@ mark{background:#fff3b0;border-radius:2px;padding:0 1px}
   <button class="bnav-btn" id="bnav-protect" onclick="switchTab('protect')"><span class="bnav-icon">🛡️</span>Protect</button>
   <button class="bnav-btn" id="bnav-calendar" onclick="switchTab('calendar')"><span class="bnav-icon">🌕</span>Calendar</button>
   <button class="bnav-btn" id="bnav-soaps" onclick="switchTab('soaps')"><span class="bnav-icon">🧼</span>Soaps</button>
+  <button class="bnav-btn" id="bnav-others" onclick="switchTab('others')"><span class="bnav-icon">✨</span>Others</button>
 </div>
 
 <script>
@@ -1765,7 +1766,7 @@ function toggleHelp(){
 // ─── TAB SWITCHING ────────────────────────────────────────────────────────────
 function switchTab(tab){
   currentTab = tab;
-  const panels = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom','soaps','bath','language'];
+  const panels = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom','soaps','bath','language','others'];
   panels.forEach(p=>{
     const el = document.getElementById(p+'Panel');
     if(el) el.style.display = (tab===p) ? 'block' : 'none';
@@ -1789,6 +1790,7 @@ function switchTab(tab){
   if(tab==='soaps') initSoapsPanel();
   if(tab==='bath') initBathPanel();
   if(tab==='language') initLanguagePanel();
+  if(tab==='others') initOthersPanel();
 }
 
 // ─── MODAL ────────────────────────────────────────────────────────────────────
@@ -4199,7 +4201,7 @@ const bathRecipes = {
       {name:'Efirin / African basil',qty:'2 handfuls'},
       {name:'Dry gin or local palm wine',qty:'small offering aside — not in bath'},
       {name:'White candle',qty:'1 candle'},
-      {name:'Water',qty:'3 litres — stored overnight under moonlight first'],
+      {name:'Water',qty:'3 litres — stored overnight under moonlight first'},
     ],
     steps:[
       'The night before, store your 3 litres of water outside under the moonlight. This charges it with cosmic energy and opens it to ancestral communication.',
@@ -4432,7 +4434,7 @@ const langData = {
     yoruba:{name:'Àjọ / Ayu',phrases:[
       {en:'Crush and place at doorway for protection',lang:'Fọ kí o sì fi sí ẹnù ọnà fún ìdáàbòbò'},
       {en:'Eat 3 raw cloves in the morning',lang:'Je mẹ́ta tútù ní owurọ'},
-      {en:'Hang braided garlic in kitchen',lang:'So àjọ asọ-inú-àgò sínú iléèẹ̀yẹ bẹ̀},
+      {en:'Hang braided garlic in kitchen',lang:'So àjọ asọ-inú-àgò sínú iléèẹ̀yẹ bẹ̀}'},
       {en:'Add to bath for removal of evil eye',lang:'Fi kún iwẹ fún ìmú ojú ibi kúrò'},
     ]},
     igbo:{name:'Ọ Jị Ọ cha / Nyanya',phrases:[
@@ -4457,7 +4459,7 @@ const langData = {
       {en:'Boil for internal healing',lang:'Sè fún ìwòsàn inú'},
     ]},
     igbo:{name:'Ose Oji Ọcha / Orhie',phrases:[
-      {en:'Mix with coconut oil for skin healing',lang:'Tinyekọ na mmanụ coconut maka ọgwụ ọ'],
+      {en:'Mix with coconut oil for skin healing',lang:'Tinyekọ na mmanụ coconut maka ọgwụ ọ'},
       {en:'Drink with warm milk before bed',lang:'Ṅụ na mmiri ara nke dị ọkụ tupu ire ụra'},
       {en:'Apply paste to forehead for clarity',lang:'Tinye n\'ihu maka ìmọ̀'},
       {en:'Boil for internal healing',lang:'Ṅụ ya maka ọgwụ n\'ime'},
@@ -4578,6 +4580,254 @@ function renderLangHerbs(lang, query){
     `;
   }).join('');
 }
+
+// ── OTHERS PANEL ──────────────────────────────────────────────────────────────
+let othersInitialized = false;
+let othersActiveCategory = 'all';
+let othersActiveItem = null;
+
+const othersData = [
+  // OILS & PERFUMES
+  {id:'owo_oil',cat:'oils',catLabel:'Oils & Perfumes',emoji:'🫙',name:'Owo Oil (Money Drawing Oil)',purpose:'Prosperity & Financial Attraction',summary:'A sacred anointing oil blended to draw wealth, open financial pathways, and magnetize opportunities. Traditionally applied to palms, wrists, and money before transactions.',uses:['Anoint palms before business dealings','Dress a green candle for money rituals','Apply to wallet and financial documents','Mix into bath water on Thursdays'],howTo:'On a Thursday morning, anoint your palms with Owo Oil while praying for financial open doors. Rub hands together and visualize money flowing freely. Apply to your wallet, business cards, or any financial tools.',timing:'Best used on Thursdays (Jupiter day for expansion and wealth) or during a new moon.',warning:'Use with genuine intention. Greed-based petitions often backfire — focus on sufficiency and flow.',wisdom:'"Owo ni alafia" — Money is peace. Seek it with a clean heart and the ancestors will multiply it."'},
+  {id:'road_opener_oil',cat:'oils',catLabel:'Oils & Perfumes',emoji:'🛤️',name:'Road Opener Oil',purpose:'Removing Blockages & Opening Paths',summary:'One of the most powerful oils in African and Afro-Caribbean tradition. Used when doors are closed, opportunities stall, or life feels stuck. Named after Elegba/Eshu who controls all crossroads.',uses:['Anoint feet before important journeys or interviews','Dress white or yellow candles','Rub on door handles and window frames','Apply to back of neck when feeling spiritually blocked'],howTo:'Hold the bottle in both hands and speak your blocked situation aloud. Then anoint your feet from heel to toe, your wrists, and the back of your neck. Pray for every door to open by divine authority.',timing:'Monday mornings (Eshu/Elegba day) or at dawn before a day of important activity.',wisdom:'"When Eshu opens a road, no man can close it. Honour him first, and every path becomes clear."'},
+  {id:'come_to_me_oil',cat:'oils',catLabel:'Oils & Perfumes',emoji:'❤️‍🔥',name:'Come-to-Me Oil',purpose:'Love, Attraction & Drawing People Closer',summary:'A love-drawing oil used to attract a specific person, magnetize general romantic energy, or strengthen existing bonds. Blended with rose, jasmine, and sweet herbs aligned to Oshun.',uses:['Anoint pulse points before meeting your person','Dress a red or pink candle','Add drops to love letters or messages','Apply to photo of person you wish to draw closer'],howTo:'On a Friday evening (Oshun\'s day), anoint your wrists, neck, and heart area while speaking the name of the person you wish to draw, or simply asking for love to find you. Light a pink candle.',timing:'Fridays, during a waxing moon (growing toward full).',warning:'Never use to dominate or trap someone against their will — this creates spiritual debt.',wisdom:'"Love that is forced is a cage. Love that is drawn is a garden. Let Oshun teach you the difference."'},
+  {id:'black_seed_oil',cat:'oils',catLabel:'Oils & Perfumes',emoji:'🌑',name:'Black Seed Oil',purpose:'Protection, Healing & Immunity',summary:'Nigella sativa — called "the cure for everything except death" in Hadith. Used across Nigerian traditions for internal healing, spiritual protection, and evil eye removal.',uses:['Take one teaspoon internally each morning','Apply to affected skin areas for healing','Anoint crown of head for mental clarity','Mix with camphor for protection body wash'],howTo:'For spiritual protection: pour a small amount into palm, rub hands together, and sweep over your body from head to feet. Speak words of protection. For internal use, take 1 tsp in warm water or honey each morning.',timing:'Morning rituals, especially during periods of spiritual attack or illness.',wisdom:'"Habbatus sauda — the black seed. What Allah has placed in it, science is still discovering."'},
+  {id:'shea_herb_butter',cat:'oils',catLabel:'Oils & Perfumes',emoji:'🌿',name:'Herb-Infused Shea Butter',purpose:'Spiritual Skin Dressing & Ancestral Connection',summary:'Pure shea butter infused with specific herbs for spiritual skin dressing. The skin is your largest spiritual organ — what you put on it matters. Used across West African traditions.',uses:['Apply after spiritual baths to seal the blessing','Dress body before sacred ceremonies','Use for baby blessings and naming ceremonies','Apply to elders for ancestral honour rituals'],howTo:'Melt shea butter gently and infuse with your chosen herbs (neem for protection, lavender for peace, frankincense for elevation). Allow to cool. Apply to skin while speaking your intention.',timing:'After any spiritual bath, at sunrise, or before sacred ceremonies.',wisdom:'"The body is the garment of the spirit. Dress it with intention."'},
+  {id:'palm_kernel_oil',cat:'oils',catLabel:'Oils & Perfumes',emoji:'🌴',name:'Palm Kernel Oil (Ude Aki)',purpose:'Ancestral Connection & Deep Protection',summary:'Deeply traditional across Igbo and Yoruba practice. Used for ancestral libations, body anointing, and in serious spiritual work. Different from palm oil — this is the denser kernel oil.',uses:['Apply to masquerade costumes and sacred objects','Use in ancestral shrine offerings','Rub on joints for physical and spiritual healing','Anoint the soles of feet before major rites of passage'],howTo:'Hold the oil over your ancestral shrine or a candle. Pray to your lineage, call their names, and anoint yourself from crown to feet. This is best done with an elder present or under ancestral guidance.',timing:'During ancestral festivals, new moon, or when ancestors are being called upon.',wisdom:'"Ude aki — the oil of the deep palm. Where the kernel goes, the ancestors follow."'},
+
+  // POWDERS
+  {id:'efun',cat:'powders',catLabel:'Powders',emoji:'⬜',name:'Efun (White Chalk / Orí)',purpose:'Spiritual Marking, Purification & Protection',summary:'Sacred white chalk used in Yoruba tradition for spiritual marking of the body, objects, and spaces. Applied in specific patterns to invoke Obatala\'s purity and protection.',uses:['Mark the forehead before prayer or ceremony','Draw lines on doorways for protection','Apply to newborns during naming ceremonies','Use in Obatala rituals for purity and clarity'],howTo:'Hold the efun in your right hand. Speak your prayer or intention. Draw a line from forehead center downward, then mark both wrists. For space protection, draw a horizontal line across doorways and windowsills.',timing:'Sundays (Obatala\'s day), dawn, or at major life thresholds (birth, marriage, death, new beginnings).',wisdom:'"White is not the absence of colour — it is the presence of all colours. Efun holds every prayer."'},
+  {id:'iyerosun',cat:'powders',catLabel:'Powders',emoji:'🟤',name:'Iyerosun (Divination Powder)',purpose:'Ifa Divination & Sacred Marking',summary:'The sacred powder of the Ifa divination system, derived from the dust of the Irosun tree. Used by Babalawos to mark Odu patterns on the Opon Ifa (divination board). Extremely sacred.',uses:['Used by Babalawos in Ifa consultation','Marks Odu symbols on divination board','Can be used in ancestral marking rituals','Not for casual use — approach with reverence'],howTo:'This powder is best handled by an initiated Babalawo. For the non-initiated: acquire a small amount from a trusted source, keep it sealed in white cloth. On Orunmila\'s day (Thursday), hold it in prayer and ask for wisdom and clear sight.',timing:'Thursdays. During any period of confusion or when major decisions must be made.',warning:'Iyerosun is sacred to Ifa. Use with absolute reverence. Do not use frivolously or without prayer.',wisdom:'"Before Orunmila speaks, he marks the path. Iyerosun is the ink of destiny."'},
+  {id:'osun_powder',cat:'powders',catLabel:'Powders',emoji:'🔴',name:'Osun / Camwood Powder (Oṣun)',purpose:'Blessing, Beauty & Feminine Power',summary:'Red camwood powder — deeply connected to Oshun, feminine power, beauty, fertility, and blessings. Used to mark the body and in ceremonial beauty preparation across Yoruba and Igbo traditions.',uses:['Mix with shea butter for sacred body paint','Apply to pregnant women for blessing and protection','Use in Oshun/love rituals','Mark the face and chest in beauty ceremonies'],howTo:'Mix osun powder with shea butter or palm oil until it forms a smooth red paste. Apply to the face, chest, and limbs while singing or speaking praise. This is deeply ceremonial — approach with joy and gratitude.',timing:'Fridays, during a full moon, or at Oshun festivals.',wisdom:'"She who carries osun on her skin carries Oshun in her spirit. Beauty is not vanity — it is an offering."'},
+  {id:'floor_powder',cat:'powders',catLabel:'Powders',emoji:'✨',name:'Spiritual Floor Powders',purpose:'Attract or Repel Energies at Entrances',summary:'Specific powdered blends sprinkled at doorways, thresholds, and pathways to attract prosperity, love, or clients — or to repel enemies, evil, and negativity.',uses:['Sprinkle attraction powder at business entrance','Use crossing powder to repel unwanted visitors','Apply peace powder throughout the home','Use in combination with prayer and intention'],howTo:'For attraction: blend cinnamon, cloves, and efun. Sprinkle across doorway from outside in. For repelling: blend black pepper, salt, and camphor. Sprinkle from inside out. Always pray as you sprinkle.',timing:'During a new moon for attraction work. During a waning moon for removal and repelling.',wisdom:'"The threshold is the conversation between your world and the world outside. Guard it wisely."'},
+
+  // CANDLES
+  {id:'green_candle',cat:'candles',catLabel:'Candles',emoji:'🕯️',name:'Green Candle Ritual (Money)',purpose:'Financial Attraction & Prosperity',summary:'Green candles carry the vibration of growth, money, and abundance. When dressed with specific herbs and oils and paired with prayer, they become powerful spiritual petitions.',uses:['Burn on Thursdays for money drawing','Dress with Owo Oil and cinnamon for business growth','Pair with a written petition beneath the candle','Burn alongside a honey jar for sweetening financial situations'],howTo:'Carve your name and intention into the green candle. Dress from wick downward with Owo Oil. Roll in crushed cinnamon. Place on a coin. Burn on Thursday evening while reading your financial petition aloud. Let it burn fully.',timing:'Thursdays, new moon to full moon phase (waxing).',wisdom:'"A candle does not lose its light by lighting another. Abundance is not competition — it is flow."'},
+  {id:'red_candle',cat:'candles',catLabel:'Candles',emoji:'🕯️',name:'Red Candle Ritual (Love)',purpose:'Love, Passion & Relationship Strengthening',summary:'Red candles represent passionate love, desire, and the fire of commitment. Used to draw a lover, reignite passion in existing relationships, or call romantic energy into your life.',uses:['Burn on Fridays for love attraction','Dress with Come-to-Me Oil and rose petals','Pair with written name petition','Burn two red candles — one for you, one for your person — moving them closer each night'],howTo:'Write your name and your desired person\'s name on the candle (or just "my divine partner" if calling generally). Dress with Come-to-Me Oil and dried rose petals. Burn on Friday night while meditating on love received.',timing:'Fridays, waxing moon, Valentine\'s season or your personal love anniversaries.',wisdom:'"Love is fire. Tend it carefully — it can warm a home or burn it to the ground."'},
+  {id:'white_candle',cat:'candles',catLabel:'Candles',emoji:'🕯️',name:'White Candle Ritual (Protection)',purpose:'Purification, Protection & Divine Connection',summary:'White candles are the most versatile — used for purification, protection, prayer, ancestral offerings, and connection to the divine. They represent purity and spiritual clarity.',uses:['Burn at ancestral shrines as an offering','Use during prayer for general spiritual protection','Light when the home feels spiritually heavy','Burn seven consecutive days for deep spiritual clearing'],howTo:'Hold the white candle in both hands. Breathe on it three times, sealing your prayer energy into it. Light it while speaking your prayer. Place it in a safe holder. Never blow it out — use your fingers or a snuffer.',timing:'Any day, but especially Sundays for Obatala\'s energy, or whenever spiritual clarity is needed.',wisdom:'"White light contains all colours. A white candle prayer reaches every Orisha, every ancestor, every force of good."'},
+  {id:'seven_day_candle',cat:'candles',catLabel:'Candles',emoji:'🕯️',name:'Seven-Day Dressed Candle',purpose:'Extended Petitions for Sustained Outcomes',summary:'Large jar candles designed to burn for 7 days continuously. When dressed with herbs and oils aligned to your intention, they sustain a spiritual petition for a full week — the minimum for most serious work.',uses:['Sustained money-drawing work','Seven-day love or reconciliation petitions','Spiritual protection for a home or business','Clearing deep blockages that require sustained effort'],howTo:'Choose candle color by intention. Place petition paper under the candle. Dress top of candle with appropriate oil and herbs. Light it and pray over it daily. Read your petition each morning until it burns fully.',timing:'Begin on the day aligned with your intention: Monday (moon/emotion), Thursday (expansion/money), Friday (love), Sunday (blessings/Obatala).',wisdom:'"Seven is the number of completion in the spirit world. What seven days of consistent prayer begins, the ancestors finish."'},
+
+  // INCENSE & SMOKE
+  {id:'herbal_incense',cat:'incense',catLabel:'Incense & Smoke',emoji:'💨',name:'African Herbal Incense Blends',purpose:'Purification, Elevation & Spiritual Atmosphere',summary:'Beyond frankincense alone — powerful combinations of local African plants create incense blends specific to intention. Smoke is the medium through which prayers travel most directly.',uses:['Burn before prayer or meditation','Use to clear a space after conflict or grief','Blend specific herbs for targeted intentions','Burn at doorways to cleanse incoming energies'],howTo:'Combine dried herbs on a charcoal disc or in a clay pot. Common powerful blends: Frankincense + myrrh + camphor for heavy clearing. Lavender + rose + cinnamon for love and sweetness. Sage + cloves + black pepper for protection.',timing:'Early morning before daily activity, or before any ritual or ceremony.',wisdom:'"Smoke does not ask permission to rise. Neither does prayer."'},
+  {id:'smudge_bundles',cat:'incense',catLabel:'Incense & Smoke',emoji:'🌿',name:'African Plant Smudge Bundles',purpose:'Space Clearing & Energy Removal',summary:'While sage smudging is Native American, West Africa has its own smudging tradition using local plants like African basil (efinrin), bitter leaf, and lemongrass bound together and burned.',uses:['Clear the home after a difficult period','Cleanse a new space before moving in','Clear the energy after unwanted visitors','Use in combination with prayer and open windows'],howTo:'Bind a bundle of dried African basil, bitter leaf, and lemongrass together tightly with natural twine. Light the tip until it smokes. Walk through each room clockwise, directing smoke into corners. Pray as you go.',timing:'During a full moon for deep clearing, or whenever a space feels spiritually heavy.',wisdom:'"The home is a living spiritual organism. It absorbs what happens inside it. Cleanse it as you cleanse yourself."'},
+  {id:'fumigation_ritual',cat:'incense',catLabel:'Incense & Smoke',emoji:'🏠',name:'Home & Business Fumigation',purpose:'Spiritual Clearing of Spaces',summary:'A complete fumigation ritual for homes and business spaces using specific herb blends burned in a clay pot and carried through every room with prayer.',uses:['Annual spiritual deep-cleaning of home','Clearing a business space of stagnant energy','Preparing a new space for occupation','Clearing after illness, death, or conflict in a space'],howTo:'In a clay pot, place charcoal. Add: frankincense resin, myrrh, dried neem leaves, camphor. As smoke rises, carry the pot through every room — under beds, in closets, in corners. Pray specifically in each room for what that space represents.',timing:'New Year, after major life changes, or quarterly as spiritual maintenance.',wisdom:'"A clean house is not just swept floors. The spirit of a home must also be tended."'},
+
+  // SPIRITUAL WATERS
+  {id:'florida_water',cat:'waters',catLabel:'Spiritual Waters',emoji:'💧',name:'Florida Water (Cologne)',purpose:'Universal Spiritual Cleansing & Offering',summary:'Florida Water cologne is one of the most widely used spiritual tools in Nigerian and Afro-Brazilian traditions. Despite its American name, it has been adopted across West African spiritual practice for its powerful cleansing and elevating properties.',uses:['Sprinkle on ancestral shrine as offering','Add to floor wash for home cleansing','Use to cleanse ritual tools and sacred objects','Splash on face and hands to reset spiritual energy'],howTo:'Pour a small amount into your palms and rub together. Sweep over your face, crown, and chest. For ancestral offerings: pour a small cup onto the shrine while calling your ancestors\' names. For floor wash: add to a bucket of water and mop from back of home to front door.',timing:'Any time, but especially Monday mornings for ancestral work or before any ritual.',wisdom:'"Florida Water lifts what is heavy and brightens what is dim. It is the spiritual equivalent of opening all your windows."'},
+  {id:'rose_water',cat:'waters',catLabel:'Spiritual Waters',emoji:'🌹',name:'Rose Water',purpose:'Love, Softening & Heart Opening',summary:'Rose water carries the spiritual frequency of love, tenderness, and Oshun\'s grace. Used to soften hard hearts, attract love, and prepare the spirit for receptivity.',uses:['Spray around yourself before social interactions','Add to love baths on Fridays','Use as facial mist during prayer for heart-opening','Offer in a bowl to Oshun or any love-aligned ancestor'],howTo:'Spray rose water around your aura before going out. For love rituals: pour rose water into a bowl with honey and a yellow candle. Dip your fingers in while praying for love to enter. Let the candle burn fully.',timing:'Fridays, waxing moon phases, whenever seeking to soften a situation or attract tenderness.',wisdom:'"The rose does not shout its fragrance. It simply opens, and the whole garden knows."'},
+  {id:'camphor_water',cat:'waters',catLabel:'Spiritual Waters',emoji:'❄️',name:'Camphor Water',purpose:'Protection, Clarity & Evil Repulsion',summary:'Camphor is one of the most powerful protective spiritual substances in Nigerian tradition. Mixed with water, it creates a strong protective and clarifying spiritual wash.',uses:['Wash floors and doorways for protection','Add to bath water after feeling spiritually attacked','Place a piece of camphor under the bed during sleep','Blend with black seed oil for deep protection body wash'],howTo:'Dissolve camphor balls in cool water. Mop floors from back to front door while praying for protection. For personal use: add camphor water to your bath and soak for 20 minutes while speaking protective prayers. Air dry — do not towel off.',timing:'During full moon, at the beginning of the week, or immediately after sensing spiritual attack.',wisdom:'"Camphor does not negotiate with darkness. It simply removes it."'},
+  {id:'spiritual_cologne',cat:'waters',catLabel:'Spiritual Waters',emoji:'🌺',name:'Custom Spiritual Cologne Blends',purpose:'Personalized Spiritual Fragrance & Attraction',summary:'Blending your own spiritual cologne by combining Florida Water with specific herbs, essential oils, and intentions creates a deeply personalized spiritual tool that works with your unique energy.',uses:['Create a signature spiritual scent aligned to your goals','Use as anointing water before daily activity','Gift to loved ones as a spiritually charged blessing','Sprinkle on bedsheets for protection during sleep'],howTo:'Start with Florida Water as the base. Add 7 drops of an essential oil aligned to your intention (rose for love, cedarwood for protection, bergamot for prosperity). Add a pinch of dried herb. Pray over the blend for 7 days before using.',timing:'Blend during a new moon. Begin using at full moon.',wisdom:'"Your scent is your spiritual signature. Choose it with intention."'},
+
+  // CHARMS & AMULETS
+  {id:'juju_pouch',cat:'charms',catLabel:'Charms & Amulets',emoji:'👝',name:'Juju Pouch / Mojo Bag',purpose:'Sustained Protection & Intention Carrying',summary:'A small cloth bag filled with herbs, stones, powders, and prayers — worn on the body or placed in strategic locations. One of the most ancient and widespread forms of African protective magic.',uses:['Carry in pocket or wear around neck for protection','Place under pillow for dream guidance','Keep in car for travel protection','Store in business for prosperity attraction'],howTo:'Choose a cloth color by intention (red for protection, green for money, pink for love). Fill with 3, 7, or 9 items: herbs, a stone, a written prayer, a coin, a piece of your hair. Tie it shut while praying. Feed it with a drop of oil weekly.',timing:'Prepare during a new moon. Activate at full moon.',wisdom:'"A mojo is not a charm. It is a living prayer — feed it, speak to it, and it will speak for you."'},
+  {id:'waist_beads',cat:'charms',catLabel:'Charms & Amulets',emoji:'📿',name:'Intention-Charged Waist Beads',purpose:'Feminine Power, Intention Holding & Body Awareness',summary:'Waist beads are a sacred West African tradition. When charged with specific intention during creation or ceremony, they become continuous spiritual tools worn close to the body\'s center of power.',uses:['Wear for body awareness and feminine connection','Charge specific beads for fertility, love, or protection','Use as a measure of spiritual and physical wellbeing','Gift to daughters at coming-of-age ceremonies'],howTo:'Choose bead colors by intention. As you string each bead, speak your intention into it. When complete, pray over the full strand, pass it through frankincense smoke, and anoint with a drop of shea butter. Tie it on while stating your purpose.',timing:'During a new moon, at puberty ceremonies, or at any major life transition.',wisdom:'"A woman who knows her center knows her power. The beads remind her every day."'},
+  {id:'cowrie_shells',cat:'charms',catLabel:'Charms & Amulets',emoji:'🐚',name:'Cowrie Shells',purpose:'Divination, Adornment & Spiritual Currency',summary:'Cowrie shells are the ancient currency of West Africa — spiritually and literally. Used in divination, as spiritual adornment, and as offering currency to ancestors and Orishas. Deeply connected to Oshun and Yemoja.',uses:['Use in simple yes/no divination (even numbers = yes)','Incorporate into jewelry charged with intention','Offer to Oshun or Yemoja as spiritual payment','Place on ancestral shrine as a form of honoring'],howTo:'For simple divination: hold 4 cowries in your hand, speak your yes/no question aloud, and cast them. Count how many open (mouth up) — even numbers suggest yes, odd suggest no. Always thank your ancestors after consulting.',timing:'Fridays and Saturdays for Oshun and Yemoja work. Monday for general ancestral divination.',wisdom:'"The cowrie is the mouth of the ocean. When it speaks, the ancestors are listening."'},
+  {id:'protective_rings',cat:'charms',catLabel:'Charms & Amulets',emoji:'💍',name:'Protective Rings & Bracelets',purpose:'Continuous Spiritual Protection',summary:'Specific metals and materials carry spiritual protection when worn intentionally. Iron for Ogun\'s protection, copper for Oshun\'s love, silver for moon-connected protection.',uses:['Iron ring for Ogun\'s protection (especially for men)','Copper bracelet for Oshun\'s love and healing','Silver jewelry for moon-aligned feminine protection','Brass anklets for ancestral connection and grounding'],howTo:'Before wearing for the first time, wash the jewelry in camphor water. Pray over it, stating what protection you are seeking. Anoint with a drop of black seed oil. Wear on the wrist or finger aligned to your intention (left side = receiving, right = projecting).',timing:'Consecrate on the day aligned to the metal\'s Orisha or on a new moon.',wisdom:'"What adorns the body should also protect it. Jewelry is not decoration — it is armor."'},
+
+  // FOODS & DRINKS
+  {id:'ancestor_meals',cat:'foods',catLabel:'Foods & Drinks',emoji:'🍽️',name:'Ancestral Ritual Meals',purpose:'Ancestor Feeding & Orisha Offerings',summary:'Specific foods are associated with specific ancestors and Orishas. Offering the right food is a form of prayer and relationship maintenance with the spiritual world.',uses:['Offer honey and pumpkin to Oshun','Offer palm wine and kola to ancestors','Prepare white foods (coconut, shea) for Obatala','Offer bitter things and palm oil to Ogun'],howTo:'Prepare the food with prayer. Place it in a clean dish on the ancestral shrine or at a designated offering spot. Call your ancestors or the Orisha by name. Leave it for 24–48 hours then dispose of it properly (not in trash — at a crossroads, river, or base of a tree).',timing:'Ancestor feeding: Mondays. Orisha offerings: on their specific days.',wisdom:'"When you feed your ancestors, you are not begging. You are maintaining a relationship. That is different."'},
+  {id:'spiritual_teas',cat:'foods',catLabel:'Foods & Drinks',emoji:'☕',name:'Spiritual Teas (Internal)',purpose:'Internal Healing & Spiritual Alignment',summary:'Beyond bath use — drinking specific herbal teas internally changes your internal spiritual vibration. What you consume becomes part of you. These teas are taken with intention as living prayers.',uses:['Moringa tea at dawn for spiritual clarity and physical strength','Bitter leaf tea to "bitter" the enemy\'s plans against you','Lemongrass tea for aura cleansing from within','Turmeric and ginger tea for inflammation — spiritual and physical'],howTo:'Brew your chosen herbs in clean water. Before drinking, hold the cup in both hands. Speak your intention into the tea — pray over it specifically. Drink slowly, consciously, feeling it work through your system.',timing:'Morning teas set the tone for the day. Evening teas support dream work and ancestral communication during sleep.',wisdom:'"Medicine drunk with belief heals twice as fast. Medicine drunk with prayer heals body and spirit together."'},
+  {id:'honey_jar',cat:'foods',catLabel:'Foods & Drinks',emoji:'🍯',name:'Honey Jar Spell',purpose:'Sweetening Situations, Relationships & Outcomes',summary:'One of the most widely used spiritual tools across African-diaspora traditions. A sealed jar of honey used to sweeten a specific person, situation, or outcome. Works over time with consistent prayer.',uses:['Sweeten a difficult relationship or person','Attract a romantic partner toward you','Improve a work situation with a difficult colleague','Sweeten a legal or financial decision in your favour'],howTo:'Write the name of the person or situation on paper 9 times. Write your intention across those names 9 times (creating a grid). Fold the paper toward you. Place in a jar of honey. Add herbs (cinnamon for warmth, rose petals for love, cloves for fast results). Seal the jar. Pray over it daily.',timing:'Begin on a Friday for love work, Thursday for financial situations. Pray daily until the situation resolves.',wisdom:'"As this honey is sweet, so shall [name] be sweet toward me. Ase."'},
+  {id:'egg_cleanse',cat:'foods',catLabel:'Foods & Drinks',emoji:'🥚',name:'Egg Cleansing (Limpia)',purpose:'Absorbing & Removing Negative Energy',summary:'Rolling a raw egg over the body draws out spiritual illness, evil eye, negative energy, and heavy emotional burdens. Practiced across Nigerian Christian, traditional Yoruba, and broader West African traditions.',uses:['Use when feeling spiritually heavy or drained','Perform on children who are unexplainably unwell','Use after visiting hospitals, funerals, or spiritually heavy places','Perform as a regular monthly spiritual hygiene practice'],howTo:'Hold the egg in your dominant hand. Pray over it, asking it to absorb all negativity. Roll it over your body from head to feet — covering the crown, face, chest, back, arms, and legs. Crack it into a glass of water and examine it (clouds = absorbed negativity; clear = you were clean). Dispose of egg at a crossroads or flowing water.',timing:'As needed. Monthly as spiritual maintenance. Full moon for deepest cleansing.',warning:'Do not eat the egg after use. Always dispose of it at a crossroads or in flowing water.',wisdom:'"The egg holds life. In the right hands, it also holds the power to remove what does not belong."'},
+
+  // SPIRITUAL TOOLS
+  {id:'calabash',cat:'tools',catLabel:'Spiritual Tools & Objects',emoji:'🫙',name:'Calabash (Ado / Igba)',purpose:'Sacred Vessel for Offerings & Ritual Work',summary:'The calabash is one of the most sacred objects in West African tradition. A gourd vessel used to hold offerings, ritual waters, ancestral objects, and sacred herbs. It is living — it was once a plant.',uses:['Use as a vessel for ancestral water offerings','Hold ritual herbs and tools during ceremonies','Offer to Oshun filled with honey and yellow flowers','Use as a divination vessel — float cowries in calabash water'],howTo:'Prepare a calabash by cleaning it and passing it through frankincense smoke. Pray over it, dedicating it to its spiritual purpose. Keep it in a clean, respected place. Treat it as sacred — do not use for ordinary purposes.',timing:'Calabashes used for Oshun are dedicated on Fridays. For ancestors, on Mondays.',wisdom:'"The calabash was once round like the earth. Now it holds what the earth holds — memory, water, and life."'},
+  {id:'obi_divination',cat:'tools',catLabel:'Spiritual Tools & Objects',emoji:'🌰',name:'Obi Abata (Kola Nut Divination)',purpose:'Yes/No Ancestral Answers',summary:'A four-lobed kola nut used in Yoruba and Ifá tradition to receive simple yes/no answers from ancestors and Orishas. Each lobe face-up or face-down creates one of 16 possible patterns.',uses:['Ask ancestors for guidance on decisions','Use at the start of ceremonies to receive ancestral blessing','Offer to elders as a sign of respect before speaking','Use at the beginning of any important meeting or family gathering'],howTo:'Split the kola into its four lobes. Hold them in both hands and speak your question clearly. Cast them onto a white cloth or tray. Count how many face up (white/pale side). 4 up = highest blessing. 3 up = yes with caution. 2 up = ask again. 1 up = no. 0 up = strong no.',timing:'At the opening of all ceremonies. When a clear decision must be made and the mind alone is insufficient.',wisdom:'"Obi does not lie. The challenge is in the asking. Ask clearly, and the ancestors answer clearly."'},
+  {id:'mirrors',cat:'tools',catLabel:'Spiritual Tools & Objects',emoji:'🪞',name:'Spiritual Mirrors',purpose:'Reflection, Protection & Spiritual Sight',summary:'Mirrors are used in some African and diaspora traditions as spiritual protection tools — reflecting evil back to its sender — and as portals for ancestral communication and spiritual sight.',uses:['Place a small mirror behind front door facing outward to reflect negativity','Use a black mirror for ancestral scrying','Keep a covered mirror on the ancestral shrine','Use in protection rituals against spiritual attack'],howTo:'For protection: position a small round mirror behind your front door, reflective side facing the door. For ancestral scrying: in a dark, quiet room, light a candle. Look into a black mirror and ask to see what you need to see. Be calm and patient.',timing:'For protection mirrors — install and leave permanently. For scrying — new or full moon, quiet midnight hours.',warning:'Do not gaze into mirrors during grief ceremonies — it is said the spirit of the departed can become confused.',wisdom:'"A mirror shows only what is. A spiritual mirror shows what is underneath what is."'},
+  {id:'staffs_bells_iron',cat:'tools',catLabel:'Spiritual Tools & Objects',emoji:'⚒️',name:'Staffs, Bells & Iron Objects (Ogun)',purpose:'Invoking Protection & Clearing Paths',summary:'Iron is the metal of Ogun — the Orisha of iron, roads, work, and clearing the way. Iron objects, staffs, and bells are used in his worship and invoked for protection, especially for travelers, warriors, and those doing difficult physical or spiritual work.',uses:['Keep iron at the entrance of home for Ogun\'s protection','Ring a bell before prayer to clear the spiritual air','Place iron tools on Ogun shrine as offering','Carry an iron bangle when navigating danger or conflict'],howTo:'For Ogun invocation: go outdoors, ideally near a tree or crossroads. Hold an iron object. Pour palm wine or rum on the ground. Call: "Ogun onire! Ogun ofe! Open my road, clear my enemy, protect this work." Offer palm oil and kola.',timing:'Tuesdays (Ogun\'s day) or before any difficult confrontation, travel, or physical labor.',wisdom:'"Ogun does not pray — he works. Call on him when work must be done that prayer alone cannot finish."'},
+
+  // WRITTEN & SPOKEN
+  {id:'prayer_papers',cat:'written',catLabel:'Written & Spoken',emoji:'📝',name:'Prayer Papers (Writing & Burning)',purpose:'Sealing Intentions Through Sacred Writing',summary:'Writing your intentions on paper and burning or burying them is one of the most universal forms of spiritual petition. Fire transforms matter into spirit — the smoke carries your written word to the divine.',uses:['Write financial petitions and burn on Thursday','Write forgiveness letters and burn to release grudges','Bury written intentions at crossroads or tree roots','Fold and carry written prayers in your wallet or shoe'],howTo:'Write your intention in present tense as if already true: "I am financially free and my needs are abundantly met." Sign it. Date it. Pray over it. Burn it safely in a fireproof bowl while watching the smoke rise. Feel the release.',timing:'New moon for new intentions. Full moon for release and manifestation.',wisdom:'"When you write it down, you are telling the universe you are serious. When you burn it, you are letting go of the how."'},
+  {id:'psalms',cat:'written',catLabel:'Written & Spoken',emoji:'📖',name:'Psalms in Spiritual Practice',purpose:'Biblical Spiritual Power & Petition',summary:'Specific psalms are used in Nigerian Christian spiritual practice for targeted purposes. This tradition recognizes the psalms as living spiritual tools beyond regular reading.',uses:['Psalm 23 for protection and guidance through difficulty','Psalm 91 for spiritual protection from all harm','Psalm 35 for legal matters and enemies','Psalm 51 for deep spiritual cleansing and forgiveness'],howTo:'Choose your psalm by need. Read it aloud 3, 7, or 21 times. Between repetitions, state your specific situation. Anoint your forehead and wrists with olive oil before reading. Many practitioners read psalms over a glass of water and then drink it.',timing:'Early morning before the demands of the day. Before court dates, difficult meetings, or any confrontation.',wisdom:'"The psalms were written as prayers, not theology. David was a man in crisis who knew how to cry to God. Learn from him."'},
+  {id:'sigils',cat:'written',catLabel:'Written & Spoken',emoji:'⭕',name:'Sigils (Spiritual Symbols)',purpose:'Written Spiritual Symbols Charged with Intention',summary:'A sigil is a symbol created from a condensed intention, charged with energy, and activated through ritual. Used across traditional African and esoteric practice as visual prayers.',uses:['Draw on paper and burn to send intention to the spirit world','Carve into candles before burning','Draw on doorsteps with chalk for protection','Place inside juju pouches as a focused intention anchor'],howTo:'Write your intention: "I have abundant financial flow." Remove all repeated letters. From the remaining letters, create an abstract symbol that combines them. Meditate on it, charging it with your focused attention. Activate it by burning, burying, or placing it in candlelight.',timing:'New moon for creation, full moon for activation.',wisdom:'"A sigil is a prayer compressed to its purest form — stripped of doubt, made only of intention."'},
+  {id:'spoken_affirmations',cat:'written',catLabel:'Written & Spoken',emoji:'🗣️',name:'Spoken Affirmations at Sacred Hours',purpose:'Vocal Prayer & Energetic Declaration',summary:'Specific hours of the day carry distinct spiritual energy. Speaking affirmations and declarations at 3am, dawn, dusk, and noon amplifies their power within these natural spiritual windows.',uses:['3am — the spiritual hour: speak your deepest desires','Dawn (5–6am) — new beginnings: declare the day you choose to have','Noon — the peak of power: claim what you are building','Dusk — the threshold: release what no longer serves'],howTo:'Set an intention for each sacred hour. At that time, stand (outdoors when possible), face the appropriate direction, and speak your affirmations 7 times aloud. Clap once before and after. This is not quiet prayer — it is vocal declaration.',timing:'Daily practice. Most powerful during moon transitions (new and full moon days).',wisdom:'"Your voice is the most underestimated spiritual tool you possess. The ancestors sang their prayers — they did not whisper them."'},
+
+  // SPACE & HOME
+  {id:'salt_lines',cat:'space',catLabel:'Space & Home Rituals',emoji:'🧂',name:'Salt Lines at Doorways',purpose:'Spiritual Barrier & Protection',summary:'Salt is one of the most universally recognized spiritual protectants across cultures. In West African and Nigerian tradition, salt lines at doorways and windowsills create a spiritual barrier that negative energy cannot cross.',uses:['Pour a line of sea salt across doorways and thresholds','Place in the four corners of each room','Add to floor wash water for protective mopping','Sprinkle around the perimeter of your property'],howTo:'Use coarse sea salt or rock salt — table salt is less effective for spiritual work. As you pour the line, pray: "No evil shall cross this threshold. Only blessing enters this home." Renew salt lines monthly or after any spiritual disturbance.',timing:'New moon, first day of a new month, or any time after conflict or illness in the home.',wisdom:'"Salt was used as currency because everyone knew its value. The spiritual world agrees."'},
+  {id:'herbal_sweep',cat:'space',catLabel:'Space & Home Rituals',emoji:'🧹',name:'Spiritual House Sweeping',purpose:'Clearing Stagnant & Negative Energy from Spaces',summary:'Sweeping with an intention-charged herbal broom is an ancient African home-clearing practice. The broom physically and spiritually clears accumulated negative energy, arguments, and stagnation.',uses:['Weekly spiritual sweep for general energy maintenance','Deep sweep after conflict or illness in the home','Sweep a new home before moving in','Sweep a business at closing time to clear the day\'s energy'],howTo:'Create an herbal broom by binding African basil, bitter leaf, and lemongrass to a traditional broom. Before sweeping, light incense and open a window. Sweep from the back of the home to the front door. Sweep the negativity out — do not let the sweepings back in. Dispose of outside.',timing:'Mondays for weekly clearing. Full moon for deep spiritual house cleaning.',wisdom:'"A swept house is an invitation. An unseen home is a trap. Sweep both."'},
+  {id:'buried_offerings',cat:'space',catLabel:'Space & Home Rituals',emoji:'🌱',name:'Buried Offerings at Property Corners',purpose:'Spiritual Sealing & Protection of Property',summary:'Burying specific offerings at the four corners of a property is one of the oldest forms of home protection and blessing. It seals the land spiritually and creates a continuous energetic boundary.',uses:['Seal a new home before occupying it','Renew property protection annually','Bury prosperity items to draw wealth to the land','Bury protection items after spiritual attack on a home'],howTo:'Prepare four identical packets: each containing a piece of camphor, a coin, sea salt, and a written prayer. Bury one at each corner of your property (or as close as you can get). Pray at each corner, asking for blessing and protection to fill the space between.',timing:'New moon, first day of a new year, or upon moving into any new space.',wisdom:'"The land remembers what is buried in it. Bury your prayers, and the ground itself will pray for you."'},
+  {id:'charcoal_bed',cat:'space',catLabel:'Space & Home Rituals',emoji:'🛏️',name:'Charcoal & Herbs Under the Bed',purpose:'Protection During Sleep & Dream Guidance',summary:'Sleep is when the spirit travels and the body is most vulnerable. Placing specific protective substances under the bed creates a continuous spiritual shield during unconscious hours.',uses:['Camphor under the bed to repel spiritual attack during sleep','Frankincense and myrrh to elevate dream quality and receive guidance','Activated charcoal in a cloth pouch to absorb negativity','A small calabash of protective herbs as a sleeping guardian'],howTo:'Create a small bundle: camphor, dried frankincense resin, a piece of iron, and a written protective prayer. Wrap in white cloth. Slide it under your bed, near the head end. Renew the bundle every new moon.',timing:'Install at new moon. Replace monthly or if you begin experiencing troubled sleep or nightmares.',wisdom:'"You spend a third of your life asleep. Do you have protection for a third of your life?"'},
+];
+
+const othersCats = [
+  {id:'all',label:'All Tools',emoji:'✨'},
+  {id:'oils',label:'Oils',emoji:'🫙'},
+  {id:'powders',label:'Powders',emoji:'🔬'},
+  {id:'candles',label:'Candles',emoji:'🕯️'},
+  {id:'incense',label:'Incense',emoji:'💨'},
+  {id:'waters',label:'Waters',emoji:'💧'},
+  {id:'charms',label:'Charms',emoji:'👝'},
+  {id:'foods',label:'Foods',emoji:'🍽️'},
+  {id:'tools',label:'Tools',emoji:'⚒️'},
+  {id:'written',label:'Written',emoji:'📝'},
+  {id:'space',label:'Space',emoji:'🏠'},
+];
+
+const othersCatColors = {
+  oils:'#7b3a00', powders:'#5d4037', candles:'#b8860b',
+  incense:'#4a148c', waters:'#01579b', charms:'#880e4f',
+  foods:'#1b5e20', tools:'#37474f', written:'#1a237e', space:'#2e7d32',
+};
+
+function initOthersPanel(){
+  renderOthersCatTabs();
+  renderOthersGrid(othersActiveCategory);
+}
+
+function renderOthersCatTabs(){
+  const bar = document.getElementById('othersCatBar');
+  if(!bar) return;
+  bar.innerHTML = othersCats.map(c=>`
+    <button class="others-ftab ${c.id==='all'?'active':''}" onclick="filterOthers('${c.id}',this)">
+      ${c.emoji} ${c.label}
+    </button>
+  `).join('');
+}
+
+function filterOthers(cat, btn){
+  othersActiveCategory = cat;
+  document.querySelectorAll('.others-ftab').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  renderOthersGrid(cat);
+}
+
+function renderOthersGrid(cat){
+  const grid = document.getElementById('othersGrid');
+  if(!grid) return;
+  const items = cat==='all' ? othersData : othersData.filter(i=>i.cat===cat);
+  const color = cat!=='all' ? (othersCatColors[cat]||'#2e7d4f') : '#2e7d4f';
+  grid.innerHTML = items.map(item=>`
+    <div class="others-card" onclick="openOthersModal('${item.id}')">
+      <div class="others-card-img" style="background:linear-gradient(135deg,${othersCatColors[item.cat]||'#2e7d4f'}cc,${othersCatColors[item.cat]||'#2e7d4f'})">
+        <span class="others-card-emoji">${item.emoji}</span>
+        <span class="others-cat-badge">${item.catLabel}</span>
+      </div>
+      <div class="others-card-body">
+        <div class="others-card-name">${item.name}</div>
+        <div class="others-card-purpose">${item.purpose}</div>
+        <div class="others-card-desc">${item.summary.substring(0,80)}…</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openOthersModal(id){
+  const item = othersData.find(i=>i.id===id);
+  if(!item) return;
+  othersActiveItem = item;
+  const color = othersCatColors[item.cat] || '#2e7d4f';
+  const overlay = document.getElementById('othersOverlay');
+  const content = document.getElementById('othersModalContent');
+  content.innerHTML = `
+    <div class="others-m-hero" style="background:linear-gradient(135deg,${color}dd,${color})">
+      <button class="soap-modal-close" onclick="closeOthersModal(event)" style="position:absolute;top:14px;right:14px;background:rgba(0,0,0,0.3);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:1.2em;display:flex;align-items:center;justify-content:center;cursor:pointer">✕</button>
+      <div class="others-m-emoji">${item.emoji}</div>
+      <div style="font-size:0.7em;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-bottom:6px">${item.catLabel}</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.3em;font-weight:800;color:#fff;margin-bottom:4px">${item.name}</h2>
+      <p style="font-size:0.82em;color:rgba(255,255,255,0.85)">${item.purpose}</p>
+    </div>
+    <div class="others-m-body">
+      <div class="others-m-sec">
+        <div class="others-m-sec-title">✦ About This Tool</div>
+        <p style="font-size:0.88em;color:var(--text-mid);line-height:1.75">${item.summary}</p>
+      </div>
+      <div class="others-m-sec">
+        <div class="others-m-sec-title">🌿 How to Use</div>
+        <p style="font-size:0.88em;color:var(--text-mid);line-height:1.75">${item.howTo}</p>
+      </div>
+      <div class="others-m-sec">
+        <div class="others-m-sec-title">✨ Spiritual Uses</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          ${item.uses.map(u=>`
+            <div style="display:flex;align-items:flex-start;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:8px 11px">
+              <span style="color:${color};font-size:0.9em;margin-top:1px">◆</span>
+              <span style="font-size:0.82em;color:var(--text-mid);line-height:1.55">${u}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="others-m-sec">
+        <div class="others-m-sec-title">🌙 Best Timing</div>
+        <div style="background:var(--green-light);border:1px solid #c8e6d5;border-radius:12px;padding:12px 14px;font-size:0.85em;color:var(--text-mid);line-height:1.65">${item.timing}</div>
+      </div>
+      ${item.warning ? `
+      <div class="others-m-sec">
+        <div style="background:#fff3cd;border:1px solid #ffe082;border-radius:12px;padding:12px 14px;font-size:0.82em;color:#7a5c00;line-height:1.65">⚠️ <strong>Note:</strong> ${item.warning}</div>
+      </div>` : ''}
+      <div class="others-m-sec">
+        <div style="background:linear-gradient(135deg,${color}18,${color}08);border-left:4px solid ${color};border-radius:0 12px 12px 0;padding:14px 16px;font-size:0.9em;font-style:italic;color:var(--text);line-height:1.7">${item.wisdom}</div>
+      </div>
+      <div style="height:40px"></div>
+    </div>
+  `;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOthersModal(e){
+  if(e && e.type==='click' && e.target!==document.getElementById('othersOverlay') && !e.target.classList.contains('soap-modal-close')) return;
+  document.getElementById('othersOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
 </script>
+
+<!-- ══════════════════════════════════════════════════
+     OTHERS PANEL
+══════════════════════════════════════════════════ -->
+<div id="othersPanel" style="display:none;padding-bottom:80px">
+  <div class="page-hero" style="background:linear-gradient(135deg,#1a0a0a 0%,#4a1010 50%,#8b2a2a 100%)">
+    <div class="hero-inner">
+      <div class="hero-badge">SACRED AFRICAN TOOLS</div>
+      <h2>✨ Spiritual Tools & Objects</h2>
+      <p>Beyond herbs and soaps — the full spectrum of powerful African spiritual tools, oils, powders, candles, charms, and sacred practices.</p>
+    </div>
+  </div>
+
+  <!-- CATEGORY FILTER -->
+  <div style="overflow-x:auto;padding:12px 12px 0;scrollbar-width:none">
+    <div id="othersCatBar" style="display:flex;gap:8px;width:max-content;padding-bottom:4px"></div>
+  </div>
+
+  <!-- GRID -->
+  <div id="othersGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 10px 24px"></div>
+
+  <div class="panel-footer">
+    <strong>🌿 African Herbal Spiritual Guide</strong>
+    <p>This knowledge belongs to the ancestors and is shared in reverence.<br>Consult a trained herbalist or spiritual elder before practice.</p>
+    <p style="margin-top:8px;font-size:0.75em;color:#bbb">Nigeria Focus • Africa-Wide Wisdom</p>
+    <div style="height:64px"></div>
+  </div>
+</div>
+
+<!-- OTHERS MODAL OVERLAY -->
+<div id="othersOverlay" class="overlay" onclick="closeOthersModal(event)">
+  <div class="modal" id="othersModal">
+    <div id="othersModalContent"></div>
+  </div>
+</div>
+
+<style>
+/* ── OTHERS PANEL ── */
+.others-card{background:var(--white);border-radius:var(--radius);overflow:hidden;cursor:pointer;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.others-card:active{transform:scale(0.97)}
+@media(hover:hover){.others-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,0.12)}}
+.others-card-img{position:relative;width:100%;padding-top:65%}
+.others-card-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.4em;line-height:1}
+.others-cat-badge{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.4);color:#fff;font-size:0.58em;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.04em}
+.others-card-body{padding:10px 12px 14px;flex:1;display:flex;flex-direction:column}
+.others-card-name{font-family:'Playfair Display',serif;font-size:0.88em;font-weight:800;color:var(--text);margin-bottom:3px;line-height:1.3}
+.others-card-purpose{font-size:0.68em;color:var(--green);font-weight:700;margin-bottom:4px}
+.others-card-desc{font-size:0.7em;color:var(--text-mid);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.others-ftab{flex-shrink:0;padding:7px 14px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.others-ftab.active,.others-ftab:hover{background:var(--green);border-color:var(--green);color:#fff}
+.others-m-hero{position:relative;padding:48px 24px 28px;text-align:center}
+.others-m-emoji{font-size:3em;margin-bottom:10px;display:block}
+.others-m-body{padding:20px 18px}
+.others-m-sec{margin-bottom:18px}
+.others-m-sec-title{font-size:0.72em;font-weight:800;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+@media(min-width:560px){#othersGrid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:800px){#othersGrid{grid-template-columns:repeat(4,1fr)}}
+</style>
+
 </body>
 </html>
