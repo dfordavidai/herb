@@ -189,7 +189,7 @@ header{background:var(--white);padding:12px 14px 0;position:sticky;top:0;z-index
 .reveal.visible{opacity:1;transform:none}
 
 /* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);display:flex;z-index:99;padding-bottom:env(safe-area-inset-bottom)}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);display:flex;z-index:600;padding-bottom:env(safe-area-inset-bottom)}
 .bnav-btn{flex:1;padding:10px 4px 8px;border:none;background:none;font-family:'Nunito',sans-serif;font-size:0.62em;font-weight:700;color:var(--text-soft);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color .2s;touch-action:manipulation}
 .bnav-btn .bnav-icon{font-size:1.5em;line-height:1}
 .bnav-btn.active{color:var(--green)}
@@ -1250,8 +1250,6 @@ header {
 .rp-affirmation{background:linear-gradient(135deg,#1b5e35,#2e7d4f);border-radius:12px;padding:16px;color:#fff;text-align:center;font-style:italic;font-size:0.9em;line-height:1.6}
 </style>
 
-
-
 <!-- MODAL OVERLAY -->
 <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
   <div class="modal" id="modal">
@@ -1820,23 +1818,7 @@ header {
 .free-card-wisdom{background:var(--green-light);border-left:3px solid var(--green);padding:10px 12px;border-radius:0 10px 10px 0;font-size:0.82em;font-style:italic;color:var(--text-mid);margin-top:10px;line-height:1.6}
 .free-badge-tag{display:inline-block;background:var(--bg);border:1px solid var(--border);color:var(--text-soft);font-size:0.68em;font-weight:700;padding:2px 8px;border-radius:20px;margin-right:4px;margin-bottom:4px}
 </style>
-<div class="bottom-nav">
-  <button class="bnav-btn active" id="bnav-home" onclick="switchTab('home')"><span class="bnav-icon">🌿</span>Herbs</button>
-  <button class="bnav-btn" id="bnav-rituals" onclick="switchTab('rituals')"><span class="bnav-icon">📿</span>Rituals</button>
-  <button class="bnav-btn" id="bnav-diagnose" onclick="switchTab('diagnose')"><span class="bnav-icon">🔮</span>Diagnose</button>
-  <button class="bnav-btn" id="bnav-ask" onclick="switchTab('ask')"><span class="bnav-icon">🤖</span>Ask AI</button>
-  <button class="bnav-btn" id="bnav-more" onclick="toggleMoreDrawer()"><span class="bnav-icon">☰</span>More</button>
-</div>
 
-<!-- MORE DRAWER -->
-<div id="moreDrawer" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(0,0,0,0.5)" onclick="closeMoreDrawer(event)">
-  <div id="moreSheet" style="background:var(--white);border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));max-height:80vh;overflow-y:auto">
-    <div style="width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 16px"></div>
-    <div style="font-family:'Playfair Display',serif;font-size:1em;font-weight:800;margin-bottom:14px;color:var(--text)">All Features</div>
-    <div id="moreGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
-    <div style="height:8px"></div>
-  </div>
-</div>
 
 <script>
 // ─── FALLBACK IMAGES (Unsplash) ───────────────────────────────────────────────
@@ -2556,7 +2538,7 @@ const herbs = [
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let currentFilter='all';
-let favorites = JSON.parse(localStorage.getItem('herbFaves') || '[]');
+let favorites = (() => { try { return JSON.parse(localStorage.getItem('herbFaves') || '[]'); } catch(e) { return []; } })();
 let currentTab = 'home';
 
 // ─── CARD BUILDER ─────────────────────────────────────────────────────────────
@@ -2621,7 +2603,7 @@ function toggleFav(id, btn){
     favorites.push(id);
     btn.textContent='❤️'; btn.classList.add('active');
   }
-  localStorage.setItem('herbFaves', JSON.stringify(favorites));
+  try { localStorage.setItem('herbFaves', JSON.stringify(favorites)); } catch(e) {}
   if(currentTab==='fav') buildFavGrid();
 }
 
@@ -2680,7 +2662,7 @@ function toggleHelp(){
 // ─── TAB SWITCHING ────────────────────────────────────────────────────────────
 function switchTab(tab){
   currentTab = tab;
-  const panels = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom','soaps','bath','language','others','moon','blend','journal','ask','glossary','herbalists','traditions','free'];
+  const panels = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom','soaps','bath','language','others','moon','blend','journal','ask','glossary','herbalists','traditions','free','children','pregnancy','career','prayer','youngmen'];
   panels.forEach(p=>{
     const el = document.getElementById(p+'Panel');
     if(el) el.style.display = (tab===p) ? 'block' : 'none';
@@ -2713,6 +2695,7 @@ function switchTab(tab){
   if(tab==='herbalists') initHerbalistsPanel();
   if(tab==='traditions') initTraditionsPanel();
   if(tab==='free') initFreePanel();
+  if(tab==='youngmen') initYoungMenPanel();
 }
 // ─── iNaturalist live image fetcher ───────────────────────────────────────────
 const inatImgCache = {};
@@ -2910,7 +2893,7 @@ function toggleModalFav(id){
     favorites.push(id);
     btn.textContent='❤️ Saved';
   }
-  localStorage.setItem('herbFaves', JSON.stringify(favorites));
+  try { localStorage.setItem('herbFaves', JSON.stringify(favorites)); } catch(e) {}
   // Update grid card if visible
   const favBtns = document.querySelectorAll('.card-fav');
   // rebuild might be needed
@@ -8867,7 +8850,7 @@ function openHerbOfDay() {
 //  DARK MODE TOGGLE
 // ══════════════════════════════════════════════════
 function initDarkMode() {
-  const saved = localStorage.getItem('darkMode');
+  const saved = (() => { try { return localStorage.getItem('darkMode'); } catch(e) { return null; } })();
   if(saved === 'true') enableDarkMode();
 }
 
@@ -8895,8 +8878,8 @@ function disableDarkMode() {
 
 function toggleDarkMode() {
   const isDark = document.documentElement.style.getPropertyValue('--bg') === '#0e0e0e';
-  if(isDark) { disableDarkMode(); localStorage.setItem('darkMode','false'); document.getElementById('darkModeBtn').textContent = '🌙'; }
-  else { enableDarkMode(); localStorage.setItem('darkMode','true'); document.getElementById('darkModeBtn').textContent = '☀️'; }
+  if(isDark) { disableDarkMode(); try{localStorage.setItem('darkMode','false');}catch(e){} document.getElementById('darkModeBtn').textContent = '🌙'; }
+  else { enableDarkMode(); try{localStorage.setItem('darkMode','true');}catch(e){} document.getElementById('darkModeBtn').textContent = '☀️'; }
 }
 
 // ══════════════════════════════════════════════════
@@ -8916,18 +8899,7 @@ function toggleDarkMode() {
   }
 })();
 
-// Inject herb of day card above the grid on home panel
-(function() {
-  const grid = document.getElementById('grid');
-  if(grid && grid.parentNode) {
-    const div = document.createElement('div');
-    div.id = 'herbOfDayCard';
-    div.style.cssText = 'display:none;background:linear-gradient(135deg,#1b5e35,#2e7d4f);margin:0 10px 4px;border-radius:var(--radius);padding:16px;color:#fff;cursor:pointer';
-    div.setAttribute('onclick','openHerbOfDay()');
-    div.innerHTML = `<div style="font-size:0.7em;font-weight:700;letter-spacing:.08em;opacity:.75;margin-bottom:6px">🌿 TODAY'S SACRED HERB</div><div id="herbOfDayName" style="font-family:'Playfair Display',serif;font-size:1.2em;font-weight:800;margin-bottom:4px"></div><div id="herbOfDayPurpose" style="font-size:0.82em;opacity:.85;margin-bottom:8px"></div><div id="herbOfDayTip" style="font-size:0.78em;background:rgba(255,255,255,.15);border-radius:8px;padding:8px 11px;line-height:1.6;opacity:.9"></div>`;
-    grid.parentNode.insertBefore(div, grid);
-  }
-})();
+// herbOfDayCard already exists as static HTML — no injection needed
 
 initDarkMode();
 initHerbOfDay();
@@ -8994,7 +8966,6 @@ function renderTracker(startDate, totalDays){
 }
 
 // Auto-restore tracker on calendar open
-const _origInitCalendar2 = typeof _origInitCalendar !== 'undefined' ? _origInitCalendar : initCalendar;
 (function(){
   const savedStart = (() => { try { return localStorage.getItem('tracker_start'); } catch(e){ return null; }})();
   const savedDays = (() => { try { return parseInt(localStorage.getItem('tracker_days')||'21'); } catch(e){ return 21; }})();
@@ -9032,6 +9003,7 @@ const allTabs = [
   {id:'language',  icon:'🗣️', label:'Language'},
   {id:'fav',       icon:'❤️', label:'Favourites'},
   {id:'ritual',    icon:'🕯️', label:'Quick Ritual'},
+  {id:'youngmen',  icon:'⚡', label:"Young Men's Power"},
 ];
 
 
@@ -9048,46 +9020,66 @@ function initMoreDrawer(){
     </div>`).join('');
 }
 
+let _drawerOpenTime = 0;
+
 function toggleMoreDrawer(){
   const drawer = document.getElementById('moreDrawer');
-  if(drawer.style.display === 'none' || !drawer.style.display){
+  const isOpen = drawer.style.display === 'block';
+  if(isOpen){
+    closeMoreDrawer();
+  } else {
     initMoreDrawer();
+    _drawerOpenTime = Date.now();
     drawer.style.display = 'block';
     document.body.style.overflow = 'hidden';
+    // Two rAFs ensure the element is painted at translateY(100%) before we animate to 0
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        document.getElementById('moreSheet').style.transform = 'translateY(0)';
+      });
+    });
     // Mark current active tab in drawer
-    const cur = document.querySelector('.bnav-btn.active')?.id?.replace('bnav-','');
-    document.querySelectorAll('.more-item').forEach(el => {
-      el.classList.toggle('active', el.id === 'mdrawer-'+cur);
+    const cur = (document.querySelector('.bnav-btn.active')||{}).id;
+    const curTab = cur ? cur.replace('bnav-','') : '';
+    document.querySelectorAll('.more-item').forEach(function(el){
+      el.classList.toggle('active', el.id === 'mdrawer-'+curTab);
     });
-    // Animate in
-    requestAnimationFrame(() => {
-      document.getElementById('moreSheet').style.transform = 'translateY(0)';
-    });
-  } else {
-    closeMoreDrawer();
   }
 }
 
 function closeMoreDrawer(e){
-  if(e && e.target !== document.getElementById('moreDrawer')) return;
-  document.getElementById('moreDrawer').style.display = 'none';
-  document.body.style.overflow = '';
-  // Reset More button active state if not on a "more" tab
-  const cur = document.querySelector('.bnav-btn.active')?.id?.replace('bnav-','');
-  if(!primaryTabs.has(cur)){
-    document.getElementById('bnav-more')?.classList.add('active');
+  // Ignore close attempts within 300ms of opening (prevents open-then-immediately-close on touch)
+  if(Date.now() - _drawerOpenTime < 300) return;
+  const sheet = document.getElementById('moreSheet');
+  sheet.style.transform = 'translateY(100%)';
+  setTimeout(function(){
+    document.getElementById('moreDrawer').style.display = 'none';
+    document.body.style.overflow = '';
+  }, 280);
+  // Keep More button highlighted if on a non-primary tab
+  const cur = (document.querySelector('.bnav-btn.active')||{}).id;
+  const curTab = cur ? cur.replace('bnav-','') : '';
+  if(!primaryTabs.has(curTab)){
+    const moreBtn = document.getElementById('bnav-more');
+    if(moreBtn) moreBtn.classList.add('active');
   }
 }
 
 function switchTabFromDrawer(tab){
-  document.getElementById('moreDrawer').style.display = 'none';
-  document.body.style.overflow = '';
-  switchTab(tab);
-  // Highlight More button when on a non-primary tab
-  if(!primaryTabs.has(tab)){
-    document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
-    document.getElementById('bnav-more')?.classList.add('active');
-  }
+  const sheet = document.getElementById('moreSheet');
+  const drawer = document.getElementById('moreDrawer');
+  _drawerOpenTime = 0; // allow immediate close
+  sheet.style.transform = 'translateY(100%)';
+  setTimeout(function(){
+    drawer.style.display = 'none';
+    document.body.style.overflow = '';
+    switchTab(tab);
+    if(!primaryTabs.has(tab)){
+      document.querySelectorAll('.bnav-btn').forEach(function(b){ b.classList.remove('active'); });
+      const moreBtn = document.getElementById('bnav-more');
+      if(moreBtn) moreBtn.classList.add('active');
+    }
+  }, 200);
 }
 
 // Patch switchTab to update More button highlight
@@ -9096,18 +9088,14 @@ switchTab = function(tab){
   _origSwitchTabMobile(tab);
   // Update More button
   if(!primaryTabs.has(tab)){
-    document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.bnav-btn').forEach(function(b){ b.classList.remove('active'); });
     const moreBtn = document.getElementById('bnav-more');
     if(moreBtn) moreBtn.classList.add('active');
   }
-  // Ensure hidden IDs have virtual bnav entries for the active state system
-  const virtualBtn = document.getElementById('bnav-'+tab);
-  if(!virtualBtn){
-    // Update drawer item highlight
-    document.querySelectorAll('.more-item').forEach(el=>{
-      el.classList.toggle('active', el.id==='mdrawer-'+tab);
-    });
-  }
+  // Update drawer item highlight
+  document.querySelectorAll('.more-item').forEach(function(el){
+    el.classList.toggle('active', el.id === 'mdrawer-'+tab);
+  });
 }
 
 // ══════════════════════════════════════════════════
@@ -9477,14 +9465,7 @@ switchTab = function(tab){
   if(tab==='traditions') initTraditionsPanel();
 }
 // Patch the panels array to include traditions
-(function(){
-  const origSwitch = window.switchTab;
-  const panelEl = document.createElement('div');
-  panelEl.id = 'traditionsPanel';
-  panelEl.style.display = 'none';
-  panelEl.style.paddingBottom = '80px';
-  document.body.insertBefore(panelEl, document.querySelector('.bottom-nav'));
-})();
+// traditionsPanel already exists as static HTML below — no injection needed
 
 </script>
 
@@ -9811,9 +9792,6 @@ const daysGuide = [
 ];
 
 function initTraditionsPanel() {
-  // Update switchTab panel list if needed
-  const panel = document.getElementById('traditionsPanel');
-  if(panel) panel.style.display = 'block';
   renderTrad('yoruba');
 }
 
@@ -10702,14 +10680,7 @@ switchTab = function(tab){
   if(tab==='prayer') initPrayerPanel();
 }
 
-// Add new panels to the panel list — patch the existing switchTab
-const _origPanelList = ['home','fav','ritual','diagnose','builder','rituals','protect','calendar','market','wisdom','soaps','bath','language','others','moon','blend','journal','ask','glossary','herbalists','traditions','free'];
-['children','pregnancy','career','prayer'].forEach(p => {
-  if(!_origPanelList.includes(p)) _origPanelList.push(p);
-  // Also ensure the panel div gets hidden when switching
-  const el = document.getElementById(p+'Panel');
-  if(el && !el.id) el.id = p+'Panel';
-});
+// children/pregnancy/career/prayer panels are already included in switchTab's panels array above
 
 // Inject new tabs into More drawer
 const _origAllTabs = allTabs;
@@ -11228,6 +11199,415 @@ if(typeof protectionData !== 'undefined'){
       }
     ]
   });
+}
+</script>
+
+
+<div class="bottom-nav">
+  <button class="bnav-btn active" id="bnav-home" onclick="switchTab('home')"><span class="bnav-icon">🌿</span>Herbs</button>
+  <button class="bnav-btn" id="bnav-rituals" onclick="switchTab('rituals')"><span class="bnav-icon">📿</span>Rituals</button>
+  <button class="bnav-btn" id="bnav-diagnose" onclick="switchTab('diagnose')"><span class="bnav-icon">🔮</span>Diagnose</button>
+  <button class="bnav-btn" id="bnav-ask" onclick="switchTab('ask')"><span class="bnav-icon">🤖</span>Ask AI</button>
+  <button class="bnav-btn" id="bnav-more" onclick="toggleMoreDrawer()"><span class="bnav-icon">☰</span>More</button>
+</div>
+
+<!-- MORE DRAWER - placed after all panels so nothing overlaps it -->
+<div id="moreDrawer" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.55)" onclick="closeMoreDrawer(event)">
+  <div id="moreSheet" style="position:absolute;bottom:0;left:0;right:0;background:var(--white);border-radius:24px 24px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));max-height:82vh;overflow-y:auto;transform:translateY(100%);transition:transform 0.28s cubic-bezier(0.25,0.8,0.25,1)" onclick="event.stopPropagation()">
+    <div style="width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 16px"></div>
+    <div style="font-family:'Playfair Display',serif;font-size:1em;font-weight:800;margin-bottom:14px;color:var(--text)">All Features</div>
+    <div id="moreGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
+    <div style="height:8px"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     YOUNG MEN'S POWER PANEL
+══════════════════════════════════════════════════ -->
+<div id="youngmenPanel" style="display:none;padding-bottom:80px">
+
+  <!-- HERO -->
+  <div class="page-hero" style="background:linear-gradient(135deg,#0a0a00 0%,#1a1400 40%,#3a2800 70%,#6b4400 100%);padding:32px 18px 28px;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,200,0,0.06)' stroke-width='1'%3E%3Cpath d='M20 2 L38 11 L38 29 L20 38 L2 29 L2 11Z'/%3E%3C/g%3E%3C/svg%3E\") repeat;pointer-events:none"></div>
+    <div style="position:relative">
+      <div class="hero-badge" style="background:rgba(201,150,10,0.2);border-color:rgba(201,150,10,0.4);color:#f0c040">⚡ ANCESTRAL MEN'S WISDOM</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4em,5vw,2em);font-weight:800;color:#fff;margin:10px 0 8px;line-height:1.2">Young Men's Power:<br><em style="color:#f0c040;font-style:italic">Favour, Wealth & Influence</em></h2>
+      <p style="color:rgba(255,255,255,0.82);font-size:0.88em;line-height:1.7;max-width:480px;margin:0 auto">The herbs, rituals, and ancestral practices that open doors, attract helpers, build wealth, and make a young man impossible to ignore.</p>
+      <div style="display:flex;justify-content:center;gap:24px;margin-top:18px;flex-wrap:wrap">
+        <div style="text-align:center"><strong style="display:block;font-size:1.3em;color:#f0c040;font-weight:800">7</strong><span style="font-size:0.68em;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.03em">Core Protocols</span></div>
+        <div style="text-align:center"><strong style="display:block;font-size:1.3em;color:#f0c040;font-weight:800">40+</strong><span style="font-size:0.68em;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.03em">Specific Practices</span></div>
+        <div style="text-align:center"><strong style="display:block;font-size:1.3em;color:#f0c040;font-weight:800">3</strong><span style="font-size:0.68em;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.03em">Traditions</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY FILTER TABS -->
+  <div style="display:flex;gap:8px;overflow-x:auto;padding:14px 12px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch">
+    <button class="ym-tab active" onclick="filterYoungMen('all',this)" style="flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">⚡ All</button>
+    <button class="ym-tab" onclick="filterYoungMen('favour',this)" style="flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">🤲 Favour & Helpers</button>
+    <button class="ym-tab" onclick="filterYoungMen('wealth',this)" style="flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">💰 Wealth & Money</button>
+    <button class="ym-tab" onclick="filterYoungMen('influence',this)" style="flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">👑 Influence & Respect</button>
+    <button class="ym-tab" onclick="filterYoungMen('protection',this)" style="flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">🛡️ Protection</button>
+    <button class="ym-tab" onclick="filterYoungMen('mindset',this)" style="flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">🧠 Mind & Energy</button>
+    <button class="ym-tab" onclick="filterYoungMen('ogun',this)" style="flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Nunito',sans-serif;font-size:0.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">⚙️ Ogun Rituals</button>
+  </div>
+
+  <!-- CARDS CONTAINER -->
+  <div id="youngmenCards" style="padding:12px 12px 24px"></div>
+
+  <!-- PANEL FOOTER -->
+  <div class="panel-footer">
+    <strong>⚡ The Ancestors Built Empires</strong>
+    <p>Every elder who became great used these same principles — spiritual alignment, daily discipline, and the right herbs at the right time. The door is open. Walk through it.</p>
+    <div style="height:64px"></div>
+  </div>
+</div>
+
+<style>
+.ym-tab.active{background:linear-gradient(135deg,#3a2800,#6b4400)!important;border-color:#6b4400!important;color:#f0c040!important}
+.ym-card{background:var(--white);border-radius:18px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow)}
+.ym-card-hero{padding:20px 16px 16px;color:#fff;position:relative}
+.ym-card-hero h3{font-family:'Playfair Display',serif;font-size:1.1em;font-weight:800;margin-bottom:4px;line-height:1.3}
+.ym-card-hero p{font-size:0.82em;opacity:.85;line-height:1.55}
+.ym-card-badge{display:inline-block;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:0.65em;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase}
+.ym-card-body{padding:14px 16px 18px}
+.ym-section-title{font-size:0.7em;font-weight:800;color:var(--text-soft);text-transform:uppercase;letter-spacing:.07em;margin:14px 0 8px;display:flex;align-items:center;gap:6px}
+.ym-herb-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.ym-herb-tag{background:var(--green-light);border:1px solid #c8e6d5;color:var(--green);font-size:0.72em;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;transition:all .15s}
+.ym-herb-tag:active{background:var(--green);color:#fff}
+.ym-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.ym-step-num{width:26px;height:26px;min-width:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72em;font-weight:800;color:#fff;flex-shrink:0}
+.ym-step-text{font-size:0.84em;color:var(--text-mid);line-height:1.6;padding-top:3px;flex:1}
+.ym-affirmation{border-left:3px solid;border-radius:0 12px 12px 0;padding:12px 14px;font-family:'Playfair Display',serif;font-style:italic;font-size:0.93em;line-height:1.75;margin-top:4px}
+.ym-warning{background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:11px 13px;font-size:0.81em;color:#795548;line-height:1.55;margin-top:10px}
+.ym-truth{background:linear-gradient(135deg,#0a0a00,#1a1400);border-radius:12px;padding:14px 16px;color:#f0c040;font-family:'Playfair Display',serif;font-style:italic;font-size:0.92em;line-height:1.75;margin-top:12px}
+.ym-collapse-btn{width:100%;text-align:left;background:none;border:none;border-top:1px solid var(--border);padding:10px 16px;font-family:'Nunito',sans-serif;font-size:0.8em;font-weight:700;color:var(--text-soft);cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.ym-collapse-content{display:none;padding:0 16px 14px}
+.ym-collapse-content.open{display:block}
+</style>
+
+<script>
+// ══════════════════════════════════════════════════
+//  YOUNG MEN'S POWER DATA
+// ══════════════════════════════════════════════════
+const youngMenData = [
+
+  // ── FAVOUR & HELPERS ─────────────────────────────────────────────────
+  {
+    id:'ym1', cat:'favour',
+    gradient:'linear-gradient(135deg,#1a0a3a,#2a1060,#4a2080)',
+    emoji:'🤲', badge:'Favour Attraction',
+    title:'The Favour Protocol — Making People Want to Help You',
+    subtitle:'Why some men walk into a room and leave with opportunities, while others leave with nothing. The difference is spiritual alignment — and these are the herbs that align you.',
+    herbs:['Efirin (African Basil)','Cinnamon','Cloves','Honey','Frankincense oil'],
+    steps:[
+      {title:'The Morning Hand Activation', body:'Every morning before leaving home: rub your hands together vigorously for 30 seconds. Then pour 2 drops of diluted frankincense oil onto your palms. Rub them together again and sweep them over your head and face. Say: "Every hand I shake today leaves wanting to help me. Every door I knock on opens."'},
+      {title:'The Efirin & Cinnamon Thursday Bath', body:'Every Thursday (Jupiter day — expansion and favour): boil efirin leaves with a cinnamon stick in 2 litres of water. Cool to comfortable temperature. Pour over your body from crown to feet. Do not rinse off. Thursday baths done consistently for 4 weeks build a sustained favour field around you.'},
+      {title:'The Honey Tongue Practice', body:'Before any important meeting, interview, or conversation with someone who can help you: place a small drop of raw honey on your tongue. Say nothing for 30 seconds — let it dissolve. Then go in. Your words will carry sweetness that people respond to without knowing why. Oshun governs honey and she governs favour.'},
+      {title:'The Clove Pocket Charm', body:'Every day, carry 3 whole cloves in your right trouser pocket. Replace them every week. Cloves (Kanafuru) are one of the most powerful favour-attracting herbs in Ifa tradition. They are nails — they nail blessings and opportunities to you so they cannot escape.'},
+      {title:'The Friday Ancestor Request', body:'Every Friday evening: light any candle. Speak to your paternal grandfather (or any male ancestor you know) directly: "I am working hard. Open the doors. Send me helpers. Make the right people notice me and want to assist." Then sit in silence for 5 minutes and listen with your feelings.'}
+    ],
+    affirmation:'"I do not chase favour. I attract it. I am the kind of man that people want to invest in, help, and promote. Favour follows me like my shadow."',
+    affirmationColor:'#2a1060',
+    truth:'"Favour is not luck. It is the spiritual resonance between what you carry internally and what the universe recognizes as worthy of support. Build the internal first."',
+    warning:'Favour work requires that you are genuinely putting in effort. The herbs amplify capability and visibility — they cannot create what is not there. Show up, work, and let the herbs open doors to your work.',
+    expandTitle:'⭐ The 7 Men Who Attract Helpers — Traditional Archetypes',
+    expandContent:`<p style="font-size:0.84em;color:var(--text-mid);line-height:1.7;margin-bottom:10px">In Yoruba tradition, certain character types consistently attract helpers and favour. Understanding which archetype you are — and which you need to develop — determines which herbs work for you:</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${[
+          {icon:'🌿', type:'The Grateful One', desc:'Men who express genuine gratitude consistently attract more help. In African tradition, gratitude activates Àṣẹ — divine power that draws more of what you are thankful for. Herb: Efirin and honey daily.'},
+          {icon:'⚙️', type:'The Man Who Works', desc:'Ogun only protects those who work. Men who are visibly industrious attract helpers because people want to back someone already moving. Herb: Ginger — the herb of heat and motion.'},
+          {icon:'👑', type:'The Respectful One', desc:'In Yoruba culture, how a young man greets elders determines what doors those elders open or close. True respect (not performance) is Obatala\'s domain. Herb: Efun (white chalk) and shea butter for head anointing.'},
+          {icon:'🔮', type:'The Spiritually Clean One', desc:'Men with clean auras — free of bitterness, envy, and unresolved curses — are magnetically attractive to helpers. People feel the cleanliness without knowing it. Herb: Neem and frankincense weekly.'},
+          {icon:'💬', type:'The Purposeful Speaker', desc:'Men who know what they want and can say it clearly attract more help than those who are vague. Clarity is a spiritual quality. Herb: Scent leaf — the herb of mental sharpness and clear speech.'},
+          {icon:'🌱', type:'The Patient One', desc:'Ifa consistently warns that impatience chases away the favour already on its way. The man who holds his position while working consistently is the one favour eventually reaches. Herb: Baobab — the tree that outlives everything.'},
+          {icon:'🤝', type:'The Generous One', desc:'This is the paradox: the man who gives first receives most. Even small acts of generosity — paying attention, offering time, sharing knowledge — create invisible debt that returns as favour. Herb: Cinnamon — sweetness that spreads to others.'}
+        ].map(a => `<div style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:1.3em;flex-shrink:0">${a.icon}</span><div><div style="font-weight:800;font-size:0.85em;color:var(--text);margin-bottom:2px">${a.type}</div><div style="font-size:0.78em;color:var(--text-mid);line-height:1.55">${a.desc}</div></div></div>`).join('')}
+      </div>`
+  },
+
+  {
+    id:'ym2', cat:'favour',
+    gradient:'linear-gradient(135deg,#0a1a0a,#1a3d1a,#2e7d4f)',
+    emoji:'🧿', badge:'Evil Eye Defence',
+    title:'Protecting Your Blessings From Envy',
+    subtitle:'A young man becoming successful is a target. Jealousy is real — it is scientifically documented as a force that disrupts progress. These are the defences.',
+    herbs:['Garlic','Camphor','Efirin','Sea salt','Frankincense'],
+    steps:[
+      {title:'The Daily Shield (60 seconds)', body:'Before leaving home each morning: pour 2 drops of garlic-infused oil on your palms. Rub together. Sweep over your head, chest, and the back of your neck. This is your invisible shield. Nobody who envies you can see it — but it works regardless.'},
+      {title:'Never Announce Before It Is Done', body:'This is the most powerful protection practice and it costs nothing. Do not tell people about jobs, opportunities, plans, or blessings BEFORE they are secured. The moment you speak an unsecured blessing, the envy of others — conscious or unconscious — can disrupt it. Announce only after. Speak only when it is in your hand.'},
+      {title:'The Salt Lines at Home', body:'Every Saturday morning: pour a thin line of sea salt across your bedroom doorway and across the front entrance of your home. This is your weekly boundary renewal. Any negative energy — intentionally sent or unconsciously carried — cannot cross those lines. Replace weekly.'},
+      {title:'The Camphor Barrier', body:'Keep a small piece of camphor wrapped in white cloth under your mattress. Replace monthly. Camphor repels spiritual interference during sleep — the most vulnerable hours when your defences are down and your subconscious is open.'},
+      {title:'Frankincense Sunday Seal', body:'Every Sunday morning: burn frankincense resin in your room for 20 minutes. Let the smoke reach every corner. Say: "Everything that followed me home this week that is not mine — leave now. My space is sealed. My blessings are mine."'}
+    ],
+    affirmation:'"My blessings are protected. No eye that watches me with bad intention has power over what God and my ancestors have ordained for me."',
+    affirmationColor:'#1a3d1a',
+    truth:'"Envy is not your enemy\'s power — it is your own unprotected openness. Seal yourself and envy becomes noise with no signal to attach to."',
+    warning:'Do not use these practices with a spirit of fear. Fear amplifies spiritual vulnerability. Use them from a position of calm authority — you are protecting what is already yours.',
+    expandTitle:'🌿 The Signs You Are Under Spiritual Envy Attack',
+    expandContent:`<p style="font-size:0.84em;color:var(--text-mid);line-height:1.7;margin-bottom:10px">Your ancestors knew these signs. If you are experiencing 3 or more of these consistently, a protective cleanse is not optional — it is urgent:</p>
+      <ul style="list-style:none;padding:0">
+        ${['Opportunities that were confirmed suddenly fall through for no clear reason','You feel drained, heavy, or "off" immediately after certain people visit or call','Things keep breaking — phone, relationships, plans — in clusters rather than randomly','You succeed in private but fail in public, or fail when certain people know about your plans','Recurring bad dreams specifically about known people in your life','You feel watched, followed, or talked about — a persistent background anxiety','Your income fluctuates wildly even when your work is consistent','People who previously helped you suddenly become cold without explanation'].map(s=>`<li style="display:flex;gap:8px;align-items:flex-start;font-size:0.82em;color:var(--text-mid);line-height:1.55;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--green);font-weight:900;flex-shrink:0">→</span>${s}</li>`).join('')}
+      </ul>`
+  },
+
+  // ── WEALTH & MONEY ────────────────────────────────────────────────────
+  {
+    id:'ym3', cat:'wealth',
+    gradient:'linear-gradient(135deg,#1a1000,#3a2400,#7a4800)',
+    emoji:'💰', badge:'Wealth Attraction',
+    title:'The Young Man\'s Money Protocol — Open Your Financial Roads',
+    subtitle:'These are not shortcuts. They are the spiritual alignment practices that make your WORK produce more than it would without them. The ancestors called this "opening the roads."',
+    herbs:['Cinnamon sticks','Cloves','Efirin','Ginger','Honey','Gold-coloured coins'],
+    steps:[
+      {title:'The Thursday Morning Activation (Non-Negotiable)', body:'Every Thursday morning before any other activity: hold your phone, wallet, or any item connected to your income in both hands. Breathe on it once. Say: "This is the tool of my prosperity. Everything I do with this today produces multiplied results." Then rub your hands together until they are warm and place them on whatever you will work with that day.'},
+      {title:'The Cinnamon & Clove Tea', body:'Every Thursday morning, drink a cup of cinnamon and clove tea with honey. This is not just spiritual — cinnamon and cloves are vasodilators that improve blood flow and mental performance. But spiritually, they are Oshun\'s spices — they open financial channels that were closed. Do this for 4 consecutive Thursdays minimum.'},
+      {title:'The Honey Jar Money Anchor', body:'In your room or workspace: place a small jar of raw honey. Put 3 gold-coloured coins inside. Say: "Sweet money. Money that comes easily. Money that stays. Money earned through my hands and my mind." Seal the jar. Do not open it — it is working. Replace honey quarterly.'},
+      {title:'The Efirin Floor Wash for Your Space', body:'If you have your own space (room, business, desk): once a week, boil efirin with cinnamon in water. Let it cool. Use it to wipe down your workspace surfaces, your desk, and your doorway from outside inward. This is drawing money IN, not pushing it out. Direction matters: always inward when drawing.'},
+      {title:'Know Every Naira You Have', body:'This is the most overlooked money practice in African spiritual tradition: the ancestors honored money by knowing it exactly. Count your money daily. Know what you have. Know what went out. Know what is coming. Aje (the spirit of money) stays with people who respect it enough to pay attention to it.'},
+      {title:'The 10% Seed Practice', body:'Before spending anything: give 10% away first — to your family, to someone who needs food, to the church/mosque, to anywhere that feels right. This is the law of first fruits that appears in EVERY African tradition. What you give first always returns multiplied. This is not superstition — it is the oldest financial principle in human history.'}
+    ],
+    affirmation:'"Money is not my enemy and I am not money\'s enemy. I am a channel for wealth. It flows through me to build, to give, and to create. I am not chasing it — I am becoming the person it finds."',
+    affirmationColor:'#3a2400',
+    truth:'"Ogun opens roads. Oshun brings what flows through those roads. Elegba decides who gets through the gates. Honor all three and your financial life stops being a mystery."',
+    warning:'No protocol substitutes for actual financial skill: budgeting, savings discipline, learning a marketable skill, and consistent work. The herbs amplify what is there. They cannot create what is absent.',
+    expandTitle:'💎 The 5 Wealth Blocks Specific to Young Nigerian Men — and Their Spiritual Solutions',
+    expandContent:`<div style="display:flex;flex-direction:column;gap:10px">
+      ${[
+        {block:'Spending to impress before building a foundation', spiritual:'This is ego before Ori alignment. Your Ori knows your destiny — if your spending contradicts your actual level, your Ori cannot guide you to the next level. Practice: every purchase above ₦5,000 — wait 24 hours. If you still want it after 24 hours, it is a need. If not, it was ego.', herb:'Frankincense — anointing the Ori before financial decisions aligns ego with destiny.'},
+        {block:'Giving money to people who drain it without return', spiritual:'In Yoruba tradition, there are financial parasites — people whose Ase is to draw money from others. Not maliciously always, but spiritually. You can recognize them: money consistently disappears around them. Solution: give to family from love but set limits. Do not lend what you cannot give.', herb:'Garlic and cloves in your wallet — they create an invisible barrier against financial draining.'},
+        {block:'No savings vessel — money has nowhere to stay', spiritual:'Money needs a container or it flows out. Create a physical savings container — a box, a separate account, anything. The moment money has a dedicated home, it behaves differently. The universe recognizes designated vessels.', herb:'Honey jar with coins — a physical money magnet in your space.'},
+        {block:'Working in the wrong direction for your Ori', spiritual:'Some young men are fighting their own destiny by working in fields that contradict who they are. If work is consistently hard and unrewarding no matter how hard you try, you may be misaligned with your Odu. A Babalawo consultation (once) can realign the direction.', herb:'Obi abata (bitter kola) in prayer before making any major career decision.'},
+        {block:'No financial mentors or elders invested in your growth', spiritual:'African wealth building is communal. No great man built alone. The spiritual practice of identifying and consistently honoring an elder who knows what you want to know is a direct wealth accelerator. Orunmila gave knowledge — but always through a living elder who carries it.', herb:'Kola nut offered when visiting any mentor or elder who helps you.'}
+      ].map(b=>`<div style="background:var(--bg);border-radius:12px;padding:12px 14px;border:1px solid var(--border)"><div style="font-weight:800;font-size:0.85em;color:var(--text);margin-bottom:4px">🚫 ${b.block}</div><div style="font-size:0.79em;color:var(--text-mid);line-height:1.6;margin-bottom:6px">${b.spiritual}</div><div style="font-size:0.76em;color:var(--green);font-weight:700">🌿 Herb: ${b.herb}</div></div>`).join('')}
+    </div>`
+  },
+
+  {
+    id:'ym4', cat:'wealth',
+    gradient:'linear-gradient(135deg,#001a00,#003a00,#006a00)',
+    emoji:'🌱', badge:'Building Wealth',
+    title:'The Seed & Harvest System — How Africans Built Wealth Over Time',
+    subtitle:'The ancestral wealth philosophy is not "get rich quick." It is "plant correctly, tend consistently, and harvest at the right season." These are the planting practices.',
+    herbs:['Moringa','Ginger','Black seed oil','Baobab','Tiger nuts'],
+    steps:[
+      {title:'Build the Body First — It Is Your First Asset', body:'Moringa + ginger + black seed in warm water every morning. This combination feeds your brain, clears inflammation, and builds the physical stamina that sustained work requires. A man with energy works more. A man who works more builds more. Physical vitality is not separate from wealth — it is the foundation.'},
+      {title:'The Knowledge Seed', body:'Every week, invest in one piece of knowledge: a book, a course, a conversation with someone who knows what you want to know. In Ifa tradition, Orunmila (wisdom) is always the companion of Oshun (wealth). They never separate. The man who stops learning stops deserving more than he has.'},
+      {title:'The Skill-to-Market Protocol', body:'Identify one skill that the market pays for. Then ask: what herb supports this skill? For speaking and communication: scent leaf steam inhalation before presentations. For strategic thinking: frankincense oil at temples during planning. For physical work: ginger and black seed for stamina. Match your spiritual support to your specific work.'},
+      {title:'The Baobab Patience Practice', body:'The baobab tree stores thousands of litres of water inside its trunk — not because it is lucky, but because it stores consistently over years. Once a month, sit with a cup of baobab drink and ask yourself: "What am I storing this month?" Make one financial decision that is about storing, not spending. One each month. Over 3 years, this becomes a fortune.'},
+      {title:'The Harvest Prayer (Monthly)', body:'On the first Saturday of every month, write a list of everything that happened positively that month — financially, relationally, spiritually. Pour libation to your ancestors. Say: "I see what you have done. I am grateful. I plant again this month. Watch over the new seed." Then write your intention for the next month.'}
+    ],
+    affirmation:'"I am building something that will outlast this season. Every correct action I take today is a seed in ground I cannot yet see. I plant anyway."',
+    affirmationColor:'#003a00',
+    truth:'"The Yoruba say: ilé ni ojúbọ orí — the home is the altar of the head. Build your internal house first (your mind, your character, your discipline) and the external house follows. Always. Without exception."',
+    warning:'Shortcuts in wealth-building carry spiritual debt. Money obtained through dishonesty, exploitation, or spiritual manipulation always comes with a return price. The ancestors see every transaction.',
+    expandTitle:'🏆 The Traditional Wealth Markers — What It Meant to Be a "Rich Man" in Old Yoruba',
+    expandContent:`<p style="font-size:0.84em;color:var(--text-mid);line-height:1.7;margin-bottom:10px">Traditional Yoruba wealth was measured in 4 categories — all four had to be present for a man to be considered truly wealthy:</p>
+      ${[
+        {marker:'Ọmọ', meaning:'Children / People', desc:'A man with no one who depends on and loves him is poor regardless of money. Wealth includes the people who will carry your name forward and the community that claims you.'},
+        {marker:'Ilé', meaning:'A home / Base of operations', desc:'Owning your space — even one room — was the first mark of a man who had arrived. A man paying rent forever was considered a man still in transition.'},
+        {marker:'Owó', meaning:'Money / Resources', desc:'The visible material wealth — but notably this is THIRD, not first. The ancestors put human relationships before material accumulation.'},
+        {marker:'Àṣà', meaning:'Character / Reputation', desc:'The most valued marker. A man with good character was considered wealthy even if temporarily without money — because character always rebuilds. A man with money but no character was pitied.'}
+      ].map(m=>`<div style="padding:10px 0;border-bottom:1px solid var(--border)"><div style="display:flex;gap:8px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-weight:800;color:var(--green);font-size:0.95em">${m.marker}</span><span style="font-size:0.72em;font-weight:700;color:var(--text-soft)">(${m.meaning})</span></div><div style="font-size:0.8em;color:var(--text-mid);line-height:1.55;margin-top:3px">${m.desc}</div></div>`).join('')}`
+  },
+
+  // ── INFLUENCE & RESPECT ───────────────────────────────────────────────
+  {
+    id:'ym5', cat:'influence',
+    gradient:'linear-gradient(135deg,#1a0500,#4a1000,#8b2500)',
+    emoji:'👑', badge:'Influence & Presence',
+    title:'The Presence Protocol — How to Walk Into Any Room and Command Respect',
+    subtitle:'Presence is a spiritual quality before it is a physical one. These practices build the kind of energy that makes people stop talking when you enter — not from fear, but from recognition.',
+    herbs:['Frankincense oil (diluted)','Cedarwood oil','Black seed oil','Efirin','Camphor'],
+    steps:[
+      {title:'The Anointing of the Three Points', body:'Before any important environment — job interview, business meeting, party, court, anything where you need to be seen and respected: apply a tiny drop of diluted frankincense oil to three points: crown of head, inside of both wrists. These three points are the body\'s spiritual transmission centers. What you carry at these points, you broadcast.'},
+      {title:'The Voice Practice', body:'Your voice is your Ashe made audible. Every morning: speak your full name aloud three times. Then speak your purpose for the day once, clearly. This is not performance — it is tuning your instrument. Men with clear, calm, intentional voices command more respect in every situation. Herb support: chew 1 bitter kola before any speaking situation.'},
+      {title:'The Posture Prayer', body:'Stand barefoot on the earth (or your floor) for 3 minutes every morning. Feel the ground beneath your feet. Say: "I stand on the foundation of my ancestors. I am rooted. I am clear. I am present." Men who are spiritually grounded cannot be easily intimidated or manipulated. Physical posture follows spiritual grounding.'},
+      {title:'The Eye Contact Practice', body:'In African tradition, looking an elder or equal in the eye respectfully (not aggressively) signals spiritual confidence — the man who knows his worth. Practice holding relaxed, respectful eye contact in every important conversation. Herb: scent leaf — crush and inhale before any difficult conversation to sharpen mental focus.'},
+      {title:'The Reputation Architecture', body:'Decide deliberately what you want to be known for — one specific thing. Then let every action confirm it. Reputation is spiritual currency: it opens doors before you arrive and protects you after you leave. Your one sentence reputation: "He is a man who [specific quality]." Plant this through consistent action, not words.'}
+    ],
+    affirmation:'"I do not need to announce myself. My presence does it. I walk in alignment with who I am and people recognize what they see even if they cannot name it."',
+    affirmationColor:'#4a1000',
+    truth:'"Ogun does not ask for permission to be present. He arrives and the path clears. That kind of presence is not arrogance — it is the natural field of a man aligned with his purpose."',
+    warning:'Influence built on genuine character compounds over time. Influence built on appearance alone collapses. Do the inner work that the outer presentation promises.',
+    expandTitle:'🗝️ The Orunmila Principle — Why the Wisest Men Were Always the Most Influential',
+    expandContent:`<p style="font-size:0.84em;color:var(--text-mid);line-height:1.7;margin-bottom:12px">Orunmila — the Orisha of wisdom and divination — was consulted by kings before wars, by merchants before journeys, by healers before diagnoses. He was the most influential being in Yoruba cosmology. Not because of power or money. Because of KNOWLEDGE and TIMING.</p>
+      <p style="font-size:0.84em;color:var(--text-mid);line-height:1.7;margin-bottom:10px">The Orunmila Influence Principles for Young Men:</p>
+      ${[
+        'Know more about your field than anyone else in your circle. Knowledge is the original power — it cannot be taken from you.',
+        'Know when to speak and when to be silent. Orunmila was revered for what he chose NOT to say as much as what he said. The man who speaks only when he has something to add is heard when he speaks.',
+        'Study people before advising them. Ifa says: the diviner who does not observe before speaking gives bad divination. Watch, listen, then respond.',
+        'Build a reputation for being right. One accurate, valuable insight compounds across years into immense influence.',
+        'Be the man others bring their problems to. Not because you want power — but because genuine service creates genuine influence. This is the Orunmila way.'
+      ].map((p,i)=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border)"><div style="width:24px;height:24px;min-width:24px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72em;font-weight:800">${i+1}</div><div style="font-size:0.82em;color:var(--text-mid);line-height:1.6;padding-top:2px">${p}</div></div>`).join('')}`
+  },
+
+  // ── OGUN RITUALS ──────────────────────────────────────────────────────
+  {
+    id:'ym6', cat:'ogun',
+    gradient:'linear-gradient(135deg,#001000,#002800,#004a00)',
+    emoji:'⚙️', badge:'Ogun Rituals',
+    title:'Working with Ogun — The Young Man\'s Primary Orisha',
+    subtitle:'Every young man building something is under Ogun\'s domain. He governs iron, work, roads, new beginnings, clearing obstacles, and the path that has never been walked before. This is who you work with first.',
+    herbs:['Palm oil (red)','Neem leaves','Garlic','Black pepper','Iron (key or nail)'],
+    steps:[
+      {title:'The Tuesday Morning Invocation (Weekly)', body:'Every Tuesday before 9am: hold any iron object — a key, a nail, a small bolt. Pour a few drops of red palm oil over it. Say: "Ogun, Ogun Onire, Ogun who lives in the iron and in the forest. I am working. Clear my path. Remove what blocks my progress. I come with palm oil and with seriousness. Walk with me today." Then set the iron object somewhere visible for the day.'},
+      {title:'The Road-Opening Bath (Before Any New Venture)', body:'Before starting a new job, new business, new city, new phase: neem leaves + black pepper + garlic cloves + sea salt, boiled together. Cool. Pour over yourself on a Tuesday morning. Say: "Every road in front of me is open. Every closed door is already opening. Every obstacle is already clearing. Ogun is walking ahead of me." Begin the new venture within 3 days of this bath.'},
+      {title:'The Iron Work Blessing', body:'If you work with your hands, tools, machines, vehicles, or any physical labour: before starting work each day, touch the tool or steering wheel and say: "Ogun, work with me today. Keep this tool safe. Keep me safe. Make this work produce more than its effort." This is the most ancient prayer in human labour — the tool prayer.'},
+      {title:'The Forest Connection', body:'Once a month, go to any green area — bush, park, any place with trees and earth. Stand at the edge and leave: a few drops of palm oil on any metal surface (nail in a tree, iron fence), a handful of efirin, 7 cloves. Say: "Ogun, I return what I have taken this month. Thank you for the roads you cleared." This keeps the relationship reciprocal.'},
+      {title:'The Obstacle Confrontation', body:'When you hit a serious block — a specific person, a specific door that won\'t open, a specific situation that won\'t move: on a Tuesday at 6am, take your key and hold it while facing the obstacle (the person\'s direction, the building, whatever it is). Say three times: "Ogun, cut what binds this. Clear what blocks this. Open what is closed." Then physically do the most direct action available to move past that obstacle.'}
+    ],
+    affirmation:'"I carry Ogun\'s iron in my spine. I do not bend from my path. I cut through every obstacle with the precision of one who knows his direction and the protection of one whose ancestors walk ahead."',
+    affirmationColor:'#002800',
+    truth:'"Ogun does not remove all obstacles from the road. He gives you the iron to cut through them yourself. He is not a rescuer — he is a sharpener. Come to him sharp and he makes you sharper."',
+    warning:'Ogun is not gentle. Do not invoke him for trivial or lazy intentions. He responds to genuine effort and genuine need. He will not help you sit down and wait.',
+    expandTitle:'⚒️ The 7 Things Ogun Governs — and What This Means for Young Men',
+    expandContent:`<div style="display:flex;flex-direction:column;gap:8px">
+      ${[
+        {domain:'Iron & Steel', application:'All your tools, phone, computer, vehicle, machines — these are Ogun\'s domain. Honor them. Maintain them. Never abuse your tools. A man whose tools are respected gets more from them.'},
+        {domain:'Roads & New Paths', application:'Any new direction you are taking — new career, new city, new relationship — is Ogun\'s territory. He clears the first path. This is why Tuesday is for new beginnings.'},
+        {domain:'Labor & Physical Work', application:'All physical effort is Ogun\'s prayer. Men who work hard are automatically under his protection. Laziness removes you from his umbrella.'},
+        {domain:'Surgery & Medical Procedures', application:'Before any surgery: pray to Ogun. He governs the blade. Many Nigerian patients and surgeons do this without naming it as spiritual practice.'},
+        {domain:'Justice & Truth', application:'Ogun is associated with oath-taking — he is the one people swear on iron before. He governs the justice of action over words. A man aligned with Ogun keeps his word.'},
+        {domain:'Cutting & Clearing', application:'He cuts: bad relationships, spiritual ties, blocked roads, enemy connections. When something in your life must be severed cleanly, Ogun is who you call.'},
+        {domain:'The Forest & Wild Nature', application:'Solitude in nature is Ogun\'s medicine. When overwhelmed, confused, or needing to reset: go somewhere green, alone, and sit. This is a direct Ogun encounter.'}
+      ].map(d=>`<div style="background:var(--bg);border-radius:10px;padding:10px 12px;border:1px solid var(--border)"><div style="font-weight:800;font-size:0.84em;color:var(--green);margin-bottom:3px">⚙️ ${d.domain}</div><div style="font-size:0.78em;color:var(--text-mid);line-height:1.55">${d.application}</div></div>`).join('')}
+    </div>`
+  },
+
+  // ── MIND & ENERGY ─────────────────────────────────────────────────────
+  {
+    id:'ym7', cat:'mindset',
+    gradient:'linear-gradient(135deg,#00001a,#00003a,#00006a)',
+    emoji:'🧠', badge:'Mind & Energy',
+    title:'The Young Man\'s Mental Edge — Herbs for Focus, Clarity & Stamina',
+    subtitle:'Success is 20% strategy and 80% the mental and physical capacity to execute that strategy consistently, under pressure, over time. Build the engine first.',
+    herbs:['Moringa','Frankincense oil','Scent leaf','Ginger','Black seed oil','Baobab'],
+    steps:[
+      {title:'The Morning Brain Protocol (Daily)', body:'Every morning without exception: 1 tsp moringa powder + ½ tsp ginger + 1 tsp black seed oil + warm water. Drink on an empty stomach before coffee. This combination provides: Moringa (iron, B vitamins, complete amino acids for neurotransmitter production), Ginger (circulation, anti-inflammatory, mental alertness), Black seed (neuroprotective, immune, anti-inflammatory). Give it 21 days minimum before judging results.'},
+      {title:'The Study / Work Focus Ritual', body:'Before any session requiring serious mental work: crush 3 fresh scent leaves in your hands. Inhale deeply 5 times. The camphor compounds in scent leaf cross the blood-brain barrier and increase alertness within minutes. No need to drink anything — direct inhalation works fastest. Then apply 1 tiny diluted drop of frankincense oil to both temples. You are now ready.'},
+      {title:'The Energy Management Practice', body:'Identify your 2 peak energy hours per day — usually 1-2 hours after waking for most people. These hours are sacred. Do your most important work then. Use herbal support during these hours. Do administrative work (emails, calls) during low energy hours. This one habit doubles your output with the same effort.'},
+      {title:'The Evening Decompression', body:'Every evening: drink lemongrass tea with honey. Walk barefoot on earth or floor for 5 minutes. Write down 3 things that moved forward today. This ritual drops cortisol, prevents the mental fatigue accumulation that destroys ambition over time, and keeps your working memory clear for the next day.'},
+      {title:'The Weekly Silence Practice', body:'Once a week — Sunday morning is traditional — sit in complete silence for 20 minutes. No phone. No music. Just you and your thoughts. In this silence, Orunmila speaks. Your clearest strategic ideas will come during these periods, not during noise. Many of Africa\'s greatest thinkers and leaders practiced deliberate silence. It is not passive — it is the most active thinking available.'}
+    ],
+    affirmation:'"My mind is my most powerful tool and I treat it accordingly. I feed it correctly, rest it correctly, and direct it deliberately. Nothing that requires mental strength is beyond me."',
+    affirmationColor:'#00003a',
+    truth:'"The Ifa corpus — 256 volumes of accumulated human wisdom — was memorized and transmitted orally by Babalawos. Not written down. Held in trained minds. The ancestors built their greatest achievement inside human consciousness. Your mind is the original storage device and it can hold more than you have ever put in it."',
+    warning:'Mental supplements work only alongside mental rest. Sleep deprivation cancels every herb and every ritual. 7-8 hours of sleep is the highest-leverage health and cognitive practice available — more important than any protocol listed here.',
+    expandTitle:'🔥 The 30-Day Young Man\'s Power Reset — Complete Protocol',
+    expandContent:`<p style="font-size:0.84em;color:var(--text-mid);line-height:1.7;margin-bottom:12px">Do ALL of these simultaneously for 30 days. By Day 21 the results will be undeniable. By Day 30 you will not want to stop:</p>
+      <div style="display:flex;flex-direction:column;gap:6px">
+      ${[
+        {day:'Every Morning', action:'Moringa + ginger + black seed oil in warm water. Breathe on your hands and speak your purpose for the day.'},
+        {day:'Every Tuesday', action:'Ogun invocation with iron key. Road-opening prayer before beginning work.'},
+        {day:'Every Thursday', action:'Cinnamon + clove tea. Favour bath in the evening. Honey tongue before any important conversation.'},
+        {day:'Every Friday', action:'Speak to one ancestor who was successful. Ask for one specific type of guidance.'},
+        {day:'Every Saturday', action:'Salt lines renewed. Weekly floor wash with efirin and cinnamon (inward sweep). Review the week.'},
+        {day:'Every Sunday', action:'Frankincense burning. 20-minute silence. Write the week\'s intention. Baobab drink.'},
+        {day:'Daily', action:'3 whole cloves in right pocket. Never announce unfinished blessings. Count your money before sleeping.'},
+        {day:'Weekly', action:'Touch earth with bare feet at least once. Leave palm oil at any iron object as Ogun offering. Express one genuine act of gratitude to an elder.'},
+        {day:'Monthly', action:'Visit a meaningful elder and bring something — kola nut, fruits, or a small gift. Sit with them. Listen more than you speak.'}
+      ].map(p=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--bg);border-radius:8px;border:1px solid var(--border)"><div style="font-size:0.7em;font-weight:800;color:var(--green);white-space:nowrap;min-width:80px;padding-top:2px">${p.day}</div><div style="font-size:0.8em;color:var(--text-mid);line-height:1.55">${p.action}</div></div>`).join('')}
+      </div>`
+  },
+
+  // ── PROTECTION ────────────────────────────────────────────────────────
+  {
+    id:'ym8', cat:'protection',
+    gradient:'linear-gradient(135deg,#0a0000,#2a0000,#4a0a00)',
+    emoji:'🛡️', badge:'Man\'s Protection',
+    title:'The Young Man\'s Protection System — Guarding Your Progress',
+    subtitle:'A man building something is a man with enemies — some known, most unknown. This is not paranoia. This is the clear-eyed understanding that growth attracts interference. Build the shield first.',
+    herbs:['Garlic','Neem','Camphor','Black pepper','Frankincense','Sea salt'],
+    steps:[
+      {title:'The Daily 60-Second Shield', body:'Every morning before leaving: garlic-infused oil on palm soles and back of neck. 3 cloves in right pocket. One breath of frankincense or camphor over your head. This is your minimum daily protection investment. 60 seconds. Non-negotiable if you are building something serious.'},
+      {title:'The Body Protection Bath (Tuesday)', body:'Every Tuesday: neem leaves + garlic + sea salt + black pepper, boiled and cooled. Pour from crown to feet. Say: "My body is a fortress. What enters must have permission. What threatens is repelled before it arrives." The consistent weekly bath builds a cumulative protective field — not a one-time event.'},
+      {title:'The Workspace Sealing', body:'Your workspace — phone, laptop, desk, shop, wherever you produce income — needs to be spiritually sealed. Once monthly: camphor water spray on the surfaces. 7 cloves under or near your main working tool. A small mirror facing the entrance of your workspace (reflective side outward). This triple seal covers physical, spiritual, and psychic interference.'},
+      {title:'The Information Protection Practice', body:'This is the most practical protection available and it costs nothing: identify what information about your plans, income, and movements is safe to share with which people. Not everyone deserves the same level of access to your life. Information shared with the wrong person is the most common way young men\'s progress is sabotaged — by others or by the jealousy those others carry.'},
+      {title:'The Night Protection', body:'Before sleeping: camphor piece under your mattress, renewed monthly. Glass of water with pinch of sea salt by your bed, replaced every morning. These two create a spiritual field around your sleeping space. The most important guidance you receive comes during sleep — protect the space where your spirit travels.'}
+    ],
+    affirmation:'"I am not afraid. I am prepared. There is a difference between fear and readiness. I am ready — and readiness is the most powerful form of protection."',
+    affirmationColor:'#2a0000',
+    truth:'"A young man who is not protecting himself is not being brave — he is being careless with his own future. The ancestors did not build without walls. Neither should you."',
+    warning:'Protection practices are preventive, not reactive. Start them BEFORE you face a specific threat. Building a wall after the enemy is inside is too late. Begin now.',
+    expandTitle:'🔐 The Inner Protection — Character Traits That Spiritually Shield Young Men',
+    expandContent:`<p style="font-size:0.84em;color:var(--text-mid);line-height:1.7;margin-bottom:10px">The ancestors taught that certain character traits create a spiritual shield that no herb alone can replicate. These are the most important:</p>
+      ${[
+        {trait:'Honesty in dealings', why:'Dishonest men are spiritually exposed — they cannot call on the ancestors for protection because the ancestors cannot protect what would embarrass them. Clean dealings create a spiritual credibility that becomes armour.'},
+        {trait:'Keeping your word', why:'Your word is your Àṣẹ — your spiritual power made audible. Men who keep their word consistently build a field of credibility that protects them: people speak well of them even in their absence.'},
+        {trait:'Not boasting of unfinished work', why:'Announcing incomplete blessings is the most common spiritual self-sabotage among young men. It invites the evil eye before the blessing has fully manifested. Wait. Announce after.'},
+        {trait:'Genuine respect for elders', why:'Elders carry accumulated Àṣẹ — years of prayers answered, blessings received, wisdom earned. A young man who disrespects elders cuts himself off from the most accessible source of ancestral protection available.'},
+        {trait:'Not sleeping with people carelessly', why:'Sexual energy exchange is the deepest energetic transaction available to humans. Every person you are intimate with, you exchange energy with. Sleeping carelessly is spiritual pollution that blocks every other protection practice.'}
+      ].map(t=>`<div style="padding:10px 0;border-bottom:1px solid var(--border)"><div style="font-weight:800;font-size:0.85em;color:var(--text);margin-bottom:3px">✓ ${t.trait}</div><div style="font-size:0.79em;color:var(--text-mid);line-height:1.55">${t.why}</div></div>`).join('')}`
+  }
+];
+
+// ── INIT & RENDER ─────────────────────────────────────────────────────
+let ymInitialized = false;
+
+function initYoungMenPanel(){
+  if(!ymInitialized){
+    ymInitialized = true;
+    renderYoungMen('all');
+  }
+}
+
+function filterYoungMen(cat, btn){
+  document.querySelectorAll('.ym-tab').forEach(function(b){
+    b.style.background='var(--white)';
+    b.style.borderColor='var(--border)';
+    b.style.color='var(--text-mid)';
+  });
+  if(btn){
+    btn.style.background='linear-gradient(135deg,#3a2800,#6b4400)';
+    btn.style.borderColor='#6b4400';
+    btn.style.color='#f0c040';
+  }
+  renderYoungMen(cat);
+}
+
+function renderYoungMen(cat){
+  var container = document.getElementById('youngmenCards');
+  if(!container) return;
+  var data = cat === 'all' ? youngMenData : youngMenData.filter(function(d){ return d.cat === cat; });
+
+  container.innerHTML = data.map(function(card){
+    var stepsHtml = card.steps.map(function(s, i){
+      return '<div class="ym-step"><div class="ym-step-num" style="background:' + card.gradient + '">' + (i+1) + '</div><div class="ym-step-text"><strong style="display:block;font-size:0.88em;color:var(--text);margin-bottom:2px">' + s.title + '</strong>' + s.body + '</div></div>';
+    }).join('');
+
+    var herbsHtml = card.herbs.map(function(h){
+      return '<span class="ym-herb-tag">' + h + '</span>';
+    }).join('');
+
+    return '<div class="ym-card">' +
+      '<div class="ym-card-hero" style="background:' + card.gradient + '">' +
+        '<div class="ym-card-badge">' + card.emoji + ' ' + card.badge + '</div>' +
+        '<h3>' + card.title + '</h3>' +
+        '<p>' + card.subtitle + '</p>' +
+      '</div>' +
+      '<div class="ym-card-body">' +
+        '<div class="ym-section-title">🌿 Herbs Used</div>' +
+        '<div class="ym-herb-row">' + herbsHtml + '</div>' +
+        '<div class="ym-section-title">📋 The Protocol — Step by Step</div>' +
+        stepsHtml +
+        '<div class="ym-section-title">💬 Affirmation</div>' +
+        '<div class="ym-affirmation" style="background:linear-gradient(135deg,' + card.affirmationColor + '22,' + card.affirmationColor + '08);border-left-color:' + card.affirmationColor + '">' + card.affirmation + '</div>' +
+        (card.warning ? '<div class="ym-warning">⚠️ ' + card.warning + '</div>' : '') +
+        '<div class="ym-truth">' + card.truth + '</div>' +
+      '</div>' +
+      '<button class="ym-collapse-btn" onclick="toggleYmExpand(this)"><span>' + card.expandTitle + '</span><span style="font-size:0.8em;transition:transform .3s">▼</span></button>' +
+      '<div class="ym-collapse-content"><div style="padding-top:4px">' + card.expandContent + '</div></div>' +
+    '</div>';
+  }).join('');
+}
+
+function toggleYmExpand(btn){
+  var content = btn.nextElementSibling;
+  var arrow = btn.querySelector('span:last-child');
+  var isOpen = content.classList.contains('open');
+  content.classList.toggle('open', !isOpen);
+  if(arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
 }
 </script>
 
